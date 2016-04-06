@@ -1,0 +1,29 @@
+toolsets = vs2013;
+
+vs2013.solutionfile = ../VC12/IshikoEnvironmentVariables.sln;
+
+library IshikoEnvironmentVariables
+{
+    archs = x86 x86_64;
+
+    includedirs += ../../../Include/Ishiko/EnvironmentVariables;
+
+    outputdir = ../../../Lib/$(arch);
+
+    if ($(config) == Debug)
+    {
+        basename = IshikoEnvironmentVariables-d;
+    }
+
+    headers
+    {
+        ../../../Include/Ishiko/EnvironmentVariables.h
+
+        ../../../Include/Ishiko/EnvironmentVariables/Environment.h
+    }
+
+    sources
+    {
+        ../../Source/Environment.cpp
+    }
+}
