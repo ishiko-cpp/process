@@ -4,9 +4,9 @@ setting ISHIKO_ENVIRONMENTVARIABLES_ROOT
     default = '$(ISHIKO_ENVIRONMENTVARIABLES)';
 }
 
-template IshikoEnvironmentVariablesCore
+template IshikoEnvironmentVariables
 {
-    includedirs += $(ISHIKO_ENVIRONMENTVARIABLES)/Include;
+    includedirs += $(ISHIKO_ENVIRONMENTVARIABLES_ROOT)/Include;
 
-    libdirs += $(ISHIKO_ENVIRONMENTVARIABLES)/Lib/$(arch);
+    libdirs += $(ISHIKO_ENVIRONMENTVARIABLES_ROOT)/Lib/$(arch);
 }
