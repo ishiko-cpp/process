@@ -1,14 +1,15 @@
-toolsets = vs2013;
+toolsets = vs2015 vs2013;
 
+vs2015.solutionfile = ../VC14/IshikoEnvironmentVariables.sln;
 vs2013.solutionfile = ../VC12/IshikoEnvironmentVariables.sln;
 
 library IshikoEnvironmentVariables
 {
     archs = x86 x86_64;
 
-    includedirs += ../../../Include/Ishiko/EnvironmentVariables;
+    includedirs += ../../Include/Ishiko/EnvironmentVariables;
 
-    outputdir = ../../../Lib/$(arch);
+    outputdir = ../../Lib/$(arch);
 
     if ($(config) == Debug)
     {
@@ -17,9 +18,9 @@ library IshikoEnvironmentVariables
 
     headers
     {
-        ../../../Include/Ishiko/EnvironmentVariables.h
+        ../../Include/Ishiko/EnvironmentVariables.h
 
-        ../../../Include/Ishiko/EnvironmentVariables/Environment.h
+        ../../Include/Ishiko/EnvironmentVariables/Environment.h
     }
 
     sources
