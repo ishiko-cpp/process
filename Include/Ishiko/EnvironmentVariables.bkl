@@ -1,0 +1,12 @@
+setting ISHIKO_ENVIRONMENTVARIABLES_ROOT
+{
+    help = "Path to the Ishiko EnvironmentVariables installation";
+    default = '$(ISHIKO_ENVIRONMENTVARIABLES)';
+}
+
+template IshikoEnvironmentVariablesCore
+{
+    includedirs += $(ISHIKO_ENVIRONMENTVARIABLES)/Include;
+
+    libdirs += $(ISHIKO_ENVIRONMENTVARIABLES)/Lib/$(arch);
+}
