@@ -1,12 +1,12 @@
-setting ISHIKO_ENVIRONMENTVARIABLES_ROOT
+setting ISHIKO_PROCESS_ROOT
 {
-    help = "Path to the Ishiko EnvironmentVariables installation";
-    default = '$(ISHIKO)/EnvironmentVariables';
+    help = "Path to the Ishiko Process installation";
+    default = '$(ISHIKO)/Process';
 }
 
-template IshikoEnvironmentVariables
+template IshikoProcess
 {
-    includedirs += $(ISHIKO_ENVIRONMENTVARIABLES_ROOT)/Include;
+    includedirs += $(ISHIKO_PROCESS_ROOT)/Include;
 
-    libdirs += $(ISHIKO_ENVIRONMENTVARIABLES_ROOT)/Lib/$(arch);
+    libdirs += $(ISHIKO_PROCESS_ROOT)/Lib/$(arch);
 }
