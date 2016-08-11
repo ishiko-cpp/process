@@ -10,8 +10,15 @@ program IshikoProcessTests : IshikoTestFrameworkCore
 {
     archs = x86 x86_64;
 
+    headers
+    {
+        ../../Source/EnvironmentTests/EnvironmentTests.h
+    }
+
     sources
     {
         ../../Source/main.cpp
+
+        ../../Source/EnvironmentTests/EnvironmentTests.cpp
     }
 }
