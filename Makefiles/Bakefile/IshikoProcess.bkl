@@ -1,26 +1,26 @@
 toolsets = vs2015 vs2013;
 
-vs2015.solutionfile = ../VC14/IshikoEnvironmentVariables.sln;
-vs2013.solutionfile = ../VC12/IshikoEnvironmentVariables.sln;
+vs2015.solutionfile = ../VC14/IshikoProcess.sln;
+vs2013.solutionfile = ../VC12/IshikoProcess.sln;
 
-library IshikoEnvironmentVariables
+library IshikoProcess
 {
     archs = x86 x86_64;
 
-    includedirs += ../../Include/Ishiko/EnvironmentVariables;
+    includedirs += ../../Include/Ishiko/Process;
 
     outputdir = ../../Lib/$(arch);
 
     if ($(config) == Debug)
     {
-        basename = IshikoEnvironmentVariables-d;
+        basename = IshikoProcess-d;
     }
 
     headers
     {
-        ../../Include/Ishiko/EnvironmentVariables.h
+        ../../Include/Ishiko/Process.h
 
-        ../../Include/Ishiko/EnvironmentVariables/Environment.h
+        ../../Include/Ishiko/Process/Environment.h
     }
 
     sources
