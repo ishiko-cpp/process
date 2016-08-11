@@ -23,6 +23,9 @@
     <ClInclude Include="..\..\Include\Ishiko\Process\Environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\Ishiko\Process\linkoptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Environment.cpp">

@@ -21,6 +21,7 @@ library IshikoProcess
         ../../Include/Ishiko/Process.h
 
         ../../Include/Ishiko/Process/Environment.h
+        ../../Include/Ishiko/Process/linkoptions.h
     }
 
     sources

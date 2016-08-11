@@ -25,10 +25,6 @@
 
 #include "Process/Environment.h"
 
-#ifdef _DEBUG
-#pragma comment(lib, "IshikoProcess-d.lib")
-#else
-#pragma comment(lib, "IshikoProcess.lib")
-#endif
+#include "Process/linkoptions.h"
 
 #endif
