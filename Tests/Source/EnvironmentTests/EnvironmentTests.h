@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016 Xavier Leclercq
+    Copyright (c) 2015-2016 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,14 +20,23 @@
     IN THE SOFTWARE.
 */
 
-#include "EnvironmentTests/EnvironmentTests.h"
+#ifndef _ISHIKO_TEST_PROCESS_ENVIRONMENTTESTS_ENVIRONMENTTESTS_H_
+#define _ISHIKO_TEST_PROCESS_ENVIRONMENTTESTS_ENVIRONMENTTESTS_H_
+
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 
-int main(int argc, char* argv[])
-{
-    Ishiko::TestFramework::TestHarness theTestHarness("IshikoProcess");
+using namespace Ishiko::TestFramework;
 
-    AddEnvironmentTests(theTestHarness);
+void AddEnvironmentTests(TestHarness& theTestHarness);
 
-    return theTestHarness.run();
-}
+TestResult::EOutcome EnvironmentSetTest1();
+TestResult::EOutcome EnvironmentSetTest2();
+TestResult::EOutcome EnvironmentFindTest1();
+TestResult::EOutcome EnvironmentExpandVariablesInStringTest1();
+TestResult::EOutcome EnvironmentExpandVariablesInStringTest2();
+TestResult::EOutcome EnvironmentExpandVariablesInStringTest3();
+TestResult::EOutcome EnvironmentExpandVariablesInStringTest4();
+TestResult::EOutcome EnvironmentExpandVariablesInStringTest5();
+TestResult::EOutcome EnvironmentExpandVariablesInStringTest6();
+
+#endif
