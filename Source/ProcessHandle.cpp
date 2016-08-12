@@ -20,12 +20,19 @@
     IN THE SOFTWARE.
 */
 
-#include "Process.h"
+#include "ProcessHandle.h"
 
 namespace Ishiko
 {
 namespace Process
 {
+
+ProcessHandle::ProcessHandle()
+#ifdef _WIN32
+    : m_handle(GetCurrentProcess())
+#endif
+{
+}
 
 }
 }

@@ -24,6 +24,7 @@
 #define _ISHIKO_PROCESS_H_
 
 #include "Process/Environment.h"
+#include "Process/ProcessHandle.h"
 
 #include "Process/linkoptions.h"
 
