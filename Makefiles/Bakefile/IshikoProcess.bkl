@@ -22,10 +22,12 @@ library IshikoProcess
 
         ../../Include/Ishiko/Process/Environment.h
         ../../Include/Ishiko/Process/linkoptions.h
+        ../../Include/Ishiko/Process/Process.h
     }
 
     sources
     {
         ../../Source/Environment.cpp
+        ../../Source/Process.cpp
     }
 }

@@ -151,11 +151,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Environment.cpp" />
+    <ClCompile Include="..\..\Source\Process.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\Ishiko\Process.h" />
     <ClInclude Include="..\..\Include\Ishiko\Process\Environment.h" />
     <ClInclude Include="..\..\Include\Ishiko\Process\linkoptions.h" />
+    <ClInclude Include="..\..\Include\Ishiko\Process\Process.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
