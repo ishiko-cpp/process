@@ -21,6 +21,7 @@
 */
 
 #include "EnvironmentTests/EnvironmentTests.h"
+#include "ProcessTests/ProcessHandleTests.h"
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 
 int main(int argc, char* argv[])
@@ -28,6 +29,7 @@ int main(int argc, char* argv[])
     Ishiko::TestFramework::TestHarness theTestHarness("IshikoProcess");
 
     AddEnvironmentTests(theTestHarness);
+    AddProcessHandleTests(theTestHarness);
 
     return theTestHarness.run();
 }
