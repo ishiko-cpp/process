@@ -29,4 +29,6 @@ using namespace Ishiko::TestFramework;
 
 void AddProcessHandleTests(TestHarness& theTestHarness);
 
+TestResult::EOutcome ProcessHandleCreationTest1();
+
 #endif

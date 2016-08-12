@@ -26,4 +26,12 @@
 void AddProcessHandleTests(TestHarness& theTestHarness)
 {
     TestSequence& processTestSequence = theTestHarness.appendTestSequence("ProcessHandle tests");
+
+    new HeapAllocationErrorsTest("Creation test 1", ProcessHandleCreationTest1, processTestSequence);
+}
+
+TestResult::EOutcome ProcessHandleCreationTest1()
+{
+    Ishiko::Process::ProcessHandle handle;
+    return TestResult::ePassed;
 }
