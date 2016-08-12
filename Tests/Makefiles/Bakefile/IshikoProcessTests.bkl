@@ -13,6 +13,7 @@ program IshikoProcessTests : IshikoTestFrameworkCore
     headers
     {
         ../../Source/EnvironmentTests/EnvironmentTests.h
+        ../../Source/ProcessTests/ProcessHandleTests.h
     }
 
     sources
@@ -20,5 +21,6 @@ program IshikoProcessTests : IshikoTestFrameworkCore
         ../../Source/main.cpp
 
         ../../Source/EnvironmentTests/EnvironmentTests.cpp
+        ../../Source/ProcessTests/ProcessHandleTests.cpp
     }
 }
