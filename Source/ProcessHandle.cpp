@@ -34,5 +34,41 @@ ProcessHandle::ProcessHandle()
 {
 }
 
+#ifdef _WIN32
+ProcessHandle::ProcessHandle(HANDLE nativeHandle)
+    : m_handle(nativeHandle)
+{
+}
+#endif
+
+ProcessHandle::~ProcessHandle()
+{
+#ifdef _WIN32
+    CloseHandle(m_handle);
+#endif
+}
+
+#ifdef _WIN32
+void ProcessHandle::assign(HANDLE nativeHandle)
+{
+    CloseHandle(m_handle);
+    m_handle = nativeHandle;
+}
+#endif
+
+void ProcessHandle::waitForExit() const
+{
+    WaitForSingleObject(m_handle, INFINITE);
+}
+
+int ProcessHandle::exitCode() const
+{
+#ifdef _WIN32
+    DWORD exitCode;
+    GetExitCodeProcess(m_handle, &exitCode);
+    return exitCode;
+#endif
+}
+
 }
 }

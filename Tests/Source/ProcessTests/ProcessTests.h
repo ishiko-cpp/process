@@ -29,6 +29,6 @@ using namespace Ishiko::TestFramework;
 
 void AddProcessTests(TestHarness& theTestHarness);
 
-TestResult::EOutcome CreateProcessTest1();
+TestResult::EOutcome IshikoCreateProcessTest1(Test& test);
 
 #endif

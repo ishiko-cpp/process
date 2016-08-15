@@ -37,6 +37,20 @@ class ProcessHandle
 {
 public:
     ProcessHandle();
+#ifdef _WIN32
+    ProcessHandle(HANDLE nativeHandle);
+#endif
+    ProcessHandle(const ProcessHandle& other) = delete;
+    ~ProcessHandle();
+
+    ProcessHandle& operator=(const ProcessHandle& other) = delete;
+
+#ifdef _WIN32
+    void assign(HANDLE nativeHandle);
+#endif
+
+    void waitForExit() const;
+    int exitCode() const;
 
 private:
 #ifdef _WIN32
@@ -46,5 +60,7 @@ private:
 
 }
 }
+
+#include "linkoptions.h"
 
 #endif

@@ -29,6 +29,8 @@ int main(int argc, char* argv[])
 {
     Ishiko::TestFramework::TestHarness theTestHarness("IshikoProcess");
 
+    theTestHarness.environment().setTestDataDirectory("../../TestData");
+
     AddEnvironmentTests(theTestHarness);
     AddProcessHandleTests(theTestHarness);
     AddProcessTests(theTestHarness);

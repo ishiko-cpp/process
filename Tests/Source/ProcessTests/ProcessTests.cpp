@@ -27,10 +27,25 @@ void AddProcessTests(TestHarness& theTestHarness)
 {
     TestSequence& processTestSequence = theTestHarness.appendTestSequence("Process tests");
 
-    new HeapAllocationErrorsTest("CreateProcess test 1", CreateProcessTest1, processTestSequence);
+    new HeapAllocationErrorsTest("IshikoCreateProcess test 1", IshikoCreateProcessTest1, processTestSequence);
 }
 
-TestResult::EOutcome CreateProcessTest1()
+TestResult::EOutcome IshikoCreateProcessTest1(Test& test)
 {
-    return TestResult::eFailed;
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Binaries/ExitCodeTestHelper.exe");
+
+    Ishiko::Process::ProcessHandle handle;
+    int err = IshikoCreateProcess(executablePath.string(), handle);
+    if (err == 0)
+    {
+        handle.waitForExit();
+        if (handle.exitCode() == 0)
+        {
+            result = TestResult::ePassed;
+        }
+    }
+    
+    return result;
 }
