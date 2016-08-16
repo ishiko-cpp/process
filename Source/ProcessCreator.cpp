@@ -20,10 +20,15 @@
     IN THE SOFTWARE.
 */
 
-#include "Process.h"
+#include "ProcessCreator.h"
 
-int IshikoCreateProcess(const std::string commandLine,
-                        Ishiko::Process::ProcessHandle& handle)
+namespace Ishiko
+{
+namespace Process
+{
+
+int ProcessCreator::StartProcess(const std::string commandLine,
+                                 ProcessHandle& handle)
 {
 #ifdef _WIN32
     STARTUPINFOA startupInfo;
@@ -47,4 +52,7 @@ int IshikoCreateProcess(const std::string commandLine,
 #endif
 
     return -1;
+}
+
+}
 }

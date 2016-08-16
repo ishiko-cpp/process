@@ -20,7 +20,7 @@
     <ClInclude Include="..\..\Source\EnvironmentTests\EnvironmentTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ProcessTests\ProcessTests.h">
+    <ClInclude Include="..\..\Source\ProcessTests\ProcessCreatorTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ProcessTests\ProcessHandleTests.h">
@@ -34,7 +34,7 @@
     <ClCompile Include="..\..\Source\EnvironmentTests\EnvironmentTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\ProcessTests\ProcessTests.cpp">
+    <ClCompile Include="..\..\Source\ProcessTests\ProcessCreatorTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ProcessTests\ProcessHandleTests.cpp">

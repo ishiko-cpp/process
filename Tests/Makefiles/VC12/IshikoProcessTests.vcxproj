@@ -154,12 +154,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\main.cpp" />
     <ClCompile Include="..\..\Source\EnvironmentTests\EnvironmentTests.cpp" />
-    <ClCompile Include="..\..\Source\ProcessTests\ProcessTests.cpp" />
+    <ClCompile Include="..\..\Source\ProcessTests\ProcessCreatorTests.cpp" />
     <ClCompile Include="..\..\Source\ProcessTests\ProcessHandleTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EnvironmentTests\EnvironmentTests.h" />
-    <ClInclude Include="..\..\Source\ProcessTests\ProcessTests.h" />
+    <ClInclude Include="..\..\Source\ProcessTests\ProcessCreatorTests.h" />
     <ClInclude Include="..\..\Source\ProcessTests\ProcessHandleTests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

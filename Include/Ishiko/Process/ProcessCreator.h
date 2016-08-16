@@ -20,15 +20,25 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _ISHIKO_PROCESS_PROCESS_H_
-#define _ISHIKO_PROCESS_PROCESS_H_
+#ifndef _ISHIKO_PROCESS_PROCESSCREATOR_H_
+#define _ISHIKO_PROCESS_PROCESSCREATOR_H_
 
 #include "ProcessHandle.h"
 #include <string>
 
-// Prefixed with Ishiko to avoid name clashes
-int IshikoCreateProcess(const std::string commandLine,
-    Ishiko::Process::ProcessHandle& handle);
+namespace Ishiko
+{
+namespace Process
+{
+
+class ProcessCreator
+{
+public:
+    static int StartProcess(const std::string commandLine, ProcessHandle& handle);
+    };
+
+}
+}
 
 #include "linkoptions.h"
 
