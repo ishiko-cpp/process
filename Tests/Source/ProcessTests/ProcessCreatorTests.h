@@ -20,15 +20,15 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _ISHIKO_TEST_PROCESS_PROCESSTESTS_PROCESSESTS_H_
-#define _ISHIKO_TEST_PROCESS_PROCESSTESTS_PROCESSESTS_H_
+#ifndef _ISHIKO_TEST_PROCESS_PROCESSTESTS_PROCESSCREATORTESTS_H_
+#define _ISHIKO_TEST_PROCESS_PROCESSTESTS_PROCESSCREATORTESTS_H_
 
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 
 using namespace Ishiko::TestFramework;
 
-void AddProcessTests(TestHarness& theTestHarness);
+void AddProcessCreatorTests(TestHarness& theTestHarness);
 
-TestResult::EOutcome IshikoCreateProcessTest1(Test& test);
+TestResult::EOutcome ProcessCreatorStartProcessTest1(Test& test);
 
 #endif

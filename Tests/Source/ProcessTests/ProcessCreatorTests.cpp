@@ -20,24 +20,24 @@
     IN THE SOFTWARE.
 */
 
-#include "ProcessTests.h"
-#include "Ishiko/Process/Process.h"
+#include "ProcessCreatorTests.h"
+#include "Ishiko/Process/ProcessCreator.h"
 
-void AddProcessTests(TestHarness& theTestHarness)
+void AddProcessCreatorTests(TestHarness& theTestHarness)
 {
-    TestSequence& processTestSequence = theTestHarness.appendTestSequence("Process tests");
+    TestSequence& processTestSequence = theTestHarness.appendTestSequence("ProcessCreator tests");
 
-    new HeapAllocationErrorsTest("IshikoCreateProcess test 1", IshikoCreateProcessTest1, processTestSequence);
+    new HeapAllocationErrorsTest("StartProcess test 1", ProcessCreatorStartProcessTest1, processTestSequence);
 }
 
-TestResult::EOutcome IshikoCreateProcessTest1(Test& test)
+TestResult::EOutcome ProcessCreatorStartProcessTest1(Test& test)
 {
     TestResult::EOutcome result = TestResult::eFailed;
 
     boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Binaries/ExitCodeTestHelper.exe");
 
     Ishiko::Process::ProcessHandle handle;
-    int err = IshikoCreateProcess(executablePath.string(), handle);
+    int err = Ishiko::Process::ProcessCreator::StartProcess(executablePath.string(), handle);
     if (err == 0)
     {
         handle.waitForExit();
