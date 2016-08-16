@@ -61,6 +61,13 @@ void ProcessHandle::waitForExit() const
     WaitForSingleObject(m_handle, INFINITE);
 }
 
+void ProcessHandle::kill(int exitCode) const
+{
+#ifdef _WIN32
+    TerminateProcess(m_handle, exitCode);
+#endif
+}
+
 int ProcessHandle::exitCode() const
 {
 #ifdef _WIN32

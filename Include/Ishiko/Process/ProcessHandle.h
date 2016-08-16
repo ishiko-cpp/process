@@ -50,6 +50,7 @@ public:
 #endif
 
     void waitForExit() const;
+    void kill(int exitCode) const;
     int exitCode() const;
 
 private:
