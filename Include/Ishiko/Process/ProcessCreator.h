@@ -34,8 +34,15 @@ namespace Process
 class ProcessCreator
 {
 public:
-    static int StartProcess(const std::string commandLine, ProcessHandle& handle);
-    };
+    static int StartProcess(const std::string& commandLine, ProcessHandle& handle);
+
+    ProcessCreator(const std::string& commandLine);
+
+    int start(ProcessHandle& handle);
+
+private:
+    std::string m_commandLine;
+};
 
 }
 }

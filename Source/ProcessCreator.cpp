@@ -27,7 +27,7 @@ namespace Ishiko
 namespace Process
 {
 
-int ProcessCreator::StartProcess(const std::string commandLine,
+int ProcessCreator::StartProcess(const std::string& commandLine,
                                  ProcessHandle& handle)
 {
 #ifdef _WIN32
@@ -52,6 +52,16 @@ int ProcessCreator::StartProcess(const std::string commandLine,
 #endif
 
     return -1;
+}
+
+ProcessCreator::ProcessCreator(const std::string& commandLine)
+    : m_commandLine(commandLine)
+{
+}
+
+int ProcessCreator::start(ProcessHandle& handle)
+{
+    return StartProcess(m_commandLine, handle);
 }
 
 }

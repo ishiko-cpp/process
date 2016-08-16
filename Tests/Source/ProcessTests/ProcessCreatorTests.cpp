@@ -27,7 +27,39 @@ void AddProcessCreatorTests(TestHarness& theTestHarness)
 {
     TestSequence& processTestSequence = theTestHarness.appendTestSequence("ProcessCreator tests");
 
+    new HeapAllocationErrorsTest("Creation test 1", ProcessCreatorCreationTest1, processTestSequence);
+
+    new HeapAllocationErrorsTest("start test 1", ProcessCreatorStartTest1, processTestSequence);
+
     new HeapAllocationErrorsTest("StartProcess test 1", ProcessCreatorStartProcessTest1, processTestSequence);
+}
+
+TestResult::EOutcome ProcessCreatorCreationTest1()
+{
+    Ishiko::Process::ProcessCreator creator("dummy");
+    return TestResult::ePassed;
+}
+
+TestResult::EOutcome ProcessCreatorStartTest1(Test& test)
+{
+    TestResult::EOutcome result = TestResult::eFailed;
+
+    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Binaries/ExitCodeTestHelper.exe");
+
+    Ishiko::Process::ProcessCreator creator(executablePath.string());
+
+    Ishiko::Process::ProcessHandle handle;
+    int err = creator.start(handle);
+    if (err == 0)
+    {
+        handle.waitForExit();
+        if (handle.exitCode() == 0)
+        {
+            result = TestResult::ePassed;
+        }
+    }
+
+    return result;
 }
 
 TestResult::EOutcome ProcessCreatorStartProcessTest1(Test& test)
