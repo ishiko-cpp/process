@@ -40,8 +40,17 @@ public:
 
     int start(ProcessHandle& handle);
 
+    void redirectStandardOutputToFile(const std::string& path);
+
+#ifdef _WIN32
+private:
+    static HANDLE createInheritableFile(const std::string& path);
+#endif
+
+
 private:
     std::string m_commandLine;
+    std::string m_standardOutputFilePath;
 };
 
 }

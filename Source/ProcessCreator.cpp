@@ -30,28 +30,8 @@ namespace Process
 int ProcessCreator::StartProcess(const std::string& commandLine,
                                  ProcessHandle& handle)
 {
-#ifdef _WIN32
-    STARTUPINFOA startupInfo;
-    ZeroMemory(&startupInfo, sizeof(startupInfo));
-    startupInfo.cb = sizeof(startupInfo);
-
-    PROCESS_INFORMATION processInfo;
-    ZeroMemory(&processInfo, sizeof(processInfo));
-
-    if (!CreateProcessA(NULL, const_cast<char*>(commandLine.c_str()),
-        NULL, NULL, FALSE, 0, NULL, NULL, &startupInfo, &processInfo))
-    {
-        return -1;
-    }
-    else
-    {
-        handle.assign(processInfo.hProcess);
-        CloseHandle(processInfo.hThread);
-        return 0;
-    }
-#endif
-
-    return -1;
+    ProcessCreator creator(commandLine);
+    return creator.start(handle);
 }
 
 ProcessCreator::ProcessCreator(const std::string& commandLine)
@@ -61,7 +41,58 @@ ProcessCreator::ProcessCreator(const std::string& commandLine)
 
 int ProcessCreator::start(ProcessHandle& handle)
 {
-    return StartProcess(m_commandLine, handle);
+#ifdef _WIN32
+    STARTUPINFOA startupInfo;
+    ZeroMemory(&startupInfo, sizeof(startupInfo));
+    startupInfo.cb = sizeof(startupInfo);
+
+    HANDLE outputFile;
+    BOOL inheritHandles = FALSE;
+    if (!m_standardOutputFilePath.empty())
+    {
+        inheritHandles = TRUE;
+        outputFile = createInheritableFile(m_standardOutputFilePath);
+        startupInfo.dwFlags |= STARTF_USESTDHANDLES;
+        startupInfo.hStdOutput = outputFile;
+    }
+
+    PROCESS_INFORMATION processInfo;
+    ZeroMemory(&processInfo, sizeof(processInfo));
+
+    if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.c_str()),
+        NULL, NULL, inheritHandles, 0, NULL, NULL, &startupInfo, &processInfo))
+    {
+        return -1;
+    }
+    else
+    {
+        handle.assign(processInfo.hProcess);
+        CloseHandle(processInfo.hThread);
+        return 0;
+    }
+
+    if (!m_standardOutputFilePath.empty())
+    {
+        CloseHandle(outputFile);
+    }
+#endif
+
+    return -1;
+}
+
+void ProcessCreator::redirectStandardOutputToFile(const std::string& path)
+{
+    m_standardOutputFilePath = path;
+}
+
+HANDLE ProcessCreator::createInheritableFile(const std::string& path)
+{
+    SECURITY_ATTRIBUTES securityAttributes;
+    securityAttributes.nLength = sizeof(SECURITY_ATTRIBUTES);
+    securityAttributes.bInheritHandle = TRUE;
+    securityAttributes.lpSecurityDescriptor = NULL;
+    return CreateFileA(path.c_str(), FILE_APPEND_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ,
+        &securityAttributes, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 }
 
 }
