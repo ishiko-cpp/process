@@ -8,5 +8,13 @@ template IshikoProcess
 {
     includedirs += $(ISHIKO_PROCESS_ROOT)/Include;
 
-    libdirs += $(ISHIKO_PROCESS_ROOT)/Lib/$(arch);
+    if ($(toolset) == gnu)
+    {
+        libdirs += $(ISHIKO_PROCESS_ROOT)/Lib;
+    }
+
+    if ($(toolset) != gnu)
+    {
+        libdirs += $(ISHIKO_PROCESS_ROOT)/Lib/$(arch);
+    }
 }
