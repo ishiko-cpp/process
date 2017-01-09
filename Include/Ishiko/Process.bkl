@@ -11,6 +11,7 @@ template IshikoProcess
     if ($(toolset) == gnu)
     {
         libdirs += $(ISHIKO_PROCESS_ROOT)/Lib;
+        libs += IshikoProcess;
     }
 
     if ($(toolset) != gnu)
