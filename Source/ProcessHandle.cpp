@@ -58,7 +58,9 @@ void ProcessHandle::assign(HANDLE nativeHandle)
 
 void ProcessHandle::waitForExit() const
 {
+#ifdef _WIN32
     WaitForSingleObject(m_handle, INFINITE);
+#endif
 }
 
 void ProcessHandle::kill(int exitCode) const

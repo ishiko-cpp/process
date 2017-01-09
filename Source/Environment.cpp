@@ -43,13 +43,19 @@ bool Environment::find(const std::string& name, std::string& value)
 }
 
 void Environment::set(const std::string& name, 
-	                  const std::string& value)
+                      const std::string& value)
 {
-	_putenv_s(name.c_str(), value.c_str());
+#ifdef _WIN32
+    _putenv_s(name.c_str(), value.c_str());
+#elif __linux__
+    setenv(name.c_str(), value.c_str(), 1);
+#else
+    #error Unsupported platform
+#endif
 }
 
 std::string Environment::expandVariablesInString(const std::string& str,
-	                                             int format)
+                                                 int format)
 {
 	std::string result;
 

@@ -85,6 +85,7 @@ void ProcessCreator::redirectStandardOutputToFile(const std::string& path)
     m_standardOutputFilePath = path;
 }
 
+#ifdef _WIN32
 HANDLE ProcessCreator::createInheritableFile(const std::string& path)
 {
     SECURITY_ATTRIBUTES securityAttributes;
@@ -94,6 +95,9 @@ HANDLE ProcessCreator::createInheritableFile(const std::string& path)
     return CreateFileA(path.c_str(), FILE_APPEND_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ,
         &securityAttributes, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 }
+#endif
+
 
 }
 }
+
