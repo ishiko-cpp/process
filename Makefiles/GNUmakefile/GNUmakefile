@@ -54,9 +54,9 @@ _builddir := $(if $(findstring $(abspath $(builddir)),$(builddir)),,../../)$(bui
 _builddir_error := $(shell mkdir -p $(_builddir) 2>&1)
 $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_error)))
 endif
-all: ../Bakefile/../../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a
+all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a
 
-../Bakefile/../../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a: $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_ProcessCreator.o $(_builddir)IshikoProcess_ProcessHandle.o
+../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a: $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_ProcessCreator.o $(_builddir)IshikoProcess_ProcessHandle.o
 	$(AR) rcu $@ $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_ProcessCreator.o $(_builddir)IshikoProcess_ProcessHandle.o
 	$(RANLIB) $@
 
@@ -72,7 +72,7 @@ $(_builddir)IshikoProcess_ProcessHandle.o: ../../Source/ProcessHandle.cpp
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f ../Bakefile/../../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a
+	rm -f ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a
 
 .PHONY: all clean
 

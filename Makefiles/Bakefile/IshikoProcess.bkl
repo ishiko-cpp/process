@@ -13,7 +13,7 @@ library IshikoProcess
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        outputdir = ../../../Lib;
+        outputdir = ../../Lib;
     }
 
     if ($(toolset) != gnu)
