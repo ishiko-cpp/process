@@ -57,7 +57,7 @@ endif
 all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a
 
 ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a: $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_ProcessCreator.o $(_builddir)IshikoProcess_ProcessHandle.o
-	$(AR) rcu $@ $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_ProcessCreator.o $(_builddir)IshikoProcess_ProcessHandle.o
+	$(AR) rc $@ $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_ProcessCreator.o $(_builddir)IshikoProcess_ProcessHandle.o
 	$(RANLIB) $@
 
 $(_builddir)IshikoProcess_Environment.o: ../../Source/Environment.cpp
