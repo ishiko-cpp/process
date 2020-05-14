@@ -1,20 +1,20 @@
-setting ISHIKO_PROCESS_ROOT
+setting ISHIKO_CPP_PROCESS_ROOT
 {
     help = "Path to the Ishiko Process installation";
-    default = '$(ISHIKO)/Process';
+    default = '$(ISHIKO_CPP)/Process';
 }
 
 template IshikoProcess
 {
-    includedirs += $(ISHIKO_PROCESS_ROOT)/Include;
+    includedirs += $(ISHIKO_CPP_PROCESS_ROOT)/Include;
 
     if ($(toolset) == gnu)
     {
-        libdirs += $(ISHIKO_PROCESS_ROOT)/Lib;
+        libdirs += $(ISHIKO_CPP_PROCESS_ROOT)/Lib;
     }
 
     if ($(toolset) != gnu)
     {
-        libdirs += $(ISHIKO_PROCESS_ROOT)/Lib/$(arch);
+        libdirs += $(ISHIKO_CPP_PROCESS_ROOT)/Lib/$(arch);
     }
 }
