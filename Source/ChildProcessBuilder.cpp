@@ -15,7 +15,7 @@ namespace Ishiko
 namespace Process
 {
 
-int ChildProcessBuilder::StartProcess(const std::string& commandLine, ProcessHandle& handle)
+int ChildProcessBuilder::StartProcess(const std::string& commandLine, ChildProcess& handle)
 {
     ChildProcessBuilder builder(commandLine);
     return builder.start(handle);
@@ -26,7 +26,7 @@ ChildProcessBuilder::ChildProcessBuilder(const std::string& commandLine)
 {
 }
 
-int ChildProcessBuilder::start(ProcessHandle& handle)
+int ChildProcessBuilder::start(ChildProcess& handle)
 {
 #if defined(__linux__)
     pid_t child = fork();

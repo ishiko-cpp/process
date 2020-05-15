@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_PROCESS_CHILDPROCESSBUILDER_H_
 #define _ISHIKO_PROCESS_CHILDPROCESSBUILDER_H_
 
-#include "ProcessHandle.h"
+#include "ChildProcess.h"
 #include <string>
 
 namespace Ishiko
@@ -18,11 +18,11 @@ namespace Process
 class ChildProcessBuilder
 {
 public:
-    static int StartProcess(const std::string& commandLine, ProcessHandle& handle);
+    static int StartProcess(const std::string& commandLine, ChildProcess& handle);
 
     ChildProcessBuilder(const std::string& commandLine);
 
-    int start(ProcessHandle& handle);
+    int start(ChildProcess& handle);
 
     void redirectStandardOutputToFile(const std::string& path);
 
