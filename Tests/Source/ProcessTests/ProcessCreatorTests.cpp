@@ -28,7 +28,7 @@ void ProcessCreatorTests::ConstructorTest1(Test& test)
 
 void ProcessCreatorTests::StartTest1(Test& test)
 {
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Binaries/ExitCodeTestHelper.exe");
+    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
 
     Ishiko::Process::ProcessCreator creator(executablePath.string());
 
