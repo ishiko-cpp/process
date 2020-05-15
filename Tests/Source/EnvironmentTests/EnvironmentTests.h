@@ -1,23 +1,7 @@
 /*
-    Copyright (c) 2015-2016 Xavier Leclercq
-
-    Permission is hereby granted, free of charge, to any person obtaining a
-    copy of this software and associated documentation files (the "Software"),
-    to deal in the Software without restriction, including without limitation
-    the rights to use, copy, modify, merge, publish, distribute, sublicense,
-    and/or sell copies of the Software, and to permit persons to whom the
-    Software is furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-    THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-    IN THE SOFTWARE.
+    Copyright (c) 2015-2020 Xavier Leclercq
+    Released under the MIT License
+    See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
 
 #ifndef _ISHIKO_TEST_PROCESS_ENVIRONMENTTESTS_ENVIRONMENTTESTS_H_
@@ -25,18 +9,21 @@
 
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 
-using namespace Ishiko::TestFramework;
+class EnvironmentTests : public Ishiko::Tests::TestSequence
+{
+public:
+    EnvironmentTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
 
-void AddEnvironmentTests(TestHarness& theTestHarness);
-
-TestResult::EOutcome EnvironmentSetTest1();
-TestResult::EOutcome EnvironmentSetTest2();
-TestResult::EOutcome EnvironmentFindTest1();
-TestResult::EOutcome EnvironmentExpandVariablesInStringTest1();
-TestResult::EOutcome EnvironmentExpandVariablesInStringTest2();
-TestResult::EOutcome EnvironmentExpandVariablesInStringTest3();
-TestResult::EOutcome EnvironmentExpandVariablesInStringTest4();
-TestResult::EOutcome EnvironmentExpandVariablesInStringTest5();
-TestResult::EOutcome EnvironmentExpandVariablesInStringTest6();
+private:
+    static void SetTest1(Ishiko::Tests::Test& test);
+    static void SetTest2(Ishiko::Tests::Test& test);
+    static void FindTest1(Ishiko::Tests::Test& test);
+    static void ExpandVariablesInStringTest1(Ishiko::Tests::Test& test);
+    static void ExpandVariablesInStringTest2(Ishiko::Tests::Test& test);
+    static void ExpandVariablesInStringTest3(Ishiko::Tests::Test& test);
+    static void ExpandVariablesInStringTest4(Ishiko::Tests::Test& test);
+    static void ExpandVariablesInStringTest5(Ishiko::Tests::Test& test);
+    static void ExpandVariablesInStringTest6(Ishiko::Tests::Test& test);
+};
 
 #endif
