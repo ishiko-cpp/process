@@ -33,6 +33,7 @@ library IshikoProcess
 
         ../../Include/Ishiko/Process/Environment.h
         ../../Include/Ishiko/Process/linkoptions.h
+        ../../Include/Ishiko/Process/CommandLine.h
         ../../Include/Ishiko/Process/ChildProcessBuilder.h
         ../../Include/Ishiko/Process/ChildProcess.h
     }
@@ -40,6 +41,7 @@ library IshikoProcess
     sources
     {
         ../../Source/Environment.cpp
+        ../../Source/CommandLine.cpp
         ../../Source/ChildProcessBuilder.cpp
         ../../Source/ChildProcess.cpp
     }
