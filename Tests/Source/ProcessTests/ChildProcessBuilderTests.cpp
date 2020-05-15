@@ -36,7 +36,7 @@ void ChildProcessBuilderTests::StartTest1(Test& test)
 
     Ishiko::Process::ChildProcessBuilder builder(executablePath.string());
 
-    Ishiko::Process::ProcessHandle handle;
+    Ishiko::Process::ChildProcess handle;
     int err = builder.start(handle);
 
     ISHTF_ABORT_IF_NEQ(err, 0);
@@ -58,7 +58,7 @@ void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonT
     Ishiko::Process::ChildProcessBuilder creator(executablePath.string());
     creator.redirectStandardOutputToFile(outputPath.string());
 
-    Ishiko::Process::ProcessHandle handle;
+    Ishiko::Process::ChildProcess handle;
     int err = creator.start(handle);
 
     ISHTF_ABORT_IF_NEQ(err, 0);
@@ -71,9 +71,9 @@ void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonT
 
 void ChildProcessBuilderTests::StartProcessTest1(Test& test)
 {
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Binaries/ExitCodeTestHelper.exe");
+    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
 
-    Ishiko::Process::ProcessHandle handle;
+    Ishiko::Process::ChildProcess handle;
     int err = Ishiko::Process::ChildProcessBuilder::StartProcess(executablePath.string(), handle);
     
     ISHTF_ABORT_IF_NEQ(err, 0);

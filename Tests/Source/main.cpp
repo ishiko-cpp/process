@@ -5,7 +5,7 @@
 */
 
 #include "EnvironmentTests/EnvironmentTests.h"
-#include "ProcessTests/ProcessHandleTests.h"
+#include "ProcessTests/ChildProcessTests.h"
 #include "ProcessTests/ChildProcessBuilderTests.h"
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 #include <boost/filesystem/operations.hpp>
@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
 
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<EnvironmentTests>();
-    theTests.append<ProcessHandleTests>();
+    theTests.append<ChildProcessTests>();
     theTests.append<ChildProcessBuilderTests>();
 
     return theTestHarness.run();

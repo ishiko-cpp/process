@@ -4,20 +4,20 @@
     See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
 
-#include "ProcessHandleTests.h"
-#include "Ishiko/Process/ProcessHandle.h"
+#include "ChildProcessTests.h"
+#include "Ishiko/Process/ChildProcess.h"
 
 using namespace Ishiko::Tests;
 
-ProcessHandleTests::ProcessHandleTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "ProcessHandle tests", environment)
+ChildProcessTests::ChildProcessTests(const TestNumber& number, const TestEnvironment& environment)
+    : TestSequence(number, "ChildProcess tests", environment)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
 }
 
-void ProcessHandleTests::ConstructorTest1(Test& test)
+void ChildProcessTests::ConstructorTest1(Test& test)
 {
-    Ishiko::Process::ProcessHandle handle;
+    Ishiko::Process::ChildProcess handle;
     
     ISHTF_PASS();
 }
