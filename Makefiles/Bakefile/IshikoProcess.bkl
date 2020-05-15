@@ -34,13 +34,13 @@ library IshikoProcess
         ../../Include/Ishiko/Process/Environment.h
         ../../Include/Ishiko/Process/linkoptions.h
         ../../Include/Ishiko/Process/ChildProcessBuilder.h
-        ../../Include/Ishiko/Process/ProcessHandle.h
+        ../../Include/Ishiko/Process/ChildProcess.h
     }
 
     sources
     {
         ../../Source/Environment.cpp
         ../../Source/ChildProcessBuilder.cpp
-        ../../Source/ProcessHandle.cpp
+        ../../Source/ChildProcess.cpp
     }
 }

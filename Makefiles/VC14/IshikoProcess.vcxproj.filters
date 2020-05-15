@@ -29,7 +29,7 @@
     <ClInclude Include="..\..\Include\Ishiko\Process\ChildProcessBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\Ishiko\Process\ProcessHandle.h">
+    <ClInclude Include="..\..\Include\Ishiko\Process\ChildProcess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -40,7 +40,7 @@
     <ClCompile Include="..\..\Source\ChildProcessBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\ProcessHandle.cpp">
+    <ClCompile Include="..\..\Source\ChildProcess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
