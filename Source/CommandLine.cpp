@@ -5,3 +5,26 @@
 */
 
 #include "CommandLine.h"
+
+namespace Ishiko
+{
+namespace Process
+{
+
+CommandLine::CommandLine(const char* executable)
+    : m_executable(executable)
+{
+}
+
+CommandLine::CommandLine(const std::string& executable)
+    : m_executable(executable)
+{
+}
+
+const std::string& CommandLine::executable() const
+{
+    return m_executable;
+}
+
+}
+}

@@ -21,7 +21,7 @@ int ChildProcessBuilder::StartProcess(const std::string& commandLine, ChildProce
     return builder.start(handle);
 }
 
-ChildProcessBuilder::ChildProcessBuilder(const std::string& commandLine)
+ChildProcessBuilder::ChildProcessBuilder(const CommandLine& commandLine)
     : m_commandLine(commandLine)
 {
 }
@@ -61,7 +61,7 @@ int ChildProcessBuilder::start(ChildProcess& handle)
     PROCESS_INFORMATION processInfo;
     ZeroMemory(&processInfo, sizeof(processInfo));
 
-    if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.c_str()),
+    if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.executable().c_str()),
         NULL, NULL, inheritHandles, 0, NULL, NULL, &startupInfo, &processInfo))
     {
         return -1;
