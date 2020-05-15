@@ -7,4 +7,16 @@
 #ifndef _ISHIKO_PROCESS_COMMANDLINE_H_
 #define _ISHIKO_PROCESS_COMMANDLINE_H_
 
+namespace Ishiko
+{
+namespace Process
+{
+
+class CommandLine
+{
+};
+
+}
+}
+
 #endif

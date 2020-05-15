@@ -4,8 +4,8 @@
     See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
 
-#ifndef _ISHIKO_TEST_PROCESS_ENVIRONMENTTESTS_ENVIRONMENTTESTS_H_
-#define _ISHIKO_TEST_PROCESS_ENVIRONMENTTESTS_ENVIRONMENTTESTS_H_
+#ifndef _ISHIKO_TEST_PROCESS_ENVIRONMENTTESTS_H_
+#define _ISHIKO_TEST_PROCESS_ENVIRONMENTTESTS_H_
 
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 
