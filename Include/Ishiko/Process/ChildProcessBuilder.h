@@ -20,11 +20,11 @@ namespace Process
 class ChildProcessBuilder
 {
 public:
-    static void StartProcess(const std::string& commandLine, ChildProcess& handle, Error& error);
+    static ChildProcess StartProcess(const std::string& commandLine, Error& error);
 
     ChildProcessBuilder(const CommandLine& commandLine);
 
-    void start(ChildProcess& handle, Error& error);
+    ChildProcess start(Error& error);
 
     void redirectStandardOutputToFile(const std::string& path);
 

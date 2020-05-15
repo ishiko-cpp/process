@@ -27,6 +27,7 @@ public:
     ChildProcess(HANDLE nativeHandle);
 #endif
     ChildProcess(const ChildProcess& other) = delete;
+    ChildProcess(ChildProcess&& other) noexcept;
     ~ChildProcess();
 
     ChildProcess& operator=(const ChildProcess& other) = delete;

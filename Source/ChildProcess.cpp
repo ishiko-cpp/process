@@ -16,7 +16,7 @@ namespace Process
 
 ChildProcess::ChildProcess()
 #ifdef _WIN32
-    : m_handle(GetCurrentProcess())
+    : m_handle(INVALID_HANDLE_VALUE)
 #endif
 {
 }
@@ -28,10 +28,19 @@ ChildProcess::ChildProcess(HANDLE nativeHandle)
 }
 #endif
 
+ChildProcess::ChildProcess(ChildProcess&& other) noexcept
+    : m_handle(other.m_handle)
+{
+    other.m_handle = INVALID_HANDLE_VALUE;
+}
+
 ChildProcess::~ChildProcess()
 {
 #ifdef _WIN32
-    CloseHandle(m_handle);
+    if (m_handle != INVALID_HANDLE_VALUE)
+    {
+        CloseHandle(m_handle);
+    }
 #endif
 }
 

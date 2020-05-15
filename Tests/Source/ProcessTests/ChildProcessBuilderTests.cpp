@@ -39,8 +39,7 @@ void ChildProcessBuilderTests::StartTest1(Test& test)
     ChildProcessBuilder builder(executablePath.string());
 
     Error error(0);
-    ChildProcess handle;
-    builder.start(handle, error);
+    ChildProcess handle = builder.start(error);
 
     ISHTF_ABORT_IF(error);
     
@@ -62,8 +61,7 @@ void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonT
     creator.redirectStandardOutputToFile(outputPath.string());
 
     Error error(0);
-    ChildProcess handle;
-    creator.start(handle, error);
+    ChildProcess handle = creator.start(error);
 
     ISHTF_ABORT_IF(error);
     
@@ -78,8 +76,7 @@ void ChildProcessBuilderTests::StartProcessTest1(Test& test)
     boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
 
     Error error(0);
-    ChildProcess handle;
-    ChildProcessBuilder::StartProcess(executablePath.string(), handle, error);
+    ChildProcess handle = ChildProcessBuilder::StartProcess(executablePath.string(), error);
     
     ISHTF_ABORT_IF(error);
 
