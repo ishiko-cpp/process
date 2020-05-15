@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016 Xavier Leclercq
+    Copyright (c) 2016-2020 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,8 +20,8 @@
     IN THE SOFTWARE.
 */
 
-#ifndef _ISHIKO_PROCESS_PROCESSCREATOR_H_
-#define _ISHIKO_PROCESS_PROCESSCREATOR_H_
+#ifndef _ISHIKO_PROCESS_CHILDPROCESSBUILDER_H_
+#define _ISHIKO_PROCESS_CHILDPROCESSBUILDER_H_
 
 #include "ProcessHandle.h"
 #include <string>
@@ -31,12 +31,12 @@ namespace Ishiko
 namespace Process
 {
 
-class ProcessCreator
+class ChildProcessBuilder
 {
 public:
     static int StartProcess(const std::string& commandLine, ProcessHandle& handle);
 
-    ProcessCreator(const std::string& commandLine);
+    ChildProcessBuilder(const std::string& commandLine);
 
     int start(ProcessHandle& handle);
 

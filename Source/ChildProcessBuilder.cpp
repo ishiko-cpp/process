@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016 Xavier Leclercq
+    Copyright (c) 2016-2020 Xavier Leclercq
 
     Permission is hereby granted, free of charge, to any person obtaining a
     copy of this software and associated documentation files (the "Software"),
@@ -20,7 +20,7 @@
     IN THE SOFTWARE.
 */
 
-#include "ProcessCreator.h"
+#include "ChildProcessBuilder.h"
 #ifdef __linux__
 #include <sys/wait.h>
 #include <unistd.h>
@@ -31,19 +31,18 @@ namespace Ishiko
 namespace Process
 {
 
-int ProcessCreator::StartProcess(const std::string& commandLine,
-                                 ProcessHandle& handle)
+int ChildProcessBuilder::StartProcess(const std::string& commandLine, ProcessHandle& handle)
 {
-    ProcessCreator creator(commandLine);
-    return creator.start(handle);
+    ChildProcessBuilder builder(commandLine);
+    return builder.start(handle);
 }
 
-ProcessCreator::ProcessCreator(const std::string& commandLine)
+ChildProcessBuilder::ChildProcessBuilder(const std::string& commandLine)
     : m_commandLine(commandLine)
 {
 }
 
-int ProcessCreator::start(ProcessHandle& handle)
+int ChildProcessBuilder::start(ProcessHandle& handle)
 {
 #if defined(__linux__)
     pid_t child = fork();
@@ -99,13 +98,13 @@ int ProcessCreator::start(ProcessHandle& handle)
     return -1;
 }
 
-void ProcessCreator::redirectStandardOutputToFile(const std::string& path)
+void ChildProcessBuilder::redirectStandardOutputToFile(const std::string& path)
 {
     m_standardOutputFilePath = path;
 }
 
 #ifdef _WIN32
-HANDLE ProcessCreator::createInheritableFile(const std::string& path)
+HANDLE ChildProcessBuilder::createInheritableFile(const std::string& path)
 {
     SECURITY_ATTRIBUTES securityAttributes;
     securityAttributes.nLength = sizeof(SECURITY_ATTRIBUTES);
@@ -119,4 +118,3 @@ HANDLE ProcessCreator::createInheritableFile(const std::string& path)
 
 }
 }
-
