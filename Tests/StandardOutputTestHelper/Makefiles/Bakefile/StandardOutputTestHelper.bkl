@@ -1,14 +1,14 @@
-toolsets = vs2015 vs2013;
+toolsets = vs2017 vs2015 vs2013;
 
+vs2017.solutionfile = ../VC15/StandardOutputTestHelper.sln;
 vs2015.solutionfile = ../VC14/StandardOutputTestHelper.sln;
 vs2013.solutionfile = ../VC12/StandardOutputTestHelper.sln;
-
 
 program StandardOutputTestHelper
 {
     archs = x86 x86_64;
 
-    outputdir = ../../../TestData/Binaries;
+    outputdir = ../../../TestData/Bin;
 
     sources
     {

@@ -49,7 +49,7 @@ void ProcessCreatorTests::StartTest1(Test& test)
 
 void ProcessCreatorTests::RedirectStandardOutputToFileTest1(FileComparisonTest& test)
 {
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Binaries/StandardOutputTestHelper.exe");
+    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/StandardOutputTestHelper.exe");
     boost::filesystem::path outputPath(test.environment().getTestOutputDirectory() / "ProcessCreatorRedirectStandardOutputTest1.txt");
     boost::filesystem::remove(outputPath);
     test.setOutputFilePath(outputPath);

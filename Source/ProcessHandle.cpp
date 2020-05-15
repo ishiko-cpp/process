@@ -56,7 +56,7 @@ void ProcessHandle::assign(pid_t pid)
 {
     m_pid = pid;
 }
-#elif defined(_WIN32_)
+#elif defined(_WIN32)
 void ProcessHandle::assign(HANDLE nativeHandle)
 {
     CloseHandle(m_handle);
