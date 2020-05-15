@@ -23,7 +23,9 @@
 #ifndef _ISHIKO_PROCESS_PROCESSHANDLE_H_
 #define _ISHIKO_PROCESS_PROCESSHANDLE_H_
 
-#ifdef _WIN32
+#if defined(__linux__)
+#include <sys/types.h>
+#elif defined(_WIN32)
 #define WIN32_LEAN_AND_MEAN 
 #include <Windows.h>
 #endif
@@ -45,16 +47,21 @@ public:
 
     ProcessHandle& operator=(const ProcessHandle& other) = delete;
 
-#ifdef _WIN32
+#if defined(__linux__)
+    void assign(pid_t pid);
+#elif defined(_WIN32)
     void assign(HANDLE nativeHandle);
 #endif
 
-    void waitForExit() const;
+    void waitForExit();
     void kill(int exitCode) const;
     int exitCode() const;
 
 private:
-#ifdef _WIN32
+#if defined(__linux__)
+    pid_t m_pid;
+    int m_status;
+#elif defined(_WIN32)
     HANDLE m_handle;
 #endif
 };

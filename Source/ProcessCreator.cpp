@@ -21,6 +21,10 @@
 */
 
 #include "ProcessCreator.h"
+#ifdef __linux__
+#include <sys/wait.h>
+#include <unistd.h>
+#endif
 
 namespace Ishiko
 {
@@ -41,7 +45,22 @@ ProcessCreator::ProcessCreator(const std::string& commandLine)
 
 int ProcessCreator::start(ProcessHandle& handle)
 {
-#ifdef _WIN32
+#if defined(__linux__)
+    pid_t child = fork();
+    if (child == -1)
+    {
+        // TODO
+    } 
+    else if (child > 0)
+    {
+    }
+    else
+    {
+        char* argv[1];
+        int err = execv(m_commandLine.c_str(), argv);
+        exit(-1);
+    }
+#elif defined(_WIN32)
     STARTUPINFOA startupInfo;
     ZeroMemory(&startupInfo, sizeof(startupInfo));
     startupInfo.cb = sizeof(startupInfo);

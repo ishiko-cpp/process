@@ -21,6 +21,9 @@
 */
 
 #include "ProcessHandle.h"
+#ifdef __linux__
+#include <sys/wait.h>
+#endif
 
 namespace Ishiko
 {
@@ -48,7 +51,12 @@ ProcessHandle::~ProcessHandle()
 #endif
 }
 
-#ifdef _WIN32
+#if defined(__linux__)
+void ProcessHandle::assign(pid_t pid)
+{
+    m_pid = pid;
+}
+#elif defined(_WIN32_)
 void ProcessHandle::assign(HANDLE nativeHandle)
 {
     CloseHandle(m_handle);
@@ -56,9 +64,11 @@ void ProcessHandle::assign(HANDLE nativeHandle)
 }
 #endif
 
-void ProcessHandle::waitForExit() const
+void ProcessHandle::waitForExit()
 {
-#ifdef _WIN32
+#if defined(__linux__)
+    waitpid(m_pid, &m_status, 0);
+#elif defined(_WIN32)
     WaitForSingleObject(m_handle, INFINITE);
 #endif
 }
@@ -72,7 +82,9 @@ void ProcessHandle::kill(int exitCode) const
 
 int ProcessHandle::exitCode() const
 {
-#ifdef _WIN32
+#if defined(__linux__)
+    return m_status;
+#elif defined(_WIN32)
     DWORD exitCode;
     GetExitCodeProcess(m_handle, &exitCode);
     return exitCode;
