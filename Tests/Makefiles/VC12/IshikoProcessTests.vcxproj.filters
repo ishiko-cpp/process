@@ -23,7 +23,7 @@
     <ClInclude Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ProcessTests\ProcessHandleTests.h">
+    <ClInclude Include="..\..\Source\ProcessTests\ChildProcessTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -37,7 +37,7 @@
     <ClCompile Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\ProcessTests\ProcessHandleTests.cpp">
+    <ClCompile Include="..\..\Source\ProcessTests\ChildProcessTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

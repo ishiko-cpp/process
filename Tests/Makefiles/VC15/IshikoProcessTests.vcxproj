@@ -155,12 +155,12 @@
     <ClCompile Include="..\..\Source\main.cpp" />
     <ClCompile Include="..\..\Source\EnvironmentTests\EnvironmentTests.cpp" />
     <ClCompile Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.cpp" />
-    <ClCompile Include="..\..\Source\ProcessTests\ProcessHandleTests.cpp" />
+    <ClCompile Include="..\..\Source\ProcessTests\ChildProcessTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\EnvironmentTests\EnvironmentTests.h" />
     <ClInclude Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.h" />
-    <ClInclude Include="..\..\Source\ProcessTests\ProcessHandleTests.h" />
+    <ClInclude Include="..\..\Source\ProcessTests\ChildProcessTests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
