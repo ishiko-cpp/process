@@ -4,8 +4,8 @@
     See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
 
-#ifndef _ISHIKO_PROCESS_PROCESSHANDLE_H_
-#define _ISHIKO_PROCESS_PROCESSHANDLE_H_
+#ifndef _ISHIKO_PROCESS_CHILDPROCESS_H_
+#define _ISHIKO_PROCESS_CHILDPROCESS_H_
 
 #if defined(__linux__)
 #include <sys/types.h>
@@ -19,17 +19,17 @@ namespace Ishiko
 namespace Process
 {
 
-class ProcessHandle
+class ChildProcess
 {
 public:
-    ProcessHandle();
+    ChildProcess();
 #ifdef _WIN32
-    ProcessHandle(HANDLE nativeHandle);
+    ChildProcess(HANDLE nativeHandle);
 #endif
-    ProcessHandle(const ProcessHandle& other) = delete;
-    ~ProcessHandle();
+    ChildProcess(const ChildProcess& other) = delete;
+    ~ChildProcess();
 
-    ProcessHandle& operator=(const ProcessHandle& other) = delete;
+    ChildProcess& operator=(const ChildProcess& other) = delete;
 
 #if defined(__linux__)
     void assign(pid_t pid);
