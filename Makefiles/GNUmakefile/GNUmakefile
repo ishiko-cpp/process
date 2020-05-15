@@ -56,15 +56,15 @@ $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_er
 endif
 all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a
 
-../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a: $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_ProcessCreator.o $(_builddir)IshikoProcess_ProcessHandle.o
-	$(AR) rc $@ $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_ProcessCreator.o $(_builddir)IshikoProcess_ProcessHandle.o
+../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a: $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_ProcessHandle.o
+	$(AR) rc $@ $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_ProcessHandle.o
 	$(RANLIB) $@
 
 $(_builddir)IshikoProcess_Environment.o: ../../Source/Environment.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Process -std=c++11 ../../Source/Environment.cpp
 
-$(_builddir)IshikoProcess_ProcessCreator.o: ../../Source/ProcessCreator.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Process -std=c++11 ../../Source/ProcessCreator.cpp
+$(_builddir)IshikoProcess_ChildProcessBuilder.o: ../../Source/ChildProcessBuilder.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Process -std=c++11 ../../Source/ChildProcessBuilder.cpp
 
 $(_builddir)IshikoProcess_ProcessHandle.o: ../../Source/ProcessHandle.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Process -std=c++11 ../../Source/ProcessHandle.cpp
