@@ -4,14 +4,14 @@
     See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
 
-#include "ProcessCreatorTests.h"
-#include "Ishiko/Process/ProcessCreator.h"
+#include "ChildProcessBuilderTests.h"
+#include "Ishiko/Process/ChildProcessBuilder.h"
 #include <boost/filesystem.hpp>
 
 using namespace Ishiko::Tests;
 
-ProcessCreatorTests::ProcessCreatorTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "ProcessCreator tests", environment)
+ChildProcessBuilderTests::ChildProcessBuilderTests(const TestNumber& number, const TestEnvironment& environment)
+    : TestSequence(number, "ChildProcessBuilder tests", environment)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("start test 1", StartTest1);
@@ -19,14 +19,14 @@ ProcessCreatorTests::ProcessCreatorTests(const TestNumber& number, const TestEnv
     append<HeapAllocationErrorsTest>("StartProcess test 1", StartProcessTest1);
 }
 
-void ProcessCreatorTests::ConstructorTest1(Test& test)
+void ChildProcessBuilderTests::ConstructorTest1(Test& test)
 {
-    Ishiko::Process::ProcessCreator creator("dummy");
+    Ishiko::Process::ChildProcessBuilder builder("dummy");
     
     ISHTF_PASS();
 }
 
-void ProcessCreatorTests::StartTest1(Test& test)
+void ChildProcessBuilderTests::StartTest1(Test& test)
 {
 #ifdef __linux__
     boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
@@ -34,10 +34,10 @@ void ProcessCreatorTests::StartTest1(Test& test)
     boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
 #endif
 
-    Ishiko::Process::ProcessCreator creator(executablePath.string());
+    Ishiko::Process::ChildProcessBuilder builder(executablePath.string());
 
     Ishiko::Process::ProcessHandle handle;
-    int err = creator.start(handle);
+    int err = builder.start(handle);
 
     ISHTF_ABORT_IF_NEQ(err, 0);
     
@@ -47,7 +47,7 @@ void ProcessCreatorTests::StartTest1(Test& test)
     ISHTF_PASS();
 }
 
-void ProcessCreatorTests::RedirectStandardOutputToFileTest1(FileComparisonTest& test)
+void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonTest& test)
 {
     boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/StandardOutputTestHelper.exe");
     boost::filesystem::path outputPath(test.environment().getTestOutputDirectory() / "ProcessCreatorRedirectStandardOutputTest1.txt");
@@ -55,7 +55,7 @@ void ProcessCreatorTests::RedirectStandardOutputToFileTest1(FileComparisonTest& 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.environment().getReferenceDataDirectory() / "ProcessCreatorRedirectStandardOutputTest1.txt");
 
-    Ishiko::Process::ProcessCreator creator(executablePath.string());
+    Ishiko::Process::ChildProcessBuilder creator(executablePath.string());
     creator.redirectStandardOutputToFile(outputPath.string());
 
     Ishiko::Process::ProcessHandle handle;
@@ -69,12 +69,12 @@ void ProcessCreatorTests::RedirectStandardOutputToFileTest1(FileComparisonTest& 
     ISHTF_PASS();
 }
 
-void ProcessCreatorTests::StartProcessTest1(Test& test)
+void ChildProcessBuilderTests::StartProcessTest1(Test& test)
 {
     boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Binaries/ExitCodeTestHelper.exe");
 
     Ishiko::Process::ProcessHandle handle;
-    int err = Ishiko::Process::ProcessCreator::StartProcess(executablePath.string(), handle);
+    int err = Ishiko::Process::ChildProcessBuilder::StartProcess(executablePath.string(), handle);
     
     ISHTF_ABORT_IF_NEQ(err, 0);
 

@@ -4,15 +4,15 @@
     See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
 
-#ifndef _ISHIKO_TEST_PROCESS_PROCESSTESTS_PROCESSCREATORTESTS_H_
-#define _ISHIKO_TEST_PROCESS_PROCESSTESTS_PROCESSCREATORTESTS_H_
+#ifndef _ISHIKO_TEST_PROCESS_PROCESSTESTS_CHILDPROCESSBUILDERTESTS_H_
+#define _ISHIKO_TEST_PROCESS_PROCESSTESTS_CHILDPROCESSBUILDERTESTS_H_
 
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 
-class ProcessCreatorTests : public Ishiko::Tests::TestSequence
+class ChildProcessBuilderTests : public Ishiko::Tests::TestSequence
 {
 public:
-    ProcessCreatorTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+    ChildProcessBuilderTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
 
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
