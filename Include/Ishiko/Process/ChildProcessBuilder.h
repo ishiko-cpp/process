@@ -9,6 +9,7 @@
 
 #include "CommandLine.h"
 #include "ChildProcess.h"
+#include <Ishiko/Errors/Error.h>
 #include <string>
 
 namespace Ishiko
@@ -19,11 +20,11 @@ namespace Process
 class ChildProcessBuilder
 {
 public:
-    static int StartProcess(const std::string& commandLine, ChildProcess& handle);
+    static void StartProcess(const std::string& commandLine, ChildProcess& handle, Error& error);
 
     ChildProcessBuilder(const CommandLine& commandLine);
 
-    int start(ChildProcess& handle);
+    void start(ChildProcess& handle, Error& error);
 
     void redirectStandardOutputToFile(const std::string& path);
 
