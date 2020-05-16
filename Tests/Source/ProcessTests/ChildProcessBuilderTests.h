@@ -17,6 +17,7 @@ public:
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
     static void StartTest1(Ishiko::Tests::Test& test);
+    static void StartTest2(Ishiko::Tests::Test& test);
     static void RedirectStandardOutputToFileTest1(Ishiko::Tests::FileComparisonTest& test);
     static void StartProcessTest1(Ishiko::Tests::Test& test);
 };

@@ -62,7 +62,7 @@ ChildProcess ChildProcessBuilder::start(Error& error)
     ZeroMemory(&processInfo, sizeof(processInfo));
 
     HANDLE handle = INVALID_HANDLE_VALUE;
-    if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.executable().c_str()),
+    if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString().c_str()),
         NULL, NULL, inheritHandles, 0, NULL, NULL, &startupInfo, &processInfo))
     {
         error.fail(-1);
