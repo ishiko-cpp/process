@@ -23,10 +23,10 @@ public:
 	};
 
 public:
-	static bool find(const std::string& name, std::string& value);
-	static void set(const std::string& name, const std::string& value);
+	static bool Find(const std::string& name, std::string& value);
+	static void Set(const std::string& name, const std::string& value);
 
-	static std::string expandVariablesInString(const std::string& str, 
+	static std::string ExpandVariablesInString(const std::string& str, 
 		int format);
 };
 

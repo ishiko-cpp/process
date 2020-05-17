@@ -1,10 +1,13 @@
+ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/Errors/Include/Ishiko/Errors.bkl;
+
 setting ISHIKO_CPP_PROCESS_ROOT
 {
     help = "Path to the Ishiko Process installation";
     default = '$(ISHIKO_CPP)/Process';
 }
 
-template IshikoProcess
+template IshikoProcess : IshikoErrors
 {
     includedirs += $(ISHIKO_CPP_PROCESS_ROOT)/Include;
 

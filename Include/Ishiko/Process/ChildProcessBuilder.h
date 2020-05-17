@@ -7,7 +7,9 @@
 #ifndef _ISHIKO_PROCESS_CHILDPROCESSBUILDER_H_
 #define _ISHIKO_PROCESS_CHILDPROCESSBUILDER_H_
 
+#include "CommandLine.h"
 #include "ChildProcess.h"
+#include <Ishiko/Errors/Error.h>
 #include <string>
 
 namespace Ishiko
@@ -18,11 +20,11 @@ namespace Process
 class ChildProcessBuilder
 {
 public:
-    static int StartProcess(const std::string& commandLine, ChildProcess& handle);
+    static ChildProcess StartProcess(const std::string& commandLine, Error& error);
 
-    ChildProcessBuilder(const std::string& commandLine);
+    ChildProcessBuilder(const CommandLine& commandLine);
 
-    int start(ChildProcess& handle);
+    ChildProcess start(Error& error);
 
     void redirectStandardOutputToFile(const std::string& path);
 
@@ -33,7 +35,7 @@ private:
 
 
 private:
-    std::string m_commandLine;
+    CommandLine m_commandLine;
     std::string m_standardOutputFilePath;
 };
 

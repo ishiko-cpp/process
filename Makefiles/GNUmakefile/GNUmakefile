@@ -33,6 +33,12 @@ override CXXFLAGS += -O2
 else ifneq (,$(config))
 $(warning Unknown configuration "$(config)")
 endif
+#
+# Additionally, this makefile is customizable with the following
+# settings:
+#
+#      ISHIKO_CPP_ERRORS_ROOT  Path to the Ishiko Errors installation
+#      BOOST_ROOT              Path to the Boost installation
 
 # Use "make RANLIB=''" for platforms without ranlib.
 RANLIB ?= ranlib
@@ -54,20 +60,35 @@ _builddir := $(if $(findstring $(abspath $(builddir)),$(builddir)),,../../)$(bui
 _builddir_error := $(shell mkdir -p $(_builddir) 2>&1)
 $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_error)))
 endif
+
+# ------------
+# Configurable settings:
+# 
+
+# Path to the Ishiko Errors installation
+ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/Errors
+# Path to the Boost installation
+BOOST_ROOT ?= $(BOOST)
+
+# ------------
+
 all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a
 
-../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a: $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_ChildProcess.o
-	$(AR) rc $@ $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_ChildProcess.o
+../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a: $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_CommandLine.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_ChildProcess.o
+	$(AR) rc $@ $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_CommandLine.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_ChildProcess.o
 	$(RANLIB) $@
 
 $(_builddir)IshikoProcess_Environment.o: ../../Source/Environment.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Process -std=c++11 ../../Source/Environment.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/Process -std=c++11 ../../Source/Environment.cpp
+
+$(_builddir)IshikoProcess_CommandLine.o: ../../Source/CommandLine.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/Process -std=c++11 ../../Source/CommandLine.cpp
 
 $(_builddir)IshikoProcess_ChildProcessBuilder.o: ../../Source/ChildProcessBuilder.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Process -std=c++11 ../../Source/ChildProcessBuilder.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/Process -std=c++11 ../../Source/ChildProcessBuilder.cpp
 
 $(_builddir)IshikoProcess_ChildProcess.o: ../../Source/ChildProcess.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../Include/Ishiko/Process -std=c++11 ../../Source/ChildProcess.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/Process -std=c++11 ../../Source/ChildProcess.cpp
 
 clean:
 	rm -f $(_builddir)*.o

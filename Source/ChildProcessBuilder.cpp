@@ -15,18 +15,18 @@ namespace Ishiko
 namespace Process
 {
 
-int ChildProcessBuilder::StartProcess(const std::string& commandLine, ChildProcess& handle)
+ChildProcess ChildProcessBuilder::StartProcess(const std::string& commandLine, Error& error)
 {
     ChildProcessBuilder builder(commandLine);
-    return builder.start(handle);
+    return builder.start(error);
 }
 
-ChildProcessBuilder::ChildProcessBuilder(const std::string& commandLine)
+ChildProcessBuilder::ChildProcessBuilder(const CommandLine& commandLine)
     : m_commandLine(commandLine)
 {
 }
 
-int ChildProcessBuilder::start(ChildProcess& handle)
+ChildProcess ChildProcessBuilder::start(Error& error)
 {
 #if defined(__linux__)
     pid_t child = fork();
@@ -61,25 +61,28 @@ int ChildProcessBuilder::start(ChildProcess& handle)
     PROCESS_INFORMATION processInfo;
     ZeroMemory(&processInfo, sizeof(processInfo));
 
-    if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.c_str()),
+    HANDLE handle = INVALID_HANDLE_VALUE;
+    if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString().c_str()),
         NULL, NULL, inheritHandles, 0, NULL, NULL, &startupInfo, &processInfo))
     {
-        return -1;
+        error.fail(-1);
     }
     else
     {
-        handle.assign(processInfo.hProcess);
+        handle = processInfo.hProcess;
         CloseHandle(processInfo.hThread);
-        return 0;
     }
 
     if (!m_standardOutputFilePath.empty())
     {
         CloseHandle(outputFile);
     }
-#endif
 
-    return -1;
+    return ChildProcess(handle);
+#else
+    error.fail(-1);
+    return ChildProcess();
+#endif
 }
 
 void ChildProcessBuilder::redirectStandardOutputToFile(const std::string& path)

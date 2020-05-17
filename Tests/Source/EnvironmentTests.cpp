@@ -25,10 +25,10 @@ EnvironmentTests::EnvironmentTests(const TestNumber& number, const TestEnvironme
 
 void EnvironmentTests::SetTest1(Test& test)
 {
-	Ishiko::Process::Environment::set("IshikoEnvironmentSetTest1", "dummy");
+	Ishiko::Process::Environment::Set("IshikoEnvironmentSetTest1", "dummy");
 	
 	std::string value;
-	bool found = Ishiko::Process::Environment::find("IshikoEnvironmentSetTest1", value);
+	bool found = Ishiko::Process::Environment::Find("IshikoEnvironmentSetTest1", value);
 
     ISHTF_FAIL_IF_NOT(found);
     ISHTF_FAIL_IF_NEQ(value, "dummy");
@@ -37,11 +37,11 @@ void EnvironmentTests::SetTest1(Test& test)
 
 void EnvironmentTests::SetTest2(Test& test)
 {
-	Ishiko::Process::Environment::set("IshikoEnvironmentSetTest2", "dummy");
-	Ishiko::Process::Environment::set("IshikoEnvironmentSetTest2", "dummy2");
+	Ishiko::Process::Environment::Set("IshikoEnvironmentSetTest2", "dummy");
+	Ishiko::Process::Environment::Set("IshikoEnvironmentSetTest2", "dummy2");
 
 	std::string value;
-	bool found = Ishiko::Process::Environment::find("IshikoEnvironmentSetTest2", value);
+	bool found = Ishiko::Process::Environment::Find("IshikoEnvironmentSetTest2", value);
 
     ISHTF_FAIL_IF_NOT(found);
     ISHTF_FAIL_IF_NEQ(value, "dummy2");
@@ -51,7 +51,7 @@ void EnvironmentTests::SetTest2(Test& test)
 void EnvironmentTests::FindTest1(Test& test)
 {
 	std::string value;
-	bool found = Ishiko::Process::Environment::find("IshikoEnvironmentFindTest1", value);
+	bool found = Ishiko::Process::Environment::Find("IshikoEnvironmentFindTest1", value);
 
     ISHTF_FAIL_IF(found);
     ISHTF_PASS();
@@ -61,7 +61,7 @@ void EnvironmentTests::ExpandVariablesInStringTest1(Test& test)
 {
 	std::string str = "dummy";
 	std::string expandedStr =
-		Ishiko::Process::Environment::expandVariablesInString(
+		Ishiko::Process::Environment::ExpandVariablesInString(
 		str, Ishiko::Process::Environment::eDollarAndParentheses);
 
     ISHTF_FAIL_IF_NEQ(str, expandedStr);
@@ -70,11 +70,11 @@ void EnvironmentTests::ExpandVariablesInStringTest1(Test& test)
 
 void EnvironmentTests::ExpandVariablesInStringTest2(Test& test)
 {
-	Ishiko::Process::Environment::set("EnvironmentExpandVariablesInStringTest2", "dummy");
+	Ishiko::Process::Environment::Set("EnvironmentExpandVariablesInStringTest2", "dummy");
 
 	std::string str = "$(EnvironmentExpandVariablesInStringTest2)";
 	std::string expandedStr =
-		Ishiko::Process::Environment::expandVariablesInString(
+		Ishiko::Process::Environment::ExpandVariablesInString(
 		str, Ishiko::Process::Environment::eDollarAndParentheses);
 
     ISHTF_FAIL_IF_NEQ(expandedStr, "dummy");
@@ -83,11 +83,11 @@ void EnvironmentTests::ExpandVariablesInStringTest2(Test& test)
 
 void EnvironmentTests::ExpandVariablesInStringTest3(Test& test)
 {
-	Ishiko::Process::Environment::set("EnvironmentExpandVariablesInStringTest3", "dummy");
+	Ishiko::Process::Environment::Set("EnvironmentExpandVariablesInStringTest3", "dummy");
 
 	std::string str = "this is a $(EnvironmentExpandVariablesInStringTest3) environment variable";
 	std::string expandedStr =
-		Ishiko::Process::Environment::expandVariablesInString(
+		Ishiko::Process::Environment::ExpandVariablesInString(
 		str, Ishiko::Process::Environment::eDollarAndParentheses);
 
     ISHTF_FAIL_IF_NEQ(expandedStr, "this is a dummy environment variable");
@@ -96,12 +96,12 @@ void EnvironmentTests::ExpandVariablesInStringTest3(Test& test)
 
 void EnvironmentTests::ExpandVariablesInStringTest4(Test& test)
 {
-	Ishiko::Process::Environment::set("EnvironmentExpandVariablesInStringTest4_1", "dummy1");
-	Ishiko::Process::Environment::set("EnvironmentExpandVariablesInStringTest4_2", "dummy2");
+	Ishiko::Process::Environment::Set("EnvironmentExpandVariablesInStringTest4_1", "dummy1");
+	Ishiko::Process::Environment::Set("EnvironmentExpandVariablesInStringTest4_2", "dummy2");
 
 	std::string str = "These are $(EnvironmentExpandVariablesInStringTest4_1) and $(EnvironmentExpandVariablesInStringTest4_2)!";
 	std::string expandedStr =
-		Ishiko::Process::Environment::expandVariablesInString(
+		Ishiko::Process::Environment::ExpandVariablesInString(
 		str, Ishiko::Process::Environment::eDollarAndParentheses);
 
     ISHTF_FAIL_IF_NEQ(expandedStr, "These are dummy1 and dummy2!");
@@ -112,7 +112,7 @@ void EnvironmentTests::ExpandVariablesInStringTest5(Test& test)
 {
 	std::string str = "this is a $(nonexistent) environment variable";
 	std::string expandedStr =
-		Ishiko::Process::Environment::expandVariablesInString(
+		Ishiko::Process::Environment::ExpandVariablesInString(
 		str, Ishiko::Process::Environment::eDollarAndParentheses);
 
     ISHTF_FAIL_IF_NEQ(expandedStr, "this is a $(nonexistent) environment variable");
@@ -123,7 +123,7 @@ void EnvironmentTests::ExpandVariablesInStringTest6(Test& test)
 {
 	std::string str = "this is a $(incomplete environment variable";
 	std::string expandedStr =
-		Ishiko::Process::Environment::expandVariablesInString(
+		Ishiko::Process::Environment::ExpandVariablesInString(
 		str, Ishiko::Process::Environment::eDollarAndParentheses);
 
     ISHTF_FAIL_IF_NEQ(expandedStr, "this is a $(incomplete environment variable");
