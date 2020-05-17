@@ -40,7 +40,7 @@ ChildProcess ChildProcessBuilder::start(Error& error)
     else
     {
         char* argv[1];
-        int err = execv(m_commandLine.c_str(), argv);
+        int err = execv(m_commandLine.toString(), argv);
         exit(-1);
     }
 #elif defined(_WIN32)
