@@ -19,6 +19,7 @@ ChildProcessBuilderTests::ChildProcessBuilderTests(const TestNumber& number, con
     append<HeapAllocationErrorsTest>("start test 1", StartTest1);
     append<HeapAllocationErrorsTest>("start test 2", StartTest2);
     append<FileComparisonTest>("redirectStandardOutputToFile test 1", RedirectStandardOutputToFileTest1);
+    append<FileComparisonTest>("start test 3", StartTest3);
     append<HeapAllocationErrorsTest>("StartProcess test 1", StartProcessTest1);
 }
 
@@ -88,6 +89,29 @@ void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonT
 
     ISHTF_ABORT_IF(error);
     
+    handle.waitForExit();
+
+    ISHTF_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHTF_PASS();
+}
+
+void ChildProcessBuilderTests::StartTest3(FileComparisonTest& test)
+{
+    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/StandardOutputTestHelper.exe");
+    boost::filesystem::path outputPath(test.environment().getTestOutputDirectory() / "StartTest3.txt");
+    boost::filesystem::remove(outputPath);
+    test.setOutputFilePath(outputPath);
+    test.setReferenceFilePath(test.environment().getReferenceDataDirectory() / "StartTest3.txt");
+
+    CommandLine command(executablePath, {"Hello World!"});
+    ChildProcessBuilder builder(command);
+    builder.redirectStandardOutputToFile(outputPath.string());
+
+    Error error(0);
+    ChildProcess handle = builder.start(error);
+
+    ISHTF_ABORT_IF(error);
+
     handle.waitForExit();
 
     ISHTF_FAIL_IF_NEQ(handle.exitCode(), 0);

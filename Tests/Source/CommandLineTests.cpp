@@ -17,8 +17,13 @@ CommandLineTests::CommandLineTests(const TestNumber& number, const TestEnvironme
     append<HeapAllocationErrorsTest>("Constructor test 3", ConstructorTest3);
     append<HeapAllocationErrorsTest>("Constructor test 4", ConstructorTest4);
     append<HeapAllocationErrorsTest>("Constructor test 5", ConstructorTest5);
+    append<HeapAllocationErrorsTest>("Constructor test 6", ConstructorTest6);
+    append<HeapAllocationErrorsTest>("Constructor test 7", ConstructorTest7);
+    append<HeapAllocationErrorsTest>("Constructor test 8", ConstructorTest8);
     append<HeapAllocationErrorsTest>("toString test 1", ToStringTest1);
     append<HeapAllocationErrorsTest>("toString test 2", ToStringTest2);
+    append<HeapAllocationErrorsTest>("toString test 3", ToStringTest3);
+    append<HeapAllocationErrorsTest>("toString test 4", ToStringTest4);
 }
 
 void CommandLineTests::ConstructorTest1(Test& test)
@@ -68,6 +73,37 @@ void CommandLineTests::ConstructorTest5(Test& test)
     ISHTF_PASS();
 }
 
+void CommandLineTests::ConstructorTest6(Test& test)
+{
+    Ishiko::Process::CommandLine commandLine("executable", {"arg1"});
+
+    ISHTF_FAIL_IF_NEQ(commandLine.executable(), "executable");
+    ISHTF_FAIL_IF_NEQ(commandLine.arguments().size(), 1);
+    ISHTF_FAIL_IF_NEQ(commandLine.arguments()[0], "arg1");
+    ISHTF_PASS();
+}
+
+void CommandLineTests::ConstructorTest7(Test& test)
+{
+    Ishiko::Process::CommandLine commandLine("executable", { "arg1", "arg2" });
+
+    ISHTF_FAIL_IF_NEQ(commandLine.executable(), "executable");
+    ISHTF_FAIL_IF_NEQ(commandLine.arguments().size(), 2);
+    ISHTF_FAIL_IF_NEQ(commandLine.arguments()[0], "arg1");
+    ISHTF_FAIL_IF_NEQ(commandLine.arguments()[1], "arg2");
+    ISHTF_PASS();
+}
+
+void CommandLineTests::ConstructorTest8(Test& test)
+{
+    Ishiko::Process::CommandLine commandLine("executable", { "arg 1" });
+
+    ISHTF_FAIL_IF_NEQ(commandLine.executable(), "executable");
+    ISHTF_FAIL_IF_NEQ(commandLine.arguments().size(), 1);
+    ISHTF_FAIL_IF_NEQ(commandLine.arguments()[0], "\"arg 1\"");
+    ISHTF_PASS();
+}
+
 void CommandLineTests::ToStringTest1(Test& test)
 {
     Ishiko::Process::CommandLine commandLine("executable");
@@ -81,5 +117,21 @@ void CommandLineTests::ToStringTest2(Test& test)
     Ishiko::Process::CommandLine commandLine("executable with spaces");
 
     ISHTF_FAIL_IF_NEQ(commandLine.toString(), "\"executable with spaces\"");
+    ISHTF_PASS();
+}
+
+void CommandLineTests::ToStringTest3(Test& test)
+{
+    Ishiko::Process::CommandLine commandLine("executable", {"arg1"});
+
+    ISHTF_FAIL_IF_NEQ(commandLine.toString(), "executable arg1");
+    ISHTF_PASS();
+}
+
+void CommandLineTests::ToStringTest4(Test& test)
+{
+    Ishiko::Process::CommandLine commandLine("executable with spaces", { "arg 1" });
+
+    ISHTF_FAIL_IF_NEQ(commandLine.toString(), "\"executable with spaces\" \"arg 1\"");
     ISHTF_PASS();
 }

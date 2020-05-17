@@ -77,14 +77,34 @@ CommandLine::CommandLine(const boost::filesystem::path& executable)
 {
 }
 
-CommandLine::CommandLine(const std::string& executable, const std::vector<std::string>& arguments)
-    : m_executable(GetQuotedStringIfRequired(executable)), m_arguments(arguments)
+CommandLine::CommandLine(const char* executable, const std::vector<std::string>& arguments)
+    : m_executable(GetQuotedStringIfRequired(executable))
 {
+    m_arguments.reserve(arguments.size());
+    for (const std::string& argument : arguments)
+    {
+        m_arguments.emplace_back(GetQuotedStringIfRequired(argument));
+    }
+}
+
+CommandLine::CommandLine(const std::string& executable, const std::vector<std::string>& arguments)
+    : m_executable(GetQuotedStringIfRequired(executable))
+{
+    m_arguments.reserve(arguments.size());
+    for (const std::string& argument : arguments)
+    {
+        m_arguments.emplace_back(GetQuotedStringIfRequired(argument));
+    }
 }
 
 CommandLine::CommandLine(const boost::filesystem::path& executable, const std::vector<std::string>& arguments)
-    : m_executable(GetQuotedStringIfRequired(executable.string())), m_arguments(arguments)
+    : m_executable(GetQuotedStringIfRequired(executable.string()))
 {
+    m_arguments.reserve(arguments.size());
+    for (const std::string& argument : arguments)
+    {
+        m_arguments.emplace_back(GetQuotedStringIfRequired(argument));
+    }
 }
 
 const std::string& CommandLine::executable() const

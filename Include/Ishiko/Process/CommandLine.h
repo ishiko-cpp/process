@@ -46,6 +46,13 @@ public:
         @param executable The executable.
         @param arguments The command line arguments.
     */
+    CommandLine(const char* executable, const std::vector<std::string>& arguments);
+
+    /// Creates a new CommandLine instance.
+    /**
+        @param executable The executable.
+        @param arguments The command line arguments.
+    */
     CommandLine(const std::string& executable, const std::vector<std::string>& arguments);
 
     /// Creates a new CommandLine instance.
