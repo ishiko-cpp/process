@@ -6,6 +6,7 @@
 
 #include "ChildProcessBuilder.h"
 #ifdef __linux__
+#include <boost/filesystem/operations.hpp>
 #include <fcntl.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -35,6 +36,11 @@ ChildProcessBuilder::ChildProcessBuilder(const CommandLine& commandLine)
 ChildProcess ChildProcessBuilder::start(Error& error)
 {
 #if defined(__linux__)
+    if (!boost::filesystem::exists(m_commandLine.getExecutable(CommandLine::eRaw)))
+    {
+        error.fail(-1);
+        return ChildProcess(-1);
+    }
     pid_t child = fork();
     if (child == -1)
     {
