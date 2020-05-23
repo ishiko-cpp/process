@@ -33,14 +33,27 @@ ChildProcess ChildProcessBuilder::start(Error& error)
     if (child == -1)
     {
         // TODO
+        error.fail(-1);
+        return ChildProcess(child);
     } 
     else if (child > 0)
     {
+        return ChildProcess(child);
     }
     else
     {
-        char* argv[1];
-        int err = execv(m_commandLine.toString().c_str(), argv);
+        char** argv = new char*[m_commandLine.arguments().size() + 2];
+        size_t i = 0;
+        argv[i] = strdup(m_commandLine.executable().c_str());
+        ++i;
+        for (const std::string& argument : m_commandLine.arguments())
+        {
+            argv[i] = strdup(argument.c_str());
+            ++i;
+        }
+        argv[i] = nullptr;
+        int err = execv(m_commandLine.executable().c_str(), argv);
+        // TODO: how to feed back a better error to the parent process?
         exit(-1);
     }
 #elif defined(_WIN32)
