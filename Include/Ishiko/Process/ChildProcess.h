@@ -31,6 +31,7 @@ public:
     ~ChildProcess();
 
     ChildProcess& operator=(const ChildProcess& other) = delete;
+    ChildProcess& operator=(ChildProcess&& other) noexcept;
 
 #if defined(__linux__)
     void assign(pid_t pid);

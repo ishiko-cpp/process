@@ -44,6 +44,16 @@ ChildProcess::~ChildProcess()
 #endif
 }
 
+ChildProcess& ChildProcess::operator=(ChildProcess&& other) noexcept
+{
+    if (this != &other)
+    {
+        m_handle = other.m_handle;
+        other.m_handle = INVALID_HANDLE_VALUE;
+    }
+    return *this;
+}
+
 #if defined(__linux__)
 void ProcessHandle::assign(pid_t pid)
 {
