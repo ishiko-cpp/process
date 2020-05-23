@@ -75,7 +75,11 @@ void ChildProcessBuilderTests::StartTest2(Test& test)
 
 void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonTest& test)
 {
+#ifdef __linux__
+    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/StandardOutputTestHelper");
+#else
     boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/StandardOutputTestHelper.exe");
+#endif
     boost::filesystem::path outputPath(test.environment().getTestOutputDirectory() / "ProcessCreatorRedirectStandardOutputTest1.txt");
     boost::filesystem::remove(outputPath);
     test.setOutputFilePath(outputPath);
@@ -97,7 +101,11 @@ void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonT
 
 void ChildProcessBuilderTests::StartTest3(FileComparisonTest& test)
 {
+#ifdef __linux__
+    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/StandardOutputTestHelper");
+#else
     boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/StandardOutputTestHelper.exe");
+#endif
     boost::filesystem::path outputPath(test.environment().getTestOutputDirectory() / "StartTest3.txt");
     boost::filesystem::remove(outputPath);
     test.setOutputFilePath(outputPath);
@@ -120,7 +128,11 @@ void ChildProcessBuilderTests::StartTest3(FileComparisonTest& test)
 
 void ChildProcessBuilderTests::StartProcessTest1(Test& test)
 {
+#ifdef __linux__
+    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
+#else
     boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
+#endif
 
     Error error(0);
     ChildProcess handle = ChildProcessBuilder::StartProcess(executablePath.string(), error);

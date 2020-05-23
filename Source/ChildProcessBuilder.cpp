@@ -6,6 +6,7 @@
 
 #include "ChildProcessBuilder.h"
 #ifdef __linux__
+#include <fcntl.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #endif
@@ -57,6 +58,14 @@ ChildProcess ChildProcessBuilder::start(Error& error)
             ++i;
         }
         argv[i] = nullptr;
+
+        if (!m_standardOutputFilePath.empty())
+        {
+            // TODO: what permissions?
+            int fd = open(m_standardOutputFilePath.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0400);
+            dup2(fd, STDOUT_FILENO);
+        }
+
         int err = execv(m_commandLine.executable().c_str(), argv);
         // TODO: how to feed back a better error to the parent process?
         exit(-1);
