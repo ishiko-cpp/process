@@ -28,11 +28,18 @@ ChildProcess::ChildProcess(HANDLE nativeHandle)
 }
 #endif
 
+#if defined(__linux__)
+ChildProcess::ChildProcess(ChildProcess&& other) noexcept
+    : m_pid(other.m_pid), m_status(other.m_status)
+{
+}
+#elif defined(_WIN32)
 ChildProcess::ChildProcess(ChildProcess&& other) noexcept
     : m_handle(other.m_handle)
 {
     other.m_handle = INVALID_HANDLE_VALUE;
 }
+#endif
 
 ChildProcess::~ChildProcess()
 {
@@ -55,7 +62,7 @@ ChildProcess& ChildProcess::operator=(ChildProcess&& other) noexcept
 }
 
 #if defined(__linux__)
-void ProcessHandle::assign(pid_t pid)
+void ChildProcess::assign(pid_t pid)
 {
     m_pid = pid;
 }
