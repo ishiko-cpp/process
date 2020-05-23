@@ -109,49 +109,58 @@ CommandLine::CommandLine(const std::string& commandLine)
 }
 
 CommandLine::CommandLine(const char* executable, const std::vector<std::string>& arguments)
-    : m_executable(GetQuotedStringIfRequired(executable))
+    : m_executable(executable), m_arguments(arguments)
 {
-    m_arguments.reserve(arguments.size());
-    for (const std::string& argument : arguments)
-    {
-        m_arguments.emplace_back(GetQuotedStringIfRequired(argument));
-    }
 }
 
 CommandLine::CommandLine(const std::string& executable, const std::vector<std::string>& arguments)
-    : m_executable(GetQuotedStringIfRequired(executable))
+    : m_executable(executable), m_arguments(arguments)
 {
-    m_arguments.reserve(arguments.size());
-    for (const std::string& argument : arguments)
-    {
-        m_arguments.emplace_back(GetQuotedStringIfRequired(argument));
-    }
 }
 
 CommandLine::CommandLine(const boost::filesystem::path& executable, const std::vector<std::string>& arguments)
-    : m_executable(GetQuotedStringIfRequired(executable.string()))
+    : m_executable(executable.string()), m_arguments(arguments)
 {
-    m_arguments.reserve(arguments.size());
-    for (const std::string& argument : arguments)
+}
+
+std::string CommandLine::getExecutable(EMode mode) const
+{
+    std::string result;
+    switch (mode)
     {
-        m_arguments.emplace_back(GetQuotedStringIfRequired(argument));
+    case eRaw:
+        result = m_executable;
+        break;
+
+    case eQuoteIfNeeded:
+        result = GetQuotedStringIfRequired(m_executable);
+        break;
     }
+    return result;
 }
 
-const std::string& CommandLine::executable() const
+std::vector<std::string> CommandLine::getArguments(EMode mode) const
 {
-    return m_executable;
+    std::vector<std::string> result;
+    if (mode == eRaw)
+    {
+        result = m_arguments;
+    }
+    else if (mode == eQuoteIfNeeded)
+    {
+        result.reserve(m_arguments.size());
+        for (const std::string& argument : m_arguments)
+        {
+            result.emplace_back(GetQuotedStringIfRequired(argument));
+        }
+    }
+    return result;
 }
 
-const std::vector<std::string>& CommandLine::arguments() const
+std::string CommandLine::toString(EMode mode) const
 {
-    return m_arguments;
-}
-
-std::string CommandLine::toString() const
-{
-    std::string result = m_executable;
-    for (const std::string& argument : m_arguments)
+    std::string result = getExecutable(mode);
+    for (const std::string& argument : getArguments(mode))
     {
         result.append(" ");
         result.append(argument);
