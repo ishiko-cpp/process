@@ -17,8 +17,13 @@ namespace Process
 
 ChildProcess ChildProcessBuilder::StartProcess(const std::string& commandLine, Error& error)
 {
-    ChildProcessBuilder builder(commandLine);
+    ChildProcessBuilder builder{CommandLine(commandLine)};
     return builder.start(error);
+}
+
+ChildProcessBuilder::ChildProcessBuilder(const std::string& commandLine)
+    : ChildProcessBuilder(CommandLine(commandLine))
+{
 }
 
 ChildProcessBuilder::ChildProcessBuilder(const CommandLine& commandLine)

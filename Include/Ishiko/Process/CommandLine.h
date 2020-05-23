@@ -25,21 +25,15 @@ class CommandLine
 public:
     /// Creates a new CommandLine instance.
     /**
-        @param executable The executable.
+        @param commandLine The command line.
     */
-    CommandLine(const char* executable);
+    explicit CommandLine(const char* commandLine);
 
     /// Creates a new CommandLine instance.
     /**
-        @param executable The executable.
+        @param commandLine The command line.
     */
-    CommandLine(const std::string& executable);
-
-    /// Creates a new CommandLine instance.
-    /**
-        @param executable The executable.
-    */
-    CommandLine(const boost::filesystem::path& executable);
+    explicit CommandLine(const std::string& commandLine);
 
     /// Creates a new CommandLine instance.
     /**

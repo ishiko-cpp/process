@@ -46,17 +46,18 @@ void CommandLineTests::ConstructorTest2(Test& test)
 
 void CommandLineTests::ConstructorTest3(Test& test)
 {
-    Ishiko::Process::CommandLine commandLine("executable with spaces");
+    Ishiko::Process::CommandLine commandLine("executable arg1");
 
-    ISHTF_FAIL_IF_NEQ(commandLine.executable(), "\"executable with spaces\"");
-    ISHTF_FAIL_IF_NEQ(commandLine.arguments().size(), 0);
+    ISHTF_FAIL_IF_NEQ(commandLine.executable(), "executable");
+    ISHTF_ABORT_IF_NEQ(commandLine.arguments().size(), 1);
+    ISHTF_FAIL_IF_NEQ(commandLine.arguments()[0], "arg1");
     ISHTF_PASS();
 }
 
 void CommandLineTests::ConstructorTest4(Test& test)
 {
     boost::filesystem::path executable = "relative/path/executable";
-    Ishiko::Process::CommandLine commandLine(executable);
+    Ishiko::Process::CommandLine commandLine(executable, {});
 
     ISHTF_FAIL_IF_NEQ(commandLine.executable(), "relative/path/executable");
     ISHTF_FAIL_IF_NEQ(commandLine.arguments().size(), 0);
@@ -66,7 +67,7 @@ void CommandLineTests::ConstructorTest4(Test& test)
 void CommandLineTests::ConstructorTest5(Test& test)
 {
     boost::filesystem::path executable = "relative\\path\\executable";
-    Ishiko::Process::CommandLine commandLine(executable);
+    Ishiko::Process::CommandLine commandLine(executable, {});
 
     ISHTF_FAIL_IF_NEQ(commandLine.executable(), "relative\\path\\executable");
     ISHTF_FAIL_IF_NEQ(commandLine.arguments().size(), 0);
@@ -114,9 +115,9 @@ void CommandLineTests::ToStringTest1(Test& test)
 
 void CommandLineTests::ToStringTest2(Test& test)
 {
-    Ishiko::Process::CommandLine commandLine("executable with spaces");
+    Ishiko::Process::CommandLine commandLine("executable arg1");
 
-    ISHTF_FAIL_IF_NEQ(commandLine.toString(), "\"executable with spaces\"");
+    ISHTF_FAIL_IF_NEQ(commandLine.toString(), "executable arg1");
     ISHTF_PASS();
 }
 

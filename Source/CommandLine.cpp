@@ -62,19 +62,50 @@ std::string GetQuotedStringIfRequired(const std::string& str)
 
 }
 
-CommandLine::CommandLine(const char* executable)
-    : m_executable(GetQuotedStringIfRequired(executable))
+CommandLine::CommandLine(const char* commandLine)
+    : CommandLine(std::string(commandLine))
 {
 }
 
-CommandLine::CommandLine(const std::string& executable)
-    : m_executable(GetQuotedStringIfRequired(executable))
+CommandLine::CommandLine(const std::string& commandLine)
 {
-}
+    size_t startPos = 0;
+    size_t currentPos = 0;
+    while (currentPos < commandLine.size())
+    {
+        switch (commandLine[currentPos])
+        {
+        case ' ':
+            if (m_executable.empty())
+            {
+                m_executable = commandLine.substr(startPos, currentPos - startPos);
+            }
+            else
+            {
+                m_arguments.emplace_back(commandLine.substr(startPos, currentPos - startPos));
+            }
+            ++currentPos;
+            startPos = currentPos;
+            break;
 
-CommandLine::CommandLine(const boost::filesystem::path& executable)
-    : m_executable(GetQuotedStringIfRequired(executable.string()))
-{
+        // TODO: handle quotes and escape sequences
+
+        default:
+            break;
+        }
+        ++currentPos;
+    }
+    if (startPos != commandLine.size())
+    {
+        if (m_executable.empty())
+        {
+            m_executable = commandLine.substr(startPos);
+        }
+        else
+        {
+            m_arguments.emplace_back(commandLine.substr(startPos));
+        }
+    }
 }
 
 CommandLine::CommandLine(const char* executable, const std::vector<std::string>& arguments)
