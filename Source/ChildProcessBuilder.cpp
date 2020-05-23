@@ -48,11 +48,12 @@ ChildProcess ChildProcessBuilder::start(Error& error)
     }
     else
     {
-        char** argv = new char*[m_commandLine.arguments().size() + 2];
+        std::vector<std::string> arguments = m_commandLine.getArguments(CommandLine::eRaw);
+        char** argv = new char*[arguments.size() + 2];
         size_t i = 0;
-        argv[i] = strdup(m_commandLine.executable().c_str());
+        argv[i] = strdup(m_commandLine.getExecutable(CommandLine::eRaw).c_str());
         ++i;
-        for (const std::string& argument : m_commandLine.arguments())
+        for (const std::string& argument : arguments)
         {
             argv[i] = strdup(argument.c_str());
             ++i;
@@ -66,7 +67,7 @@ ChildProcess ChildProcessBuilder::start(Error& error)
             dup2(fd, STDOUT_FILENO);
         }
 
-        int err = execv(m_commandLine.executable().c_str(), argv);
+        int err = execv(m_commandLine.getExecutable(CommandLine::eRaw).c_str(), argv);
         // TODO: how to feed back a better error to the parent process?
         exit(-1);
     }
