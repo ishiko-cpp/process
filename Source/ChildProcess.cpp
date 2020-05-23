@@ -51,6 +51,14 @@ ChildProcess::~ChildProcess()
 #endif
 }
 
+#if defined(__linux__)
+ChildProcess& ChildProcess::operator=(ChildProcess&& other) noexcept
+{
+    m_pid = other.m_pid;
+    m_status = other.m_status;
+    return *this;
+}
+#elif defined(_WIN32)
 ChildProcess& ChildProcess::operator=(ChildProcess&& other) noexcept
 {
     if (this != &other)
@@ -60,6 +68,7 @@ ChildProcess& ChildProcess::operator=(ChildProcess&& other) noexcept
     }
     return *this;
 }
+#endif
 
 #if defined(__linux__)
 void ChildProcess::assign(pid_t pid)
