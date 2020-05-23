@@ -21,7 +21,12 @@ ChildProcess::ChildProcess()
 {
 }
 
-#ifdef _WIN32
+#if defined(__linux__)
+ChildProcess::ChildProcess(pid_t pid)
+    : m_pid(pid)
+{
+}
+#elif defined(_WIN32)
 ChildProcess::ChildProcess(HANDLE nativeHandle)
     : m_handle(nativeHandle)
 {
@@ -102,7 +107,8 @@ void ChildProcess::kill(int exitCode) const
 int ChildProcess::exitCode() const
 {
 #if defined(__linux__)
-    return m_status;
+    // TODO: what if not exited?
+    return WEXITSTATUS(m_status);
 #elif defined(_WIN32)
     DWORD exitCode;
     GetExitCodeProcess(m_handle, &exitCode);
