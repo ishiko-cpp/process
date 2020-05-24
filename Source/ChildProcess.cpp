@@ -97,9 +97,12 @@ void ChildProcess::waitForExit()
 #endif
 }
 
+// TODO: exit code doesn't work on Linux
 void ChildProcess::kill(int exitCode) const
 {
-#ifdef _WIN32
+#if defined(__linux__)
+    kill(SIGKILL);
+#elif defined(_WIN32)
     TerminateProcess(m_handle, exitCode);
 #endif
 }
