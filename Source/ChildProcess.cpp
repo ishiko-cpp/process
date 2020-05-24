@@ -101,7 +101,7 @@ void ChildProcess::waitForExit()
 void ChildProcess::kill(int exitCode) const
 {
 #if defined(__linux__)
-    kill(SIGKILL);
+    ::kill(m_pid, SIGKILL);
 #elif defined(_WIN32)
     TerminateProcess(m_handle, exitCode);
 #endif
