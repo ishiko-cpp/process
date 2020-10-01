@@ -39,14 +39,14 @@ ChildProcess ChildProcessBuilder::start(Error& error)
 #if defined(__linux__)
     if (!boost::filesystem::exists(m_commandLine.getExecutable(CommandLine::eRaw)))
     {
-        error.fail(-1);
+        ErrorCategory::Fail(error, eGeneric);
         return ChildProcess(-1);
     }
     pid_t child = fork();
     if (child == -1)
     {
         // TODO
-        error.fail(-1);
+        ErrorCategory::Fail(error, eGeneric);
         return ChildProcess(child);
     } 
     else if (child > 0)
@@ -100,7 +100,7 @@ ChildProcess ChildProcessBuilder::start(Error& error)
     if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString(CommandLine::eQuoteIfNeeded).c_str()),
         NULL, NULL, inheritHandles, 0, NULL, NULL, &startupInfo, &processInfo))
     {
-        ErrorCategory::Fail(error, ErrorCategory::eGeneric);
+        ErrorCategory::Fail(error, eGeneric);
     }
     else
     {
@@ -115,7 +115,7 @@ ChildProcess ChildProcessBuilder::start(Error& error)
 
     return ChildProcess(handle);
 #else
-    error.fail(-1);
+    ErrorCategory::Fail(error, eGeneric);
     return ChildProcess();
 #endif
 }
