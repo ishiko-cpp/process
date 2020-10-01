@@ -20,10 +20,10 @@
     <ClInclude Include="..\..\Include\Ishiko\Process.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\Ishiko\Process\Environment.h">
+    <ClInclude Include="..\..\Include\Ishiko\Process\ErrorCategory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\Ishiko\Process\linkoptions.h">
+    <ClInclude Include="..\..\Include\Ishiko\Process\Environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\Ishiko\Process\CommandLine.h">
@@ -35,8 +35,14 @@
     <ClInclude Include="..\..\Include\Ishiko\Process\ChildProcess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Include\Ishiko\Process\linkoptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\ErrorCategory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Environment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -5,6 +5,7 @@
 */
 
 #include "ChildProcessBuilder.h"
+#include "ErrorCategory.h"
 #ifdef __linux__
 #include <sys/wait.h>
 #include <unistd.h>
@@ -65,7 +66,7 @@ ChildProcess ChildProcessBuilder::start(Error& error)
     if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString().c_str()),
         NULL, NULL, inheritHandles, 0, NULL, NULL, &startupInfo, &processInfo))
     {
-        error.fail(-1);
+        ErrorCategory::Fail(error, ErrorCategory::eGeneric);
     }
     else
     {
