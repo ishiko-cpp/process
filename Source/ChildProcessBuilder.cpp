@@ -7,6 +7,8 @@
 #include "ChildProcessBuilder.h"
 #include "ErrorCategory.h"
 #ifdef __linux__
+#include <boost/filesystem/operations.hpp>
+#include <fcntl.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #endif
@@ -18,8 +20,13 @@ namespace Process
 
 ChildProcess ChildProcessBuilder::StartProcess(const std::string& commandLine, Error& error)
 {
-    ChildProcessBuilder builder(commandLine);
+    ChildProcessBuilder builder{CommandLine(commandLine)};
     return builder.start(error);
+}
+
+ChildProcessBuilder::ChildProcessBuilder(const std::string& commandLine)
+    : ChildProcessBuilder(CommandLine(commandLine))
+{
 }
 
 ChildProcessBuilder::ChildProcessBuilder(const CommandLine& commandLine)
@@ -30,18 +37,45 @@ ChildProcessBuilder::ChildProcessBuilder(const CommandLine& commandLine)
 ChildProcess ChildProcessBuilder::start(Error& error)
 {
 #if defined(__linux__)
+    if (!boost::filesystem::exists(m_commandLine.getExecutable(CommandLine::eRaw)))
+    {
+        ErrorCategory::Fail(error, eGeneric);
+        return ChildProcess(-1);
+    }
     pid_t child = fork();
     if (child == -1)
     {
         // TODO
+        ErrorCategory::Fail(error, eGeneric);
+        return ChildProcess(child);
     } 
     else if (child > 0)
     {
+        return ChildProcess(child);
     }
     else
     {
-        char* argv[1];
-        int err = execv(m_commandLine.c_str(), argv);
+        std::vector<std::string> arguments = m_commandLine.getArguments(CommandLine::eRaw);
+        char** argv = new char*[arguments.size() + 2];
+        size_t i = 0;
+        argv[i] = strdup(m_commandLine.getExecutable(CommandLine::eRaw).c_str());
+        ++i;
+        for (const std::string& argument : arguments)
+        {
+            argv[i] = strdup(argument.c_str());
+            ++i;
+        }
+        argv[i] = nullptr;
+
+        if (!m_standardOutputFilePath.empty())
+        {
+            // TODO: what permissions?
+            int fd = open(m_standardOutputFilePath.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0400);
+            dup2(fd, STDOUT_FILENO);
+        }
+
+        int err = execv(m_commandLine.getExecutable(CommandLine::eRaw).c_str(), argv);
+        // TODO: how to feed back a better error to the parent process?
         exit(-1);
     }
 #elif defined(_WIN32)
@@ -63,10 +97,10 @@ ChildProcess ChildProcessBuilder::start(Error& error)
     ZeroMemory(&processInfo, sizeof(processInfo));
 
     HANDLE handle = INVALID_HANDLE_VALUE;
-    if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString().c_str()),
+    if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString(CommandLine::eQuoteIfNeeded).c_str()),
         NULL, NULL, inheritHandles, 0, NULL, NULL, &startupInfo, &processInfo))
     {
-        ErrorCategory::Fail(error, ErrorCategory::eGeneric);
+        ErrorCategory::Fail(error, eGeneric);
     }
     else
     {
@@ -81,7 +115,7 @@ ChildProcess ChildProcessBuilder::start(Error& error)
 
     return ChildProcess(handle);
 #else
-    error.fail(-1);
+    ErrorCategory::Fail(error, eGeneric);
     return ChildProcess();
 #endif
 }

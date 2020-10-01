@@ -75,7 +75,7 @@ ISHIKO_CPP_TESTFRAMEWORK_ROOT ?= $(ISHIKO_CPP)/TestFramework
 all: $(_builddir)IshikoProcessTests
 
 $(_builddir)IshikoProcessTests: $(_builddir)IshikoProcessTests_main.o $(_builddir)IshikoProcessTests_EnvironmentTests.o $(_builddir)IshikoProcessTests_CommandLineTests.o $(_builddir)IshikoProcessTests_ChildProcessBuilderTests.o $(_builddir)IshikoProcessTests_ChildProcessTests.o
-	$(CXX) -o $@ $(LDFLAGS) $(_builddir)IshikoProcessTests_main.o $(_builddir)IshikoProcessTests_EnvironmentTests.o $(_builddir)IshikoProcessTests_CommandLineTests.o $(_builddir)IshikoProcessTests_ChildProcessBuilderTests.o $(_builddir)IshikoProcessTests_ChildProcessTests.o -L$(ISHIKO_CPP_ERRORS_ROOT)/Lib -L$(ISHIKO_CPP_PROCESS_ROOT)/Lib -L$(BOOST_ROOT)/lib -L$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Lib -lIshikoTestFrameworkCore -lIshikoProcess -lboost_filesystem -lboost_system -pthread
+	$(CXX) -o $@ $(LDFLAGS) $(_builddir)IshikoProcessTests_main.o $(_builddir)IshikoProcessTests_EnvironmentTests.o $(_builddir)IshikoProcessTests_CommandLineTests.o $(_builddir)IshikoProcessTests_ChildProcessBuilderTests.o $(_builddir)IshikoProcessTests_ChildProcessTests.o -L$(ISHIKO_CPP_ERRORS_ROOT)/Lib -L$(ISHIKO_CPP_PROCESS_ROOT)/Lib -L$(BOOST_ROOT)/lib -L$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Lib -lIshikoTestFrameworkCore -lIshikoProcess -lIshikoErrors -lboost_filesystem -lboost_system -pthread
 
 $(_builddir)IshikoProcessTests_main.o: ../../Source/main.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(BOOST_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/main.cpp

@@ -22,6 +22,7 @@ class ChildProcessBuilder
 public:
     static ChildProcess StartProcess(const std::string& commandLine, Error& error);
 
+    ChildProcessBuilder(const std::string& commandLine);
     ChildProcessBuilder(const CommandLine& commandLine);
 
     ChildProcess start(Error& error);

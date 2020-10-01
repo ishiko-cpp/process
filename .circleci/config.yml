@@ -2,13 +2,19 @@ version: 2
 jobs:
   build:
     docker:
-      - image: ishikocpp/gcc-boost:9.1.0-1.70.0
+      - image: ishikocpp/gcc-boost:10.1.0-1.73.0
     steps:
       - run: 
           name: "Set ISHIKO_CPP environment variable and create directory"
           command: mkdir /Ishiko-cpp && echo 'export ISHIKO_CPP="/Ishiko-cpp"' >> $BASH_ENV
+      - run:
+          name: "Checkout Ishiko-cpp/Errors dependency"
+          command: cd /Ishiko-cpp && git clone https://github.com/Ishiko-cpp/Errors.git
       - checkout:
           path: /Ishiko-cpp/Process
+      - run:
+          name: "Build Ishiko-cpp/Errors dependency"
+          command: cd /Ishiko-cpp/Errors/Makefiles/GNUmakefile && make
       - run:
           name: Build
           command: cd /Ishiko-cpp/Process/Makefiles/GNUmakefile && make
@@ -24,6 +30,9 @@ jobs:
       - run:
           name: Build ExitCodeTestHelper
           command: cd /Ishiko-cpp/Process/Tests/ExitCodeTestHelper/Makefiles/GNUmakefile && make
+      - run:
+          name: Build StandardOutputTestHelper
+          command: cd /Ishiko-cpp/Process/Tests/StandardOutputTestHelper/Makefiles/GNUmakefile && make
       - run:
           name: Run the tests
           command: cd /Ishiko-cpp/Process/Tests/Makefiles/GNUmakefile && ./IshikoProcessTests

@@ -23,7 +23,9 @@ class ChildProcess
 {
 public:
     ChildProcess();
-#ifdef _WIN32
+#if defined(__linux__)
+    ChildProcess(pid_t pid);
+#elif defined(_WIN32)
     ChildProcess(HANDLE nativeHandle);
 #endif
     ChildProcess(const ChildProcess& other) = delete;
@@ -31,6 +33,7 @@ public:
     ~ChildProcess();
 
     ChildProcess& operator=(const ChildProcess& other) = delete;
+    ChildProcess& operator=(ChildProcess&& other) noexcept;
 
 #if defined(__linux__)
     void assign(pid_t pid);

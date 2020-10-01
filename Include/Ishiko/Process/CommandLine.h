@@ -23,23 +23,23 @@ namespace Process
 class CommandLine
 {
 public:
-    /// Creates a new CommandLine instance.
-    /**
-        @param executable The executable.
-    */
-    CommandLine(const char* executable);
+    enum EMode
+    {
+        eRaw,
+        eQuoteIfNeeded
+    };
 
     /// Creates a new CommandLine instance.
     /**
-        @param executable The executable.
+        @param commandLine The command line.
     */
-    CommandLine(const std::string& executable);
+    explicit CommandLine(const char* commandLine);
 
     /// Creates a new CommandLine instance.
     /**
-        @param executable The executable.
+        @param commandLine The command line.
     */
-    CommandLine(const boost::filesystem::path& executable);
+    explicit CommandLine(const std::string& commandLine);
 
     /// Creates a new CommandLine instance.
     /**
@@ -62,10 +62,10 @@ public:
     */
     CommandLine(const boost::filesystem::path& executable, const std::vector<std::string>& arguments);
 
-    const std::string& executable() const;
-    const std::vector<std::string>& arguments() const;
+    std::string getExecutable(EMode mode) const;
+    std::vector<std::string> getArguments(EMode mode) const;
 
-    std::string toString() const;
+    std::string toString(EMode mode) const;
 
 private:
     std::string m_executable;
