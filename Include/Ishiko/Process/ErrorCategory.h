@@ -25,11 +25,11 @@ public:
 
     static const ErrorCategory& Get() noexcept;
 
-    static void Fail(Error& error, EErrorValues value) noexcept;
-
 private:
     ErrorCategory() noexcept = default;
 };
+
+void Fail(Error& error, ErrorCategory::EErrorValues value) noexcept;
 
 }
 }

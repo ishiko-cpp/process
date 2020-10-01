@@ -13,13 +13,13 @@ namespace Process
 
 const ErrorCategory& ErrorCategory::Get() noexcept
 {
-    ErrorCategory theCategory;
+    static ErrorCategory theCategory;
     return theCategory;
 }
 
-void ErrorCategory::Fail(Error& error, EErrorValues value) noexcept
+void Fail(Error& error, ErrorCategory::EErrorValues value) noexcept
 {
-    error.fail(value, Get());
+    error.fail(value, ErrorCategory::Get());
 }
 
 }
