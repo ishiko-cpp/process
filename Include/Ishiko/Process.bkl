@@ -1,5 +1,6 @@
 ishikopath = envvar("ISHIKO_CPP");
 import $(ishikopath)/Errors/Include/Ishiko/Errors.bkl;
+import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/Boost.bkl;
 
 setting ISHIKO_CPP_PROCESS_ROOT
 {
@@ -7,7 +8,7 @@ setting ISHIKO_CPP_PROCESS_ROOT
     default = '$(ISHIKO_CPP)/Process';
 }
 
-template IshikoProcess : IshikoErrors
+template IshikoProcess : IshikoErrors, Boost
 {
     includedirs += $(ISHIKO_CPP_PROCESS_ROOT)/Include;
 
