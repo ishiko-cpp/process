@@ -6,6 +6,7 @@
 
 #include "EnvironmentTests.h"
 #include "CommandLineTests.h"
+#include "CurrentProcessTests.h"
 #include "ProcessTests/ChildProcessTests.h"
 #include "ProcessTests/ChildProcessBuilderTests.h"
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
@@ -25,6 +26,7 @@ int main(int argc, char* argv[])
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<EnvironmentTests>();
     theTests.append<CommandLineTests>();
+    theTests.append<CurrentProcessTests>();
     theTests.append<ChildProcessTests>();
     theTests.append<ChildProcessBuilderTests>();
 
