@@ -18,7 +18,13 @@ namespace Ishiko
 namespace Process
 {
 
-ChildProcess ChildProcessBuilder::StartProcess(const std::string& commandLine, Error& error)
+ChildProcess ChildProcessBuilder::StartProcess(const std::string& commandLine)
+{
+    ChildProcessBuilder builder{CommandLine(commandLine)};
+    return builder.start();
+}
+
+ChildProcess ChildProcessBuilder::StartProcess(const std::string& commandLine, Error& error) noexcept
 {
     ChildProcessBuilder builder{CommandLine(commandLine)};
     return builder.start(error);
@@ -34,7 +40,15 @@ ChildProcessBuilder::ChildProcessBuilder(const CommandLine& commandLine)
 {
 }
 
-ChildProcess ChildProcessBuilder::start(Error& error)
+ChildProcess ChildProcessBuilder::start()
+{
+    Error error;
+    ChildProcess result = start(error);
+    ThrowIf(error);
+    return result;
+}
+
+ChildProcess ChildProcessBuilder::start(Error& error) noexcept
 {
 #if defined(__linux__)
     if (!boost::filesystem::exists(m_commandLine.getExecutable(CommandLine::eRaw)))
