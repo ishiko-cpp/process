@@ -20,12 +20,14 @@ namespace Process
 class ChildProcessBuilder
 {
 public:
-    static ChildProcess StartProcess(const std::string& commandLine, Error& error);
+    static ChildProcess StartProcess(const std::string& commandLine);
+    static ChildProcess StartProcess(const std::string& commandLine, Error& error) noexcept;
 
     ChildProcessBuilder(const std::string& commandLine);
     ChildProcessBuilder(const CommandLine& commandLine);
 
-    ChildProcess start(Error& error);
+    ChildProcess start();
+    ChildProcess start(Error& error) noexcept;
 
     void redirectStandardOutputToFile(const std::string& path);
 

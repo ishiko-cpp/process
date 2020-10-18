@@ -18,9 +18,11 @@ private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
     static void StartTest1(Ishiko::Tests::Test& test);
     static void StartTest2(Ishiko::Tests::Test& test);
+    static void StartTest3(Ishiko::Tests::Test& test);
     static void RedirectStandardOutputToFileTest1(Ishiko::Tests::FileComparisonTest& test);
-    static void StartTest3(Ishiko::Tests::FileComparisonTest& test);
+    static void StartTest4(Ishiko::Tests::FileComparisonTest& test);
     static void StartProcessTest1(Ishiko::Tests::Test& test);
+    static void StartProcessTest2(Ishiko::Tests::Test& test);
 };
 
 #endif
