@@ -23,13 +23,13 @@
     <ClInclude Include="..\..\Include\Ishiko\Process\ErrorCategory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\Ishiko\Process\Environment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Include\Ishiko\Process\CommandLine.h">
+    <ClInclude Include="..\..\Include\Ishiko\Process\CurrentEnvironment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\Ishiko\Process\CurrentProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\Ishiko\Process\CommandLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\Ishiko\Process\ChildProcessBuilder.h">
@@ -46,13 +46,13 @@
     <ClCompile Include="..\..\Source\ErrorCategory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Environment.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\CommandLine.cpp">
+    <ClCompile Include="..\..\Source\CurrentEnvironment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\CurrentProcess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\CommandLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ChildProcessBuilder.cpp">

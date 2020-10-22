@@ -4,15 +4,16 @@
     See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
 
-#ifndef _ISHIKO_TEST_PROCESS_ENVIRONMENTTESTS_H_
-#define _ISHIKO_TEST_PROCESS_ENVIRONMENTTESTS_H_
+#ifndef _ISHIKO_TEST_PROCESS_CURRENTENVIRONMENTTESTS_H_
+#define _ISHIKO_TEST_PROCESS_CURRENTENVIRONMENTTESTS_H_
 
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
 
-class EnvironmentTests : public Ishiko::Tests::TestSequence
+class CurrentEnvironmentTests : public Ishiko::Tests::TestSequence
 {
 public:
-    EnvironmentTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+    CurrentEnvironmentTests(const Ishiko::Tests::TestNumber& number,
+        const Ishiko::Tests::TestEnvironment& environment);
 
 private:
     static void SetTest1(Ishiko::Tests::Test& test);
