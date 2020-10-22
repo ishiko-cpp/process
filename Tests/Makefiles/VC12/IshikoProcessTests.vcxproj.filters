@@ -26,6 +26,9 @@
     <ClInclude Include="..\..\Source\CommandLineTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\EnvironmentTests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -44,6 +47,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\CommandLineTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\EnvironmentTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.cpp">
