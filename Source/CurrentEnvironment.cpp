@@ -4,7 +4,7 @@
     See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
 
-#include "Environment.h"
+#include "CurrentEnvironment.h"
 #include <stdlib.h>
 
 namespace Ishiko
@@ -12,7 +12,7 @@ namespace Ishiko
 namespace Process
 {
 
-bool Environment::Find(const std::string& name, std::string& value)
+bool CurrentEnvironment::Find(const std::string& name, std::string& value)
 {
 	char* v = getenv(name.c_str());
 	if (v == NULL)
@@ -26,7 +26,7 @@ bool Environment::Find(const std::string& name, std::string& value)
 	}
 }
 
-void Environment::Set(const std::string& name, const std::string& value)
+void CurrentEnvironment::Set(const std::string& name, const std::string& value)
 {
 #ifdef _WIN32
     _putenv_s(name.c_str(), value.c_str());
@@ -37,7 +37,7 @@ void Environment::Set(const std::string& name, const std::string& value)
 #endif
 }
 
-std::string Environment::ExpandVariablesInString(const std::string& str, int format)
+std::string CurrentEnvironment::ExpandVariablesInString(const std::string& str, int format)
 {
 	std::string result;
 
