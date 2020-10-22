@@ -7,6 +7,8 @@
 #ifndef _ISHIKO_PROCESS_ENVIRONMENT_H_
 #define _ISHIKO_PROCESS_ENVIRONMENT_H_
 
+#include <vector>
+
 namespace Ishiko
 {
 namespace Process
@@ -14,6 +16,8 @@ namespace Process
 
 class Environment
 {
+public:
+    std::vector<char> toEnvironmentBlock() const;
 };
 
 }

@@ -5,3 +5,20 @@
 */
 
 #include "Environment.h"
+
+namespace Ishiko
+{
+namespace Process
+{
+
+std::vector<char> Environment::toEnvironmentBlock() const
+{
+    std::vector<char> result;
+
+    result.push_back('\0');
+
+    return result;
+}
+
+}
+}

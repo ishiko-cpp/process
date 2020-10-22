@@ -107,12 +107,14 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
         startupInfo.hStdOutput = outputFile;
     }
 
+    void* environment = NULL;
+
     PROCESS_INFORMATION processInfo;
     ZeroMemory(&processInfo, sizeof(processInfo));
 
     HANDLE handle = INVALID_HANDLE_VALUE;
     if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString(CommandLine::eQuoteIfNeeded).c_str()),
-        NULL, NULL, inheritHandles, 0, NULL, NULL, &startupInfo, &processInfo))
+        NULL, NULL, inheritHandles, 0, environment, NULL, &startupInfo, &processInfo))
     {
         Fail(error, ErrorCategory::eGeneric);
     }
