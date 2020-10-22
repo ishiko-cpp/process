@@ -4,8 +4,8 @@
     See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
 
-#ifndef _ISHIKO_PROCESS_ENVIRONMENT_H_
-#define _ISHIKO_PROCESS_ENVIRONMENT_H_
+#ifndef _ISHIKO_PROCESS_CURRENTENVIRONMENT_H_
+#define _ISHIKO_PROCESS_CURRENTENVIRONMENT_H_
 
 #include <string>
 
@@ -14,7 +14,7 @@ namespace Ishiko
 namespace Process
 {
 
-class Environment
+class CurrentEnvironment
 {
 public:
 	enum EReferenceFormat
