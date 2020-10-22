@@ -20,9 +20,9 @@ program IshikoProcessTests : IshikoTestFrameworkCore
 
     headers
     {
-        ../../Source/EnvironmentTests.h
-        ../../Source/CommandLineTests.h
+        ../../Source/CurrentEnvironmentTests.h
         ../../Source/CurrentProcessTests.h
+        ../../Source/CommandLineTests.h
         ../../Source/ProcessTests/ChildProcessBuilderTests.h
         ../../Source/ProcessTests/ChildProcessTests.h
     }
@@ -31,9 +31,9 @@ program IshikoProcessTests : IshikoTestFrameworkCore
     {
         ../../Source/main.cpp
 
-        ../../Source/EnvironmentTests.cpp
-        ../../Source/CommandLineTests.cpp
+        ../../Source/CurrentEnvironmentTests.cpp
         ../../Source/CurrentProcessTests.cpp
+        ../../Source/CommandLineTests.cpp
         ../../Source/ProcessTests/ChildProcessBuilderTests.cpp
         ../../Source/ProcessTests/ChildProcessTests.cpp
     }

@@ -4,9 +4,9 @@
     See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
 
-#include "EnvironmentTests.h"
-#include "CommandLineTests.h"
+#include "CurrentEnvironmentTests.h"
 #include "CurrentProcessTests.h"
+#include "CommandLineTests.h"
 #include "ProcessTests/ChildProcessTests.h"
 #include "ProcessTests/ChildProcessBuilderTests.h"
 #include "Ishiko/TestFramework/TestFrameworkCore.h"
@@ -24,9 +24,9 @@ int main(int argc, char* argv[])
     theTestHarness.environment().setReferenceDataDirectory("../../ReferenceData");
 
     TestSequence& theTests = theTestHarness.tests();
-    theTests.append<EnvironmentTests>();
-    theTests.append<CommandLineTests>();
+    theTests.append<CurrentEnvironmentTests>();
     theTests.append<CurrentProcessTests>();
+    theTests.append<CommandLineTests>();
     theTests.append<ChildProcessTests>();
     theTests.append<ChildProcessBuilderTests>();
 
