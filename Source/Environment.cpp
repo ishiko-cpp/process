@@ -21,7 +21,7 @@ Environment::Environment(const Environment& other)
     m_variables.reserve(other.m_variables.size());
     for (size_t i = 0; i < other.m_variables.size() - 1; ++i)
     {
-        m_variables.push_back(_strdup(other.m_variables[i]));
+        m_variables.push_back(strdup(other.m_variables[i]));
     }
     m_variables.push_back(nullptr);
 }
@@ -39,7 +39,7 @@ void Environment::set(const char* name, const char* value)
     std::string entry = name;
     entry += "=";
     entry += value;
-    m_variables.insert(m_variables.end() - 1, _strdup(entry.c_str()));
+    m_variables.insert(m_variables.end() - 1, strdup(entry.c_str()));
 }
 
 char** Environment::toEnvironmentArray()
