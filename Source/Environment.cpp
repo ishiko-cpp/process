@@ -5,6 +5,7 @@
 */
 
 #include "Environment.h"
+#include <string>
 
 namespace Ishiko
 {
