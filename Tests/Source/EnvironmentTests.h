@@ -16,8 +16,11 @@ public:
 
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
+    static void SetTest1(Ishiko::Tests::Test& test);
     static void ToEnvironmentArrayTest1(Ishiko::Tests::Test& test);
+    static void ToEnvironmentArrayTest2(Ishiko::Tests::Test& test);
     static void ToEnvironmentBlockTest1(Ishiko::Tests::FileComparisonTest& test);
+    static void ToEnvironmentBlockTest2(Ishiko::Tests::FileComparisonTest& test);
 };
 
 #endif

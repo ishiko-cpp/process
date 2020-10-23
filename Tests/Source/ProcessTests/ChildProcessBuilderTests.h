@@ -22,6 +22,7 @@ private:
     static void RedirectStandardOutputToFileTest1(Ishiko::Tests::FileComparisonTest& test);
     static void StartTest4(Ishiko::Tests::FileComparisonTest& test);
     static void StartTest5(Ishiko::Tests::FileComparisonTest& test);
+    static void StartTest6(Ishiko::Tests::FileComparisonTest& test);
     static void StartProcessTest1(Ishiko::Tests::Test& test);
     static void StartProcessTest2(Ishiko::Tests::Test& test);
 };

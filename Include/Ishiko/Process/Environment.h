@@ -18,6 +18,7 @@ class Environment
 {
 public:
     Environment();
+    Environment(const Environment& other);
     ~Environment();
 
     void set(const char* name, const char* value);
