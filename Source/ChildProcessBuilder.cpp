@@ -93,8 +93,17 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
             dup2(fd, STDOUT_FILENO);
         }
 
-        int err = execv(m_commandLine.getExecutable(CommandLine::eRaw).c_str(), argv);
-        // TODO: how to feed back a better error to the parent process?
+        if (m_environment)
+        {
+
+            int err = execve(m_commandLine.getExecutable(CommandLine::eRaw).c_str(), argv, m_environment->m_variables.data());
+            // TODO: how to feed back a better error to the parent process?
+        }
+        else
+        {
+            int err = execv(m_commandLine.getExecutable(CommandLine::eRaw).c_str(), argv);
+            // TODO: how to feed back a better error to the parent process?
+        }
         exit(-1);
     }
 #elif defined(_WIN32)

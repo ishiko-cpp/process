@@ -17,7 +17,12 @@ namespace Process
 class Environment
 {
 public:
+    Environment();
+    ~Environment();
+    
     std::vector<char> toEnvironmentBlock() const;
+
+    std::vector<char*> m_variables;
 };
 
 }

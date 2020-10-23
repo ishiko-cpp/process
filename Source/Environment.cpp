@@ -11,6 +11,15 @@ namespace Ishiko
 namespace Process
 {
 
+Environment::Environment()
+{
+    m_variables.push_back(nullptr);
+}
+
+Environment::~Environment()
+{
+}
+
 std::vector<char> Environment::toEnvironmentBlock() const
 {
     std::vector<char> result;
