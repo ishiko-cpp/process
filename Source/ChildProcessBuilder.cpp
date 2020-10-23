@@ -40,6 +40,11 @@ ChildProcessBuilder::ChildProcessBuilder(const CommandLine& commandLine)
 {
 }
 
+ChildProcessBuilder::ChildProcessBuilder(const CommandLine& commandLine, const Environment& environment)
+    : m_commandLine(commandLine), m_environment(environment)
+{
+}
+
 ChildProcess ChildProcessBuilder::start()
 {
     Error error;
@@ -108,6 +113,12 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
     }
 
     void* environment = NULL;
+    std::vector<char> environmentBlock;
+    if (m_environment)
+    {
+        environmentBlock = m_environment->toEnvironmentBlock();
+        environment = environmentBlock.data();
+    }
 
     PROCESS_INFORMATION processInfo;
     ZeroMemory(&processInfo, sizeof(processInfo));

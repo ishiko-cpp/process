@@ -17,6 +17,8 @@ std::vector<char> Environment::toEnvironmentBlock() const
 
     result.push_back('\0');
 
+    result.push_back('\0');
+
     return result;
 }
 
