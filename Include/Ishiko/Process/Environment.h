@@ -19,9 +19,13 @@ class Environment
 public:
     Environment();
     ~Environment();
+
+    void set(const char* name, const char* value);
     
+    char** toEnvironmentArray();
     std::vector<char> toEnvironmentBlock() const;
 
+private:
     std::vector<char*> m_variables;
 };
 

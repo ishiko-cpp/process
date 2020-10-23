@@ -20,6 +20,17 @@ Environment::~Environment()
 {
 }
 
+void Environment::set(const char* name, const char* value)
+{
+    // TODO
+    //m_variables.push_back();
+}
+
+char** Environment::toEnvironmentArray()
+{
+    return m_variables.data();
+}
+
 std::vector<char> Environment::toEnvironmentBlock() const
 {
     std::vector<char> result;

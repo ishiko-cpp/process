@@ -96,7 +96,7 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
         if (m_environment)
         {
 
-            int err = execve(m_commandLine.getExecutable(CommandLine::eRaw).c_str(), argv, m_environment->m_variables.data());
+            int err = execve(m_commandLine.getExecutable(CommandLine::eRaw).c_str(), argv, m_environment->toEnvironmentArray());
             // TODO: how to feed back a better error to the parent process?
         }
         else
