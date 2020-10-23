@@ -6,6 +6,7 @@
 
 #include "Environment.h"
 #include <string>
+#include <cstring>
 
 namespace Ishiko
 {
