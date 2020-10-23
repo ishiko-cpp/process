@@ -15,7 +15,15 @@ int main(int argc, char* argv[])
     std::cout << "argc: " << argc << std::endl;
     for (int i = 0; i < argc; ++i)
     {
-        std::cout << "argv[" << i << "]: " << argv[i] << std::endl;
+        if (i == 0)
+        {
+            // Don't print the first argument as its value will change depending on the platform
+            std::cout << "argv[" << i << "]: " << "*** skipped ***" << std::endl;
+        }
+        else
+        {
+            std::cout << "argv[" << i << "]: " << argv[i] << std::endl;
+        }
     }
 
 #if defined(__linux__)
