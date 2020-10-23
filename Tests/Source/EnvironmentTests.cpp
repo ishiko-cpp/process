@@ -15,6 +15,7 @@ EnvironmentTests::EnvironmentTests(const TestNumber& number, const TestEnvironme
     : TestSequence(number, "Environment tests", environment)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
+    append<HeapAllocationErrorsTest>("toEnvironmentArray test 1", ToEnvironmentArrayTest1);
     append<FileComparisonTest>("toEnvironmentBlock test 1", ToEnvironmentBlockTest1);
 }
 
@@ -22,6 +23,16 @@ void EnvironmentTests::ConstructorTest1(Test& test)
 {
     Ishiko::Process::Environment env;
 
+    ISHTF_PASS();
+}
+
+void EnvironmentTests::ToEnvironmentArrayTest1(Test& test)
+{
+    Ishiko::Process::Environment env;
+
+    char** environmentArray = env.toEnvironmentArray();
+
+    ISHTF_FAIL_IF_NEQ(environmentArray[0], nullptr);
     ISHTF_PASS();
 }
 

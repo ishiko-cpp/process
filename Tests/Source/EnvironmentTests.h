@@ -16,6 +16,7 @@ public:
 
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
+    static void ToEnvironmentArrayTest1(Ishiko::Tests::Test& test);
     static void ToEnvironmentBlockTest1(Ishiko::Tests::FileComparisonTest& test);
 };
 
