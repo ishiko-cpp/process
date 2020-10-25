@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2005-2020 Xavier Leclercq
+    Copyright (c) 2020 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_PROCESS_ENVIRONMENT_H_
 #define _ISHIKO_PROCESS_ENVIRONMENT_H_
 
-#include <string>
+#include <vector>
 
 namespace Ishiko
 {
@@ -17,22 +17,20 @@ namespace Process
 class Environment
 {
 public:
-	enum EReferenceFormat
-	{
-		eDollarAndParentheses = 0x01
-	};
+    Environment();
+    Environment(const Environment& other);
+    ~Environment();
 
-public:
-	static bool Find(const std::string& name, std::string& value);
-	static void Set(const std::string& name, const std::string& value);
+    void set(const char* name, const char* value);
+    
+    char** toEnvironmentArray();
+    std::vector<char> toEnvironmentBlock() const;
 
-	static std::string ExpandVariablesInString(const std::string& str, 
-		int format);
+private:
+    std::vector<char*> m_variables;
 };
 
 }
 }
-
-#include "linkoptions.h"
 
 #endif

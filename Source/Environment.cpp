@@ -1,79 +1,74 @@
 /*
-    Copyright (c) 2005-2020 Xavier Leclercq
+    Copyright (c) 2020 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
 
 #include "Environment.h"
-#include <stdlib.h>
+#include <string>
+#include <cstring>
 
 namespace Ishiko
 {
 namespace Process
 {
 
-bool Environment::Find(const std::string& name, std::string& value)
+Environment::Environment()
 {
-	char* v = getenv(name.c_str());
-	if (v == NULL)
-	{
-		return false;
-	}
-	else
-	{
-		value = v;
-		return true;
-	}
+    m_variables.push_back(nullptr);
 }
 
-void Environment::Set(const std::string& name, const std::string& value)
+Environment::Environment(const Environment& other)
 {
-#ifdef _WIN32
-    _putenv_s(name.c_str(), value.c_str());
-#elif __linux__
-    setenv(name.c_str(), value.c_str(), 1);
-#else
-    #error Unsupported platform
-#endif
+    m_variables.reserve(other.m_variables.size());
+    for (size_t i = 0; i < other.m_variables.size() - 1; ++i)
+    {
+        m_variables.push_back(strdup(other.m_variables[i]));
+    }
+    m_variables.push_back(nullptr);
 }
 
-std::string Environment::ExpandVariablesInString(const std::string& str, int format)
+Environment::~Environment()
 {
-	std::string result;
+    for (const char* entry : m_variables)
+    {
+        delete[] entry;
+    }
+}
 
-	size_t lastAddedPos = 0;
-	if (format & eDollarAndParentheses)
-	{
-		size_t beginPos = str.find("$(", lastAddedPos);
-		while (beginPos != std::string::npos)
-		{
-			size_t endPos = str.find(")", beginPos);
-			if (endPos != std::string::npos)
-			{
-				std::string name = str.substr(beginPos + 2, endPos - beginPos - 2);
-				std::string value;
-				bool found = Find(name, value);
-				if (found)
-				{
-					result += str.substr(lastAddedPos, beginPos - lastAddedPos);
-					result += value;
-					beginPos = lastAddedPos = endPos + 1;
-				}
-				else
-				{
-					beginPos += 2;
-				}
-			}
-			else
-			{
-				break;
-			}
-			beginPos = str.find("$(", beginPos);
-		}
-	}
-	result += str.substr(lastAddedPos);
+void Environment::set(const char* name, const char* value)
+{
+    std::string entry = name;
+    entry += "=";
+    entry += value;
+    m_variables.insert(m_variables.end() - 1, strdup(entry.c_str()));
+}
 
-	return result;
+char** Environment::toEnvironmentArray()
+{
+    return m_variables.data();
+}
+
+std::vector<char> Environment::toEnvironmentBlock() const
+{
+    std::vector<char> result;
+
+    if (m_variables.size() == 1)
+    {
+        result.push_back('\0');
+    }
+    else
+    {
+        for (size_t i = 0; i < (m_variables.size() - 1); ++i)
+        {
+            const char* entry = m_variables[i];
+            result.insert(result.end(), entry, entry + strlen(entry) + 1);
+        }
+    }
+
+    result.push_back('\0');
+
+    return result;
 }
 
 }

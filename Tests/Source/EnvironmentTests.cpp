@@ -1,131 +1,100 @@
 /*
-    Copyright (c) 2015-2020 Xavier Leclercq
+    Copyright (c) 2020 Xavier Leclercq
     Released under the MIT License
     See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
 */
 
 #include "EnvironmentTests.h"
 #include "Ishiko/Process/Environment.h"
+#include <boost/filesystem/operations.hpp>
+#include <fstream>
 
 using namespace Ishiko::Tests;
 
 EnvironmentTests::EnvironmentTests(const TestNumber& number, const TestEnvironment& environment)
     : TestSequence(number, "Environment tests", environment)
 {
-	append<HeapAllocationErrorsTest>("set test 1", SetTest1);
-    append<HeapAllocationErrorsTest>("set test 2", SetTest2);
-    append<HeapAllocationErrorsTest>("find test 1", FindTest1);
-    append<HeapAllocationErrorsTest>("expandVariablesInString test 1", ExpandVariablesInStringTest1);
-    append<HeapAllocationErrorsTest>("expandVariablesInString test 2", ExpandVariablesInStringTest2);
-    append<HeapAllocationErrorsTest>("expandVariablesInString test 3", ExpandVariablesInStringTest3);
-    append<HeapAllocationErrorsTest>("expandVariablesInString test 4", ExpandVariablesInStringTest4);
-    append<HeapAllocationErrorsTest>("expandVariablesInString test 5", ExpandVariablesInStringTest5);
-    append<HeapAllocationErrorsTest>("expandVariablesInString test 6", ExpandVariablesInStringTest6);
+    append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
+    append<HeapAllocationErrorsTest>("set test 1", SetTest1);
+    append<HeapAllocationErrorsTest>("toEnvironmentArray test 1", ToEnvironmentArrayTest1);
+    append<HeapAllocationErrorsTest>("toEnvironmentArray test 2", ToEnvironmentArrayTest2);
+    append<FileComparisonTest>("toEnvironmentBlock test 1", ToEnvironmentBlockTest1);
+    append<FileComparisonTest>("toEnvironmentBlock test 2", ToEnvironmentBlockTest2);
+}
+
+void EnvironmentTests::ConstructorTest1(Test& test)
+{
+    Ishiko::Process::Environment env;
+
+    ISHTF_PASS();
 }
 
 void EnvironmentTests::SetTest1(Test& test)
 {
-	Ishiko::Process::Environment::Set("IshikoEnvironmentSetTest1", "dummy");
-	
-	std::string value;
-	bool found = Ishiko::Process::Environment::Find("IshikoEnvironmentSetTest1", value);
+    Ishiko::Process::Environment env;
 
-    ISHTF_FAIL_IF_NOT(found);
-    ISHTF_FAIL_IF_NEQ(value, "dummy");
+    env.set("name", "value");
+
     ISHTF_PASS();
 }
 
-void EnvironmentTests::SetTest2(Test& test)
+void EnvironmentTests::ToEnvironmentArrayTest1(Test& test)
 {
-	Ishiko::Process::Environment::Set("IshikoEnvironmentSetTest2", "dummy");
-	Ishiko::Process::Environment::Set("IshikoEnvironmentSetTest2", "dummy2");
+    Ishiko::Process::Environment env;
 
-	std::string value;
-	bool found = Ishiko::Process::Environment::Find("IshikoEnvironmentSetTest2", value);
+    char** environmentArray = env.toEnvironmentArray();
 
-    ISHTF_FAIL_IF_NOT(found);
-    ISHTF_FAIL_IF_NEQ(value, "dummy2");
+    ISHTF_FAIL_IF_NEQ(environmentArray[0], nullptr);
     ISHTF_PASS();
 }
 
-void EnvironmentTests::FindTest1(Test& test)
+void EnvironmentTests::ToEnvironmentArrayTest2(Test& test)
 {
-	std::string value;
-	bool found = Ishiko::Process::Environment::Find("IshikoEnvironmentFindTest1", value);
+    Ishiko::Process::Environment env;
+    env.set("name1", "value1");
 
-    ISHTF_FAIL_IF(found);
+    char** environmentArray = env.toEnvironmentArray();
+
+    ISHTF_FAIL_IF_STR_NEQ(environmentArray[0], "name1=value1");
+    ISHTF_FAIL_IF_NEQ(environmentArray[1], nullptr);
     ISHTF_PASS();
 }
 
-void EnvironmentTests::ExpandVariablesInStringTest1(Test& test)
+void EnvironmentTests::ToEnvironmentBlockTest1(FileComparisonTest& test)
 {
-	std::string str = "dummy";
-	std::string expandedStr =
-		Ishiko::Process::Environment::ExpandVariablesInString(
-		str, Ishiko::Process::Environment::eDollarAndParentheses);
+    boost::filesystem::path outputPath(test.environment().getTestOutputDirectory()
+        / "EnvironmentTests_ToEnvironmentBlockTest1.bin");
+    boost::filesystem::remove(outputPath);
+    test.setOutputFilePath(outputPath);
+    test.setReferenceFilePath(test.environment().getReferenceDataDirectory() / 
+        "EnvironmentTests_ToEnvironmentBlockTest1.bin");
 
-    ISHTF_FAIL_IF_NEQ(str, expandedStr);
+    Ishiko::Process::Environment env;
+
+    std::vector<char> environmentBlock = env.toEnvironmentBlock();
+
+    std::ofstream output(outputPath.string());
+    output.write(environmentBlock.data(), environmentBlock.size());
+
     ISHTF_PASS();
 }
 
-void EnvironmentTests::ExpandVariablesInStringTest2(Test& test)
+void EnvironmentTests::ToEnvironmentBlockTest2(FileComparisonTest& test)
 {
-	Ishiko::Process::Environment::Set("EnvironmentExpandVariablesInStringTest2", "dummy");
+    boost::filesystem::path outputPath(test.environment().getTestOutputDirectory()
+        / "EnvironmentTests_ToEnvironmentBlockTest2.bin");
+    boost::filesystem::remove(outputPath);
+    test.setOutputFilePath(outputPath);
+    test.setReferenceFilePath(test.environment().getReferenceDataDirectory() /
+        "EnvironmentTests_ToEnvironmentBlockTest2.bin");
 
-	std::string str = "$(EnvironmentExpandVariablesInStringTest2)";
-	std::string expandedStr =
-		Ishiko::Process::Environment::ExpandVariablesInString(
-		str, Ishiko::Process::Environment::eDollarAndParentheses);
+    Ishiko::Process::Environment env;
+    env.set("name1", "value1");
 
-    ISHTF_FAIL_IF_NEQ(expandedStr, "dummy");
-    ISHTF_PASS();
-}
+    std::vector<char> environmentBlock = env.toEnvironmentBlock();
 
-void EnvironmentTests::ExpandVariablesInStringTest3(Test& test)
-{
-	Ishiko::Process::Environment::Set("EnvironmentExpandVariablesInStringTest3", "dummy");
+    std::ofstream output(outputPath.string());
+    output.write(environmentBlock.data(), environmentBlock.size());
 
-	std::string str = "this is a $(EnvironmentExpandVariablesInStringTest3) environment variable";
-	std::string expandedStr =
-		Ishiko::Process::Environment::ExpandVariablesInString(
-		str, Ishiko::Process::Environment::eDollarAndParentheses);
-
-    ISHTF_FAIL_IF_NEQ(expandedStr, "this is a dummy environment variable");
-    ISHTF_PASS();
-}
-
-void EnvironmentTests::ExpandVariablesInStringTest4(Test& test)
-{
-	Ishiko::Process::Environment::Set("EnvironmentExpandVariablesInStringTest4_1", "dummy1");
-	Ishiko::Process::Environment::Set("EnvironmentExpandVariablesInStringTest4_2", "dummy2");
-
-	std::string str = "These are $(EnvironmentExpandVariablesInStringTest4_1) and $(EnvironmentExpandVariablesInStringTest4_2)!";
-	std::string expandedStr =
-		Ishiko::Process::Environment::ExpandVariablesInString(
-		str, Ishiko::Process::Environment::eDollarAndParentheses);
-
-    ISHTF_FAIL_IF_NEQ(expandedStr, "These are dummy1 and dummy2!");
-    ISHTF_PASS();
-}
-
-void EnvironmentTests::ExpandVariablesInStringTest5(Test& test)
-{
-	std::string str = "this is a $(nonexistent) environment variable";
-	std::string expandedStr =
-		Ishiko::Process::Environment::ExpandVariablesInString(
-		str, Ishiko::Process::Environment::eDollarAndParentheses);
-
-    ISHTF_FAIL_IF_NEQ(expandedStr, "this is a $(nonexistent) environment variable");
-    ISHTF_PASS();
-}
-
-void EnvironmentTests::ExpandVariablesInStringTest6(Test& test)
-{
-	std::string str = "this is a $(incomplete environment variable";
-	std::string expandedStr =
-		Ishiko::Process::Environment::ExpandVariablesInString(
-		str, Ishiko::Process::Environment::eDollarAndParentheses);
-
-    ISHTF_FAIL_IF_NEQ(expandedStr, "this is a $(incomplete environment variable");
     ISHTF_PASS();
 }
