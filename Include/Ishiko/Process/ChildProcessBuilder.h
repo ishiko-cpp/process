@@ -8,8 +8,10 @@
 #define _ISHIKO_PROCESS_CHILDPROCESSBUILDER_H_
 
 #include "CommandLine.h"
+#include "Environment.h"
 #include "ChildProcess.h"
 #include <Ishiko/Errors/Error.h>
+#include <boost/optional/optional.hpp>
 #include <string>
 
 namespace Ishiko
@@ -22,9 +24,11 @@ class ChildProcessBuilder
 public:
     static ChildProcess StartProcess(const std::string& commandLine);
     static ChildProcess StartProcess(const std::string& commandLine, Error& error) noexcept;
+    static ChildProcess StartProcess(const std::string& commandLine, const Environment& environment);
 
     ChildProcessBuilder(const std::string& commandLine);
     ChildProcessBuilder(const CommandLine& commandLine);
+    ChildProcessBuilder(const CommandLine& commandLine, const Environment& environment);
 
     ChildProcess start();
     ChildProcess start(Error& error) noexcept;
@@ -36,9 +40,9 @@ private:
     static HANDLE createInheritableFile(const std::string& path);
 #endif
 
-
 private:
     CommandLine m_commandLine;
+    boost::optional<Environment> m_environment;
     std::string m_standardOutputFilePath;
 };
 

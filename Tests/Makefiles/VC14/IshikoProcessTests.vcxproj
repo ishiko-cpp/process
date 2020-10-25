@@ -156,6 +156,7 @@
     <ClCompile Include="..\..\Source\CurrentEnvironmentTests.cpp" />
     <ClCompile Include="..\..\Source\CurrentProcessTests.cpp" />
     <ClCompile Include="..\..\Source\CommandLineTests.cpp" />
+    <ClCompile Include="..\..\Source\EnvironmentTests.cpp" />
     <ClCompile Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.cpp" />
     <ClCompile Include="..\..\Source\ProcessTests\ChildProcessTests.cpp" />
   </ItemGroup>
@@ -163,6 +164,7 @@
     <ClInclude Include="..\..\Source\CurrentEnvironmentTests.h" />
     <ClInclude Include="..\..\Source\CurrentProcessTests.h" />
     <ClInclude Include="..\..\Source\CommandLineTests.h" />
+    <ClInclude Include="..\..\Source\EnvironmentTests.h" />
     <ClInclude Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.h" />
     <ClInclude Include="..\..\Source\ProcessTests\ChildProcessTests.h" />
   </ItemGroup>
