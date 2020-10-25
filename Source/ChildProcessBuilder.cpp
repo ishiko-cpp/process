@@ -30,6 +30,12 @@ ChildProcess ChildProcessBuilder::StartProcess(const std::string& commandLine, E
     return builder.start(error);
 }
 
+ChildProcess ChildProcessBuilder::StartProcess(const std::string& commandLine, const Environment& environment)
+{
+    ChildProcessBuilder builder{CommandLine(commandLine), environment};
+    return builder.start();
+}
+
 ChildProcessBuilder::ChildProcessBuilder(const std::string& commandLine)
     : ChildProcessBuilder(CommandLine(commandLine))
 {
@@ -37,6 +43,11 @@ ChildProcessBuilder::ChildProcessBuilder(const std::string& commandLine)
 
 ChildProcessBuilder::ChildProcessBuilder(const CommandLine& commandLine)
     : m_commandLine(commandLine)
+{
+}
+
+ChildProcessBuilder::ChildProcessBuilder(const CommandLine& commandLine, const Environment& environment)
+    : m_commandLine(commandLine), m_environment(environment)
 {
 }
 
@@ -88,8 +99,17 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
             dup2(fd, STDOUT_FILENO);
         }
 
-        int err = execv(m_commandLine.getExecutable(CommandLine::eRaw).c_str(), argv);
-        // TODO: how to feed back a better error to the parent process?
+        if (m_environment)
+        {
+
+            int err = execve(m_commandLine.getExecutable(CommandLine::eRaw).c_str(), argv, m_environment->toEnvironmentArray());
+            // TODO: how to feed back a better error to the parent process?
+        }
+        else
+        {
+            int err = execv(m_commandLine.getExecutable(CommandLine::eRaw).c_str(), argv);
+            // TODO: how to feed back a better error to the parent process?
+        }
         exit(-1);
     }
 #elif defined(_WIN32)
@@ -107,12 +127,20 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
         startupInfo.hStdOutput = outputFile;
     }
 
+    void* environment = NULL;
+    std::vector<char> environmentBlock;
+    if (m_environment)
+    {
+        environmentBlock = m_environment->toEnvironmentBlock();
+        environment = environmentBlock.data();
+    }
+
     PROCESS_INFORMATION processInfo;
     ZeroMemory(&processInfo, sizeof(processInfo));
 
     HANDLE handle = INVALID_HANDLE_VALUE;
     if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString(CommandLine::eQuoteIfNeeded).c_str()),
-        NULL, NULL, inheritHandles, 0, NULL, NULL, &startupInfo, &processInfo))
+        NULL, NULL, inheritHandles, 0, environment, NULL, &startupInfo, &processInfo))
     {
         Fail(error, ErrorCategory::eGeneric);
     }

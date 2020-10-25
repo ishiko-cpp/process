@@ -10,7 +10,7 @@
 using namespace Ishiko::Tests;
 
 CurrentEnvironmentTests::CurrentEnvironmentTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "Environment tests", environment)
+    : TestSequence(number, "CurrentEnvironment tests", environment)
 {
     append<HeapAllocationErrorsTest>("set test 1", SetTest1);
     append<HeapAllocationErrorsTest>("set test 2", SetTest2);
