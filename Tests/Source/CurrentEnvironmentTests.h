@@ -19,6 +19,7 @@ private:
     static void SetTest1(Ishiko::Tests::Test& test);
     static void SetTest2(Ishiko::Tests::Test& test);
     static void FindTest1(Ishiko::Tests::Test& test);
+    static void ToMapTest1(Ishiko::Tests::Test& test);
     static void ExpandVariablesInStringTest1(Ishiko::Tests::Test& test);
     static void ExpandVariablesInStringTest2(Ishiko::Tests::Test& test);
     static void ExpandVariablesInStringTest3(Ishiko::Tests::Test& test);
