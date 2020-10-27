@@ -12,6 +12,7 @@
 #undef UNICODE
 #include <Windows.h>
 #endif
+#include <cstring>
 #include <stdlib.h>
 
 namespace Ishiko
