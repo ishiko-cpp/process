@@ -7,8 +7,13 @@
 #ifndef _ISHIKO_PROCESS_H_
 #define _ISHIKO_PROCESS_H_
 
+#include "Process/ErrorCategory.h"
+#include "Process/CommandLine.h"
+#include "Process/CurrentEnvironment.h"
 #include "Process/Environment.h"
-#include "Process/ProcessHandle.h"
+#include "Process/CurrentProcess.h"
+#include "Process/ChildProcess.h"
+#include "Process/ChildProcessBuilder.h"
 
 #include "Process/linkoptions.h"
 
