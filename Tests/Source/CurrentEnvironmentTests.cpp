@@ -15,6 +15,7 @@ CurrentEnvironmentTests::CurrentEnvironmentTests(const TestNumber& number, const
     append<HeapAllocationErrorsTest>("set test 1", SetTest1);
     append<HeapAllocationErrorsTest>("set test 2", SetTest2);
     append<HeapAllocationErrorsTest>("find test 1", FindTest1);
+    append<HeapAllocationErrorsTest>("ToMap test 1", ToMapTest1);
     append<HeapAllocationErrorsTest>("expandVariablesInString test 1", ExpandVariablesInStringTest1);
     append<HeapAllocationErrorsTest>("expandVariablesInString test 2", ExpandVariablesInStringTest2);
     append<HeapAllocationErrorsTest>("expandVariablesInString test 3", ExpandVariablesInStringTest3);
@@ -54,6 +55,18 @@ void CurrentEnvironmentTests::FindTest1(Test& test)
 	bool found = Ishiko::Process::CurrentEnvironment::Find("IshikoEnvironmentFindTest1", value);
 
     ISHTF_FAIL_IF(found);
+    ISHTF_PASS();
+}
+
+void CurrentEnvironmentTests::ToMapTest1(Test& test)
+{
+    Ishiko::Process::CurrentEnvironment::Set("CurrentEnvironmentTests_ToMapTest1_a", "dummy");
+    Ishiko::Process::CurrentEnvironment::Set("CurrentEnvironmentTests_ToMapTest1_b", "dummy2");
+
+    std::map<std::string, std::string> environment = Ishiko::Process::CurrentEnvironment::ToMap();
+
+    ISHTF_FAIL_IF_NEQ(environment.at("CurrentEnvironmentTests_ToMapTest1_a"), "dummy");
+    ISHTF_FAIL_IF_NEQ(environment.at("CurrentEnvironmentTests_ToMapTest1_b"), "dummy2");
     ISHTF_PASS();
 }
 
