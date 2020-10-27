@@ -22,15 +22,6 @@ namespace Ishiko
 namespace Process
 {
 
-namespace
-{
-
-void Split()
-{
-}
-
-}
-
 bool CurrentEnvironment::Find(const std::string& name, std::string& value)
 {
     char* v = getenv(name.c_str());
