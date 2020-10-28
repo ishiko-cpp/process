@@ -6,6 +6,7 @@
 
 #include "EnvironmentTests.h"
 #include "Ishiko/Process/Environment.h"
+#include "Ishiko/Process/CurrentEnvironment.h"
 #include <boost/filesystem/operations.hpp>
 #include <fstream>
 
@@ -15,7 +16,9 @@ EnvironmentTests::EnvironmentTests(const TestNumber& number, const TestEnvironme
     : TestSequence(number, "Environment tests", environment)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
+    append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
     append<HeapAllocationErrorsTest>("set test 1", SetTest1);
+    append<HeapAllocationErrorsTest>("find test 1", FindTest1);
     append<HeapAllocationErrorsTest>("toEnvironmentArray test 1", ToEnvironmentArrayTest1);
     append<HeapAllocationErrorsTest>("toEnvironmentArray test 2", ToEnvironmentArrayTest2);
     append<FileComparisonTest>("toEnvironmentBlock test 1", ToEnvironmentBlockTest1);
@@ -29,12 +32,48 @@ void EnvironmentTests::ConstructorTest1(Test& test)
     ISHTF_PASS();
 }
 
+void EnvironmentTests::ConstructorTest2(Test& test)
+{
+    Ishiko::Process::CurrentEnvironment::Set("EnvironmentTests_ConstructorTest2_a", "dummy");
+    Ishiko::Process::CurrentEnvironment::Set("EnvironmentTests_ConstructorTest2_b", "dummy2");
+
+    Ishiko::Process::Environment env = Ishiko::Process::CurrentEnvironment();
+
+    std::string value1;
+    bool found1 = env.find("EnvironmentTests_ConstructorTest2_a", value1);
+    std::string value2;
+    bool found2 = env.find("EnvironmentTests_ConstructorTest2_b", value2);
+
+    ISHTF_FAIL_IF_NOT(found1);
+    ISHTF_FAIL_IF_NEQ(value1, "dummy");
+    ISHTF_FAIL_IF_NOT(found2);
+    ISHTF_FAIL_IF_NEQ(value2, "dummy2");
+    ISHTF_PASS();
+}
+
 void EnvironmentTests::SetTest1(Test& test)
 {
     Ishiko::Process::Environment env;
 
     env.set("name", "value");
 
+    std::string value;
+    bool found = env.find("name", value);
+
+    ISHTF_FAIL_IF_NOT(found);
+    ISHTF_FAIL_IF_NEQ(value, "value");
+    ISHTF_PASS();
+}
+
+void EnvironmentTests::FindTest1(Test& test)
+{
+    Ishiko::Process::Environment env;
+
+    std::string value;
+    bool found = env.find("doesntexist", value);
+
+    ISHTF_FAIL_IF(found);
+    ISHTF_FAIL_IF_NEQ(value, "");
     ISHTF_PASS();
 }
 

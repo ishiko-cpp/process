@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_PROCESS_ENVIRONMENT_H_
 #define _ISHIKO_PROCESS_ENVIRONMENT_H_
 
+#include "CurrentEnvironment.h"
 #include <vector>
 
 namespace Ishiko
@@ -18,8 +19,11 @@ class Environment
 {
 public:
     Environment();
+    Environment(const CurrentEnvironment& env);
     Environment(const Environment& other);
     ~Environment();
+
+    bool find(const std::string& name, std::string& value) const;
 
     void set(const char* name, const char* value);
     

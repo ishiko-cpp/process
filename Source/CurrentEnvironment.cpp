@@ -6,27 +6,21 @@
 
 #include "CurrentEnvironment.h"
 #include <Ishiko/Platform/OS.h>
-#if ISHIKO_OS == ISHIKO_OS_WINDOWS
+#if ISHIKO_OS == ISHIKO_OS_LINUX
+extern char** environ;
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
 // There seems to be an error with the definition of GetEnvironmentStringsA so we undefine UNICODE so that we can use
 // GetEnvironmentStrings
 #undef UNICODE
 #include <Windows.h>
 #endif
+#include <cstring>
 #include <stdlib.h>
 
 namespace Ishiko
 {
 namespace Process
 {
-
-namespace
-{
-
-void Split()
-{
-}
-
-}
 
 bool CurrentEnvironment::Find(const std::string& name, std::string& value)
 {
@@ -47,7 +41,6 @@ std::map<std::string, std::string> CurrentEnvironment::ToMap()
     std::map<std::string, std::string> result;
 
 #if ISHIKO_OS == ISHIKO_OS_LINUX
-    extern char** environ;
     for (char** p = environ; *p != nullptr; ++p)
     {
         char* eq = strchr(*p, '=');
