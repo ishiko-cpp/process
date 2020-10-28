@@ -5,6 +5,16 @@
 */
 
 #include "CurrentEnvironment.h"
+#include <Ishiko/Platform/OS.h>
+#if ISHIKO_OS == ISHIKO_OS_LINUX
+extern char** environ;
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
+// There seems to be an error with the definition of GetEnvironmentStringsA so we undefine UNICODE so that we can use
+// GetEnvironmentStrings
+#undef UNICODE
+#include <Windows.h>
+#endif
+#include <cstring>
 #include <stdlib.h>
 
 namespace Ishiko
@@ -14,66 +24,95 @@ namespace Process
 
 bool CurrentEnvironment::Find(const std::string& name, std::string& value)
 {
-	char* v = getenv(name.c_str());
-	if (v == NULL)
-	{
-		return false;
-	}
-	else
-	{
-		value = v;
-		return true;
-	}
+    char* v = getenv(name.c_str());
+    if (v == NULL)
+    {
+        return false;
+    }
+    else
+    {
+        value = v;
+        return true;
+    }
+}
+
+std::map<std::string, std::string> CurrentEnvironment::ToMap()
+{
+    std::map<std::string, std::string> result;
+
+#if ISHIKO_OS == ISHIKO_OS_LINUX
+    for (char** p = environ; *p != nullptr; ++p)
+    {
+        char* eq = strchr(*p, '=');
+        result.emplace(std::string(*p, eq - *p), std::string(eq + 1));
+    }
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
+    char* environment = GetEnvironmentStrings();
+    for (char* p = environment; *p != '\0'; ++p)
+    {
+        char* eq = strchr(p, '=');
+        result.emplace(std::string(p, eq - p), std::string(eq + 1));
+        do
+        {
+            ++p;
+        } while (*p != '\0');
+    }
+    FreeEnvironmentStrings(environment);
+#else
+    #error Unsupported OS
+#endif
+
+    return result;
 }
 
 void CurrentEnvironment::Set(const std::string& name, const std::string& value)
 {
-#ifdef _WIN32
-    _putenv_s(name.c_str(), value.c_str());
-#elif __linux__
+#if ISHIKO_OS == ISHIKO_OS_LINUX
     setenv(name.c_str(), value.c_str(), 1);
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
+    _putenv_s(name.c_str(), value.c_str());
 #else
-    #error Unsupported platform
+    #error Unsupported OS
 #endif
 }
 
 std::string CurrentEnvironment::ExpandVariablesInString(const std::string& str, int format)
 {
-	std::string result;
+    std::string result;
 
-	size_t lastAddedPos = 0;
-	if (format & eDollarAndParentheses)
-	{
-		size_t beginPos = str.find("$(", lastAddedPos);
-		while (beginPos != std::string::npos)
-		{
-			size_t endPos = str.find(")", beginPos);
-			if (endPos != std::string::npos)
-			{
-				std::string name = str.substr(beginPos + 2, endPos - beginPos - 2);
-				std::string value;
-				bool found = Find(name, value);
-				if (found)
-				{
-					result += str.substr(lastAddedPos, beginPos - lastAddedPos);
-					result += value;
-					beginPos = lastAddedPos = endPos + 1;
-				}
-				else
-				{
-					beginPos += 2;
-				}
-			}
-			else
-			{
-				break;
-			}
-			beginPos = str.find("$(", beginPos);
-		}
-	}
-	result += str.substr(lastAddedPos);
+    size_t lastAddedPos = 0;
+    if (format & eDollarAndParentheses)
+    {
+        size_t beginPos = str.find("$(", lastAddedPos);
+        while (beginPos != std::string::npos)
+        {
+            size_t endPos = str.find(")", beginPos);
+            if (endPos != std::string::npos)
+            {
+                std::string name = str.substr(beginPos + 2, endPos - beginPos - 2);
+                std::string value;
+                bool found = Find(name, value);
+                if (found)
+                {
+                    result += str.substr(lastAddedPos, beginPos - lastAddedPos);
+                    result += value;
+                    beginPos = lastAddedPos = endPos + 1;
+                }
+                else
+                {
+                    beginPos += 2;
+                }
+            }
+            else
+            {
+                break;
+            }
+            beginPos = str.find("$(", beginPos);
+        }
+    }
+    result += str.substr(lastAddedPos);
 
-	return result;
+    return result;
 }
 
 }
