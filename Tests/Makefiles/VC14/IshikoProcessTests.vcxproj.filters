@@ -17,27 +17,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\CommandLineTests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\CurrentEnvironmentTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\CurrentProcessTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\CommandLineTests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\EnvironmentTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.h">
+    <ClInclude Include="..\..\Source\UtilitiesTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\ProcessTests\ChildProcessTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\main.cpp">
+    <ClCompile Include="..\..\Source\CommandLineTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\CurrentEnvironmentTests.cpp">
@@ -46,16 +49,19 @@
     <ClCompile Include="..\..\Source\CurrentProcessTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\CommandLineTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\EnvironmentTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.cpp">
+    <ClCompile Include="..\..\Source\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UtilitiesTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\ProcessTests\ChildProcessTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

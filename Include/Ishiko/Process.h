@@ -14,6 +14,7 @@
 #include "Process/CurrentProcess.h"
 #include "Process/Environment.h"
 #include "Process/ErrorCategory.h"
+#include "Process/Utilities.h"
 
 #include "Process/linkoptions.h"
 
