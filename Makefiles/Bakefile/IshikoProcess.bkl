@@ -44,7 +44,6 @@ library IshikoProcess : IshikoErrors, IshikoPlatform, Boost
         ../../Include/Ishiko/Process/CurrentProcess.h
         ../../Include/Ishiko/Process/Environment.h
         ../../Include/Ishiko/Process/linkoptions.h
-        ../../Include/Ishiko/Process/Utilities.h
     }
 
     sources
@@ -56,6 +55,5 @@ library IshikoProcess : IshikoErrors, IshikoPlatform, Boost
         ../../Source/CurrentEnvironment.cpp
         ../../Source/CurrentProcess.cpp
         ../../Source/Environment.cpp
-        ../../Source/Utilities.cpp
     }
 }
