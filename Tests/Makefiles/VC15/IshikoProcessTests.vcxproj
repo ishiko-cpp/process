@@ -152,21 +152,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\main.cpp" />
+    <ClCompile Include="..\..\Source\CommandLineTests.cpp" />
     <ClCompile Include="..\..\Source\CurrentEnvironmentTests.cpp" />
     <ClCompile Include="..\..\Source\CurrentProcessTests.cpp" />
-    <ClCompile Include="..\..\Source\CommandLineTests.cpp" />
     <ClCompile Include="..\..\Source\EnvironmentTests.cpp" />
-    <ClCompile Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.cpp" />
+    <ClCompile Include="..\..\Source\main.cpp" />
+    <ClCompile Include="..\..\Source\UtilitiesTests.cpp" />
     <ClCompile Include="..\..\Source\ProcessTests\ChildProcessTests.cpp" />
+    <ClCompile Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\CommandLineTests.h" />
     <ClInclude Include="..\..\Source\CurrentEnvironmentTests.h" />
     <ClInclude Include="..\..\Source\CurrentProcessTests.h" />
-    <ClInclude Include="..\..\Source\CommandLineTests.h" />
     <ClInclude Include="..\..\Source\EnvironmentTests.h" />
-    <ClInclude Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.h" />
+    <ClInclude Include="..\..\Source\UtilitiesTests.h" />
     <ClInclude Include="..\..\Source\ProcessTests\ChildProcessTests.h" />
+    <ClInclude Include="..\..\Source\ProcessTests\ChildProcessBuilderTests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

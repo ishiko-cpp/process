@@ -18,24 +18,6 @@ namespace Ishiko
 namespace Process
 {
 
-ChildProcess ChildProcessBuilder::StartProcess(const std::string& commandLine)
-{
-    ChildProcessBuilder builder{CommandLine(commandLine)};
-    return builder.start();
-}
-
-ChildProcess ChildProcessBuilder::StartProcess(const std::string& commandLine, Error& error) noexcept
-{
-    ChildProcessBuilder builder{CommandLine(commandLine)};
-    return builder.start(error);
-}
-
-ChildProcess ChildProcessBuilder::StartProcess(const std::string& commandLine, const Environment& environment)
-{
-    ChildProcessBuilder builder{CommandLine(commandLine), environment};
-    return builder.start();
-}
-
 ChildProcessBuilder::ChildProcessBuilder(const std::string& commandLine)
     : ChildProcessBuilder(CommandLine(commandLine))
 {

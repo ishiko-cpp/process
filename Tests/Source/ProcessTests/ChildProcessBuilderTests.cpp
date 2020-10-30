@@ -23,8 +23,6 @@ ChildProcessBuilderTests::ChildProcessBuilderTests(const TestNumber& number, con
     append<FileComparisonTest>("start test 4", StartTest4);
     append<FileComparisonTest>("start test 5", StartTest5);
     append<FileComparisonTest>("start test 6", StartTest6);
-    append<HeapAllocationErrorsTest>("StartProcess test 1", StartProcessTest1);
-    append<HeapAllocationErrorsTest>("StartProcess test 2", StartProcessTest2);
 }
 
 void ChildProcessBuilderTests::ConstructorTest1(Test& test)
@@ -185,41 +183,6 @@ void ChildProcessBuilderTests::StartTest6(FileComparisonTest& test)
     builder.redirectStandardOutputToFile(outputPath.string());
 
     ChildProcess handle = builder.start();
-
-    handle.waitForExit();
-
-    ISHTF_FAIL_IF_NEQ(handle.exitCode(), 0);
-    ISHTF_PASS();
-}
-
-void ChildProcessBuilderTests::StartProcessTest1(Test& test)
-{
-#ifdef __linux__
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
-#else
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
-#endif
-
-    ChildProcess handle = ChildProcessBuilder::StartProcess(executablePath.string());
-    
-    handle.waitForExit();
-    
-    ISHTF_FAIL_IF_NEQ(handle.exitCode(), 0);
-    ISHTF_PASS();
-}
-
-void ChildProcessBuilderTests::StartProcessTest2(Test& test)
-{
-#ifdef __linux__
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
-#else
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
-#endif
-
-    Error error(0);
-    ChildProcess handle = ChildProcessBuilder::StartProcess(executablePath.string(), error);
-
-    ISHTF_ABORT_IF(error);
 
     handle.waitForExit();
 
