@@ -24,10 +24,10 @@ namespace Process
 class ChildProcess
 {
 public:
-    ChildProcess Spawn(const std::string& commandLine);
-    ChildProcess Spawn(const std::string& commandLine, Error& error) noexcept;
-    ChildProcess Spawn(const std::string& commandLine, const Environment& environment);
-    ChildProcess Spawn(const std::string& commandLine, const Environment& environment, Error& error) noexcept;
+    static ChildProcess Spawn(const std::string& commandLine);
+    static ChildProcess Spawn(const std::string& commandLine, Error& error) noexcept;
+    static ChildProcess Spawn(const std::string& commandLine, const Environment& environment);
+    static ChildProcess Spawn(const std::string& commandLine, const Environment& environment, Error& error) noexcept;
 
     ChildProcess();
 #if defined(__linux__)

@@ -24,7 +24,6 @@ program IshikoProcessTests : IshikoTestFrameworkCore
         ../../Source/CurrentEnvironmentTests.h
         ../../Source/CurrentProcessTests.h
         ../../Source/EnvironmentTests.h
-        ../../Source/UtilitiesTests.h
 
         ../../Source/ProcessTests/ChildProcessTests.h
         ../../Source/ProcessTests/ChildProcessBuilderTests.h
@@ -37,7 +36,6 @@ program IshikoProcessTests : IshikoTestFrameworkCore
         ../../Source/CurrentProcessTests.cpp
         ../../Source/EnvironmentTests.cpp
         ../../Source/main.cpp
-        ../../Source/UtilitiesTests.cpp
 
         ../../Source/ProcessTests/ChildProcessTests.cpp
         ../../Source/ProcessTests/ChildProcessBuilderTests.cpp
