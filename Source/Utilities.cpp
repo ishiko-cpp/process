@@ -24,5 +24,17 @@ ChildProcess Spawn(const std::string& commandLine, Error& error) noexcept
     return builder.start(error);
 }
 
+ChildProcess Spawn(const std::string& commandLine, const Environment& environment)
+{
+    ChildProcessBuilder builder{CommandLine(commandLine), environment};
+    return builder.start();
+}
+
+ChildProcess Spawn(const std::string& commandLine, const Environment& environment, Error& error) noexcept
+{
+    ChildProcessBuilder builder{CommandLine(commandLine), environment};
+    return builder.start(error);
+}
+
 }
 }
