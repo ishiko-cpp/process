@@ -22,10 +22,6 @@ namespace Process
 class ChildProcessBuilder
 {
 public:
-    static ChildProcess StartProcess(const std::string& commandLine);
-    static ChildProcess StartProcess(const std::string& commandLine, Error& error) noexcept;
-    static ChildProcess StartProcess(const std::string& commandLine, const Environment& environment);
-
     ChildProcessBuilder(const std::string& commandLine);
     ChildProcessBuilder(const CommandLine& commandLine);
     ChildProcessBuilder(const CommandLine& commandLine, const Environment& environment);
