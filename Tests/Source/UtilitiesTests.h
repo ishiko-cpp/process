@@ -13,6 +13,10 @@ class UtilitiesTests : public Ishiko::Tests::TestSequence
 {
 public:
     UtilitiesTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+
+private:
+    static void SpawnTest1(Ishiko::Tests::Test& test);
+    static void SpawnTest2(Ishiko::Tests::Test& test);
 };
 
 #endif

@@ -28,8 +28,7 @@ public:
     static std::map<std::string, std::string> ToMap();
     static void Set(const std::string& name, const std::string& value);
 
-    static std::string ExpandVariablesInString(const std::string& str, 
-        int format);
+    static std::string ExpandVariablesInString(const std::string& str, int format);
 };
 
 }

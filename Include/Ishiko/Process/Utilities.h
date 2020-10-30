@@ -7,4 +7,19 @@
 #ifndef _ISHIKO_PROCESS_UTILITIES_H_
 #define _ISHIKO_PROCESS_UTILITIES_H_
 
+#include "ChildProcess.h"
+#include <Ishiko/Errors/Error.h>
+#include <string>
+
+namespace Ishiko
+{
+namespace Process
+{
+
+ChildProcess Spawn(const std::string& commandLine);
+ChildProcess Spawn(const std::string& commandLine, Error& error) noexcept;
+
+}
+}
+
 #endif
