@@ -5,6 +5,7 @@
 */
 
 #include "ChildProcess.h"
+#include "ChildProcessBuilder.h"
 #ifdef __linux__
 #include <sys/wait.h>
 #endif
@@ -13,6 +14,30 @@ namespace Ishiko
 {
 namespace Process
 {
+
+ChildProcess ChildProcess::Spawn(const std::string& commandLine)
+{
+    ChildProcessBuilder builder{CommandLine(commandLine)};
+    return builder.start();
+}
+
+ChildProcess ChildProcess::Spawn(const std::string& commandLine, Error& error) noexcept
+{
+    ChildProcessBuilder builder{CommandLine(commandLine)};
+    return builder.start(error);
+}
+
+ChildProcess ChildProcess::Spawn(const std::string& commandLine, const Environment& environment)
+{
+    ChildProcessBuilder builder{CommandLine(commandLine), environment};
+    return builder.start();
+}
+
+ChildProcess ChildProcess::Spawn(const std::string& commandLine, const Environment& environment, Error& error) noexcept
+{
+    ChildProcessBuilder builder{CommandLine(commandLine), environment};
+    return builder.start(error);
+}
 
 ChildProcess::ChildProcess()
 #ifdef _WIN32

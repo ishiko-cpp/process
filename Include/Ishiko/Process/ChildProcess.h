@@ -7,6 +7,8 @@
 #ifndef _ISHIKO_PROCESS_CHILDPROCESS_H_
 #define _ISHIKO_PROCESS_CHILDPROCESS_H_
 
+#include "Environment.h"
+#include <Ishiko/Errors.h>
 #if defined(__linux__)
 #include <sys/types.h>
 #elif defined(_WIN32)
@@ -22,6 +24,11 @@ namespace Process
 class ChildProcess
 {
 public:
+    ChildProcess Spawn(const std::string& commandLine);
+    ChildProcess Spawn(const std::string& commandLine, Error& error) noexcept;
+    ChildProcess Spawn(const std::string& commandLine, const Environment& environment);
+    ChildProcess Spawn(const std::string& commandLine, const Environment& environment, Error& error) noexcept;
+
     ChildProcess();
 #if defined(__linux__)
     ChildProcess(pid_t pid);
