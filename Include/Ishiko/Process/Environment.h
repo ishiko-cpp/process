@@ -24,8 +24,10 @@ public:
     Environment(const Environment& other);
     ~Environment();
 
-    bool find(const std::string& name, std::string& value) const;
+    std::vector<EnvironmentVariable>::const_iterator begin() const noexcept;
+    std::vector<EnvironmentVariable>::const_iterator end() const noexcept;
 
+    bool find(const std::string& name, std::string& value) const;
     void set(const char* name, const char* value);
     
     char** toEnvironmentArray();

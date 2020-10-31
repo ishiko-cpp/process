@@ -50,6 +50,16 @@ Environment::~Environment()
     }
 }
 
+std::vector<EnvironmentVariable>::const_iterator Environment::begin() const noexcept
+{
+    return m_variables.begin();
+}
+
+std::vector<EnvironmentVariable>::const_iterator Environment::end() const noexcept
+{
+    return m_variables.end();
+}
+
 bool Environment::find(const std::string& name, std::string& value) const
 {
     for (const EnvironmentVariable& entry : m_variables)
