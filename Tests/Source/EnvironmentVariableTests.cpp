@@ -18,5 +18,7 @@ void EnvironmentVariableTests::ConstructorTest1(Test& test)
 {
     Ishiko::Process::EnvironmentVariable variable("name=value");
 
+    ISHTF_FAIL_IF_NEQ(variable.name(), "name");
+    ISHTF_FAIL_IF_NEQ(variable.value(), "value");
     ISHTF_PASS();
 }
