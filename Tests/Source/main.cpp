@@ -8,6 +8,7 @@
 #include "CurrentProcessTests.h"
 #include "CommandLineTests.h"
 #include "EnvironmentTests.h"
+#include "EnvironmentVariableTests.h"
 #include "ProcessTests/ChildProcessTests.h"
 #include "ProcessTests/ChildProcessBuilderTests.h"
 #include <Ishiko/TestFramework/TestFrameworkCore.h>
@@ -28,6 +29,7 @@ int main(int argc, char* argv[])
     theTests.append<CurrentEnvironmentTests>();
     theTests.append<CurrentProcessTests>();
     theTests.append<CommandLineTests>();
+    theTests.append<EnvironmentVariableTests>();
     theTests.append<EnvironmentTests>();
     theTests.append<ChildProcessTests>();
     theTests.append<ChildProcessBuilderTests>();
