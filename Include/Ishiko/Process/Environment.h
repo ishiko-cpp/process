@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_PROCESS_ENVIRONMENT_H_
 #define _ISHIKO_PROCESS_ENVIRONMENT_H_
 
+#include "EnvironmentVariable.h"
 #include "CurrentEnvironment.h"
 #include <vector>
 
@@ -31,7 +32,7 @@ public:
     std::vector<char> toEnvironmentBlock() const;
 
 private:
-    std::vector<char*> m_variables;
+    std::vector<EnvironmentVariable> m_variables;
 };
 
 }
