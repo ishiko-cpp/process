@@ -77,12 +77,9 @@ BOOST_ROOT ?= $(BOOST)
 
 all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a
 
-../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a: $(_builddir)IshikoProcess_ErrorCategory.o $(_builddir)IshikoProcess_ChildProcess.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_CommandLine.o $(_builddir)IshikoProcess_CurrentEnvironment.o $(_builddir)IshikoProcess_CurrentProcess.o $(_builddir)IshikoProcess_Environment.o
-	$(AR) rc $@ $(_builddir)IshikoProcess_ErrorCategory.o $(_builddir)IshikoProcess_ChildProcess.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_CommandLine.o $(_builddir)IshikoProcess_CurrentEnvironment.o $(_builddir)IshikoProcess_CurrentProcess.o $(_builddir)IshikoProcess_Environment.o
+../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a: $(_builddir)IshikoProcess_ChildProcess.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_CommandLine.o $(_builddir)IshikoProcess_CurrentEnvironment.o $(_builddir)IshikoProcess_CurrentProcess.o $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_EnvironmentVariable.o $(_builddir)IshikoProcess_ErrorCategory.o
+	$(AR) rc $@ $(_builddir)IshikoProcess_ChildProcess.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_CommandLine.o $(_builddir)IshikoProcess_CurrentEnvironment.o $(_builddir)IshikoProcess_CurrentProcess.o $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_EnvironmentVariable.o $(_builddir)IshikoProcess_ErrorCategory.o
 	$(RANLIB) $@
-
-$(_builddir)IshikoProcess_ErrorCategory.o: ../../Source/ErrorCategory.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/Process -std=c++11 ../../Source/ErrorCategory.cpp
 
 $(_builddir)IshikoProcess_ChildProcess.o: ../../Source/ChildProcess.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/Process -std=c++11 ../../Source/ChildProcess.cpp
@@ -101,6 +98,12 @@ $(_builddir)IshikoProcess_CurrentProcess.o: ../../Source/CurrentProcess.cpp
 
 $(_builddir)IshikoProcess_Environment.o: ../../Source/Environment.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/Process -std=c++11 ../../Source/Environment.cpp
+
+$(_builddir)IshikoProcess_EnvironmentVariable.o: ../../Source/EnvironmentVariable.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/Process -std=c++11 ../../Source/EnvironmentVariable.cpp
+
+$(_builddir)IshikoProcess_ErrorCategory.o: ../../Source/ErrorCategory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(BOOST_ROOT)/include -I../../Include/Ishiko/Process -std=c++11 ../../Source/ErrorCategory.cpp
 
 clean:
 	rm -f $(_builddir)*.o

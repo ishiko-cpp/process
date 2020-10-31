@@ -13,6 +13,7 @@
 #include "Process/CurrentEnvironment.h"
 #include "Process/CurrentProcess.h"
 #include "Process/Environment.h"
+#include "Process/EnvironmentVariable.h"
 #include "Process/ErrorCategory.h"
 
 #include "Process/linkoptions.h"
