@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_PROCESS_ENVIRONMENT_H_
 #define _ISHIKO_PROCESS_ENVIRONMENT_H_
 
+#include "EnvironmentVariable.h"
 #include "CurrentEnvironment.h"
 #include <vector>
 
@@ -23,15 +24,17 @@ public:
     Environment(const Environment& other);
     ~Environment();
 
-    bool find(const std::string& name, std::string& value) const;
+    std::vector<EnvironmentVariable>::const_iterator begin() const noexcept;
+    std::vector<EnvironmentVariable>::const_iterator end() const noexcept;
 
+    bool find(const std::string& name, std::string& value) const;
     void set(const char* name, const char* value);
     
     char** toEnvironmentArray();
     std::vector<char> toEnvironmentBlock() const;
 
 private:
-    std::vector<char*> m_variables;
+    std::vector<EnvironmentVariable> m_variables;
 };
 
 }

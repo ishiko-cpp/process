@@ -150,23 +150,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\ErrorCategory.cpp" />
     <ClCompile Include="..\..\Source\ChildProcess.cpp" />
     <ClCompile Include="..\..\Source\ChildProcessBuilder.cpp" />
     <ClCompile Include="..\..\Source\CommandLine.cpp" />
     <ClCompile Include="..\..\Source\CurrentEnvironment.cpp" />
     <ClCompile Include="..\..\Source\CurrentProcess.cpp" />
     <ClCompile Include="..\..\Source\Environment.cpp" />
+    <ClCompile Include="..\..\Source\EnvironmentVariable.cpp" />
+    <ClCompile Include="..\..\Source\ErrorCategory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\Ishiko\Process.h" />
-    <ClInclude Include="..\..\Include\Ishiko\Process\ErrorCategory.h" />
     <ClInclude Include="..\..\Include\Ishiko\Process\ChildProcess.h" />
     <ClInclude Include="..\..\Include\Ishiko\Process\ChildProcessBuilder.h" />
     <ClInclude Include="..\..\Include\Ishiko\Process\CommandLine.h" />
     <ClInclude Include="..\..\Include\Ishiko\Process\CurrentEnvironment.h" />
     <ClInclude Include="..\..\Include\Ishiko\Process\CurrentProcess.h" />
     <ClInclude Include="..\..\Include\Ishiko\Process\Environment.h" />
+    <ClInclude Include="..\..\Include\Ishiko\Process\EnvironmentVariable.h" />
+    <ClInclude Include="..\..\Include\Ishiko\Process\ErrorCategory.h" />
     <ClInclude Include="..\..\Include\Ishiko\Process\linkoptions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
