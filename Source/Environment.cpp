@@ -50,6 +50,16 @@ Environment::~Environment()
     }
 }
 
+size_t Environment::size() const
+{
+    return (m_variables.size() - 1);
+}
+
+const EnvironmentVariable& Environment::operator[](size_t pos) const noexcept
+{
+    return m_variables[pos];
+}
+
 std::vector<EnvironmentVariable>::const_iterator Environment::begin() const noexcept
 {
     return m_variables.begin();
@@ -57,7 +67,7 @@ std::vector<EnvironmentVariable>::const_iterator Environment::begin() const noex
 
 std::vector<EnvironmentVariable>::const_iterator Environment::end() const noexcept
 {
-    return m_variables.end();
+    return (m_variables.end() - 1);
 }
 
 bool Environment::find(const std::string& name, std::string& value) const
@@ -81,7 +91,23 @@ void Environment::set(const char* name, const char* value)
     std::string entry = name;
     entry += "=";
     entry += value;
-    m_variables.insert(m_variables.end() - 1, EnvironmentVariable(strdup(entry.c_str())));
+    EnvironmentVariable newVariable(strdup(entry.c_str()));
+
+    size_t i = 0;
+    while ((i < (m_variables.size() - 1)) && (strcmp(m_variables[i].m_variable, newVariable.m_variable) < 0))
+    {
+        ++i;
+    }
+    
+    if ((m_variables[i].m_variable != nullptr) && (m_variables[i].name() == newVariable.name()))
+    {
+        delete[] m_variables[i].m_variable;
+        m_variables[i] = newVariable;
+    }
+    else
+    {
+        m_variables.insert(m_variables.begin() + i, newVariable);
+    }
 }
 
 char** Environment::toEnvironmentArray()
