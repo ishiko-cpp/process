@@ -18,6 +18,8 @@ EnvironmentTests::EnvironmentTests(const TestNumber& number, const TestEnvironme
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
     append<HeapAllocationErrorsTest>("set test 1", SetTest1);
+    append<HeapAllocationErrorsTest>("set test 2", SetTest2);
+    append<HeapAllocationErrorsTest>("set test 3", SetTest3);
     append<HeapAllocationErrorsTest>("find test 1", FindTest1);
     append<HeapAllocationErrorsTest>("toEnvironmentArray test 1", ToEnvironmentArrayTest1);
     append<HeapAllocationErrorsTest>("toEnvironmentArray test 2", ToEnvironmentArrayTest2);
@@ -29,6 +31,7 @@ void EnvironmentTests::ConstructorTest1(Test& test)
 {
     Ishiko::Process::Environment env;
 
+    ISHTF_FAIL_IF_NEQ(env.size(), 0);
     ISHTF_PASS();
 }
 
@@ -60,8 +63,40 @@ void EnvironmentTests::SetTest1(Test& test)
     std::string value;
     bool found = env.find("name", value);
 
+    ISHTF_FAIL_IF_NEQ(env.size(), 1);
     ISHTF_FAIL_IF_NOT(found);
     ISHTF_FAIL_IF_NEQ(value, "value");
+    ISHTF_PASS();
+}
+
+void EnvironmentTests::SetTest2(Test& test)
+{
+    Ishiko::Process::Environment env;
+
+    env.set("name", "value");
+    env.set("name", "new_value");
+
+    std::string value;
+    bool found = env.find("name", value);
+
+    ISHTF_FAIL_IF_NEQ(env.size(), 1);
+    ISHTF_FAIL_IF_NOT(found);
+    ISHTF_FAIL_IF_NEQ(value, "new_value");
+    ISHTF_PASS();
+}
+
+void EnvironmentTests::SetTest3(Test& test)
+{
+    Ishiko::Process::Environment env;
+
+    env.set("name1", "value1");
+    env.set("name3", "value3");
+    env.set("name2", "value2");
+
+    ISHTF_FAIL_IF_NEQ(env.size(), 3);
+    ISHTF_FAIL_IF_STR_NEQ(env[0].m_variable, "name1=value1");
+    ISHTF_FAIL_IF_STR_NEQ(env[1].m_variable, "name2=value2");
+    ISHTF_FAIL_IF_STR_NEQ(env[2].m_variable, "name3=value3");
     ISHTF_PASS();
 }
 
