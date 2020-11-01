@@ -24,6 +24,9 @@ public:
     Environment(const Environment& other);
     ~Environment();
 
+    size_t size() const;
+    const EnvironmentVariable& operator[](size_t pos) const noexcept;
+
     std::vector<EnvironmentVariable>::const_iterator begin() const noexcept;
     std::vector<EnvironmentVariable>::const_iterator end() const noexcept;
 
