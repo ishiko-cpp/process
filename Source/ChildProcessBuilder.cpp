@@ -6,7 +6,8 @@
 
 #include "ChildProcessBuilder.h"
 #include "ErrorCategory.h"
-#ifdef __linux__
+#include <Ishiko/Platform/OS.h>
+#if ISHIKO_OS == ISHIKO_OS_LINUX
 #include <boost/filesystem/operations.hpp>
 #include <fcntl.h>
 #include <sys/wait.h>
@@ -17,6 +18,23 @@ namespace Ishiko
 {
 namespace Process
 {
+
+#if ISHIKO_OS == ISHIKO_OS_WINDOWS
+namespace
+{
+
+HANDLE createInheritableFile(const std::string& path)
+{
+    SECURITY_ATTRIBUTES securityAttributes;
+    securityAttributes.nLength = sizeof(SECURITY_ATTRIBUTES);
+    securityAttributes.bInheritHandle = TRUE;
+    securityAttributes.lpSecurityDescriptor = NULL;
+    return CreateFileA(path.c_str(), FILE_APPEND_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, &securityAttributes,
+        OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+}
+
+}
+#endif
 
 ChildProcessBuilder::ChildProcessBuilder(const std::string& commandLine)
     : ChildProcessBuilder(CommandLine(commandLine))
@@ -43,7 +61,7 @@ ChildProcess ChildProcessBuilder::start()
 
 ChildProcess ChildProcessBuilder::start(Error& error) noexcept
 {
-#if defined(__linux__)
+#if ISHIKO_OS == ISHIKO_OS_LINUX
     if (!boost::filesystem::exists(m_commandLine.getExecutable(CommandLine::eRaw)))
     {
         Fail(error, ErrorCategory::eGeneric);
@@ -94,7 +112,7 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
         }
         exit(-1);
     }
-#elif defined(_WIN32)
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
     STARTUPINFOA startupInfo;
     ZeroMemory(&startupInfo, sizeof(startupInfo));
     startupInfo.cb = sizeof(startupInfo);
@@ -139,8 +157,7 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
 
     return ChildProcess(handle);
 #else
-    Fail(error, ErrorCategory::eGeneric);
-    return ChildProcess();
+    #error Unsupported or unrecognized OS
 #endif
 }
 
@@ -148,19 +165,6 @@ void ChildProcessBuilder::redirectStandardOutputToFile(const std::string& path)
 {
     m_standardOutputFilePath = path;
 }
-
-#ifdef _WIN32
-HANDLE ChildProcessBuilder::createInheritableFile(const std::string& path)
-{
-    SECURITY_ATTRIBUTES securityAttributes;
-    securityAttributes.nLength = sizeof(SECURITY_ATTRIBUTES);
-    securityAttributes.bInheritHandle = TRUE;
-    securityAttributes.lpSecurityDescriptor = NULL;
-    return CreateFileA(path.c_str(), FILE_APPEND_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ,
-        &securityAttributes, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-}
-#endif
-
 
 }
 }

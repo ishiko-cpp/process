@@ -12,20 +12,20 @@ namespace Ishiko
 namespace Process
 {
 
-EnvironmentVariable::EnvironmentVariable(char* variable)
+EnvironmentVariable::EnvironmentVariable(const char* variable)
     : m_variable(variable)
 {
 }
 
 std::string EnvironmentVariable::name() const
 {
-    char* equal = strchr(m_variable, '=');
+    const char* equal = strchr(m_variable, '=');
     return std::string(m_variable, equal - m_variable);
 }
 
 std::string EnvironmentVariable::value() const
 {
-    char* equal = strchr(m_variable, '=');
+    const char* equal = strchr(m_variable, '=');
     return std::string(equal + 1);
 }
 
