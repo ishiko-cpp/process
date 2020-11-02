@@ -17,12 +17,12 @@ namespace Process
 class EnvironmentVariable
 {
 public:
-    explicit EnvironmentVariable(char* variable);
+    explicit EnvironmentVariable(const char* variable);
 
     std::string name() const;
     std::string value() const;
 
-    char* m_variable;
+    const char* m_variable;
 };
 
 }

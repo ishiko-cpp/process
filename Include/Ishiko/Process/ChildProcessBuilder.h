@@ -31,11 +31,6 @@ public:
 
     void redirectStandardOutputToFile(const std::string& path);
 
-#ifdef _WIN32
-private:
-    static HANDLE createInheritableFile(const std::string& path);
-#endif
-
 private:
     CommandLine m_commandLine;
     boost::optional<Environment> m_environment;

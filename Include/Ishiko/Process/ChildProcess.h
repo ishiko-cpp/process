@@ -9,9 +9,10 @@
 
 #include "Environment.h"
 #include <Ishiko/Errors.h>
-#if defined(__linux__)
+#include <Ishiko/Platform/OS.h>
+#if ISHIKO_OS == ISHIKO_OS_LINUX
 #include <sys/types.h>
-#elif defined(_WIN32)
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
 #define WIN32_LEAN_AND_MEAN 
 #include <Windows.h>
 #endif
@@ -30,10 +31,12 @@ public:
     static ChildProcess Spawn(const std::string& commandLine, const Environment& environment, Error& error) noexcept;
 
     ChildProcess();
-#if defined(__linux__)
+#if ISHIKO_OS == ISHIKO_OS_LINUX
     ChildProcess(pid_t pid);
-#elif defined(_WIN32)
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
     ChildProcess(HANDLE nativeHandle);
+#else
+    #error Unsupported or unrecognized OS
 #endif
     ChildProcess(const ChildProcess& other) = delete;
     ChildProcess(ChildProcess&& other) noexcept;
@@ -42,10 +45,12 @@ public:
     ChildProcess& operator=(const ChildProcess& other) = delete;
     ChildProcess& operator=(ChildProcess&& other) noexcept;
 
-#if defined(__linux__)
+#if ISHIKO_OS == ISHIKO_OS_LINUX
     void assign(pid_t pid);
-#elif defined(_WIN32)
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
     void assign(HANDLE nativeHandle);
+#else
+    #error Unsupported or unrecognized OS
 #endif
 
     void waitForExit();
@@ -53,11 +58,13 @@ public:
     int exitCode() const;
 
 private:
-#if defined(__linux__)
+#if ISHIKO_OS == ISHIKO_OS_LINUX
     pid_t m_pid;
     int m_status;
-#elif defined(_WIN32)
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
     HANDLE m_handle;
+#else
+    #error Unsupported or unrecognized OS
 #endif
 };
 
