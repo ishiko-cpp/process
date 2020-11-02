@@ -5,6 +5,7 @@
 */
 
 #include "CurrentEnvironment.h"
+#include <Ishiko/Platform/Compilers.h>
 #include <Ishiko/Platform/OS.h>
 #if ISHIKO_OS == ISHIKO_OS_LINUX
 extern char** environ;
@@ -24,6 +25,7 @@ namespace Process
 
 bool CurrentEnvironment::Find(const std::string& name, std::string& value)
 {
+#if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
     char* v = getenv(name.c_str());
     if (v == NULL)
     {
@@ -34,6 +36,22 @@ bool CurrentEnvironment::Find(const std::string& name, std::string& value)
         value = v;
         return true;
     }
+#elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
+    char* v = NULL;
+    _dupenv_s(&v, NULL, name.c_str());
+    if (v == NULL)
+    {
+        return false;
+    }
+    else
+    {
+        value = v;
+        free(v);
+        return true;
+    }
+#else
+    #error Unsupported or unrecognized compiler
+#endif  
 }
 
 std::map<std::string, std::string> CurrentEnvironment::ToMap()

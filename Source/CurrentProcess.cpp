@@ -13,7 +13,8 @@ namespace Process
 
 void CurrentProcess::RedirectStandardOutputToFile(const std::string& path)
 {
-    freopen(path.c_str(), "a", stdout);
+    FILE* dummy;
+    freopen_s(&dummy, path.c_str(), "a", stdout);
 }
 
 void CurrentProcess::RedirectStandardOutputToTerminal()
