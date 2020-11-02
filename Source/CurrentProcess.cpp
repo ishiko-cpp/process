@@ -5,6 +5,7 @@
 */
 
 #include "CurrentProcess.h"
+#include <stdio.h>
 
 namespace Ishiko
 {
