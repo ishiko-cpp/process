@@ -51,7 +51,7 @@ bool CurrentEnvironment::Find(const std::string& name, std::string& value)
     }
 #else
     #error Unsupported or unrecognized compiler
-#endif  
+#endif
 }
 
 std::map<std::string, std::string> CurrentEnvironment::ToMap()
