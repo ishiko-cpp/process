@@ -77,7 +77,7 @@ std::map<std::string, std::string> CurrentEnvironment::ToMap()
     }
     FreeEnvironmentStrings(environment);
 #else
-    #error Unsupported OS
+    #error Unsupported or unrecognized OS
 #endif
 
     return result;
@@ -90,7 +90,7 @@ void CurrentEnvironment::Set(const std::string& name, const std::string& value)
 #elif ISHIKO_OS == ISHIKO_OS_WINDOWS
     _putenv_s(name.c_str(), value.c_str());
 #else
-    #error Unsupported OS
+    #error Unsupported or unrecognized OS
 #endif
 }
 
