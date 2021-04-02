@@ -6,7 +6,7 @@
 
 #include "ChildProcess.h"
 #include "ChildProcessBuilder.h"
-#ifdef __linux__
+#if ISHIKO_OS == ISHIKO_OS_LINUX
 #include <sys/wait.h>
 #endif
 
@@ -40,40 +40,44 @@ ChildProcess ChildProcess::Spawn(const std::string& commandLine, const Environme
 }
 
 ChildProcess::ChildProcess()
-#ifdef _WIN32
+#if ISHIKO_OS == ISHIKO_OS_WINDOWS
     : m_handle(INVALID_HANDLE_VALUE)
 #endif
 {
 }
 
-#if defined(__linux__)
+#if ISHIKO_OS == ISHIKO_OS_LINUX
 ChildProcess::ChildProcess(pid_t pid)
     : m_pid(pid)
 {
 }
-#elif defined(_WIN32)
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
 ChildProcess::ChildProcess(HANDLE nativeHandle)
     : m_handle(nativeHandle)
 {
 }
+#else
+    #error Unsupported or unrecognized OS
 #endif
 
-#if defined(__linux__)
+#if ISHIKO_OS == ISHIKO_OS_LINUX
 ChildProcess::ChildProcess(ChildProcess&& other) noexcept
     : m_pid(other.m_pid), m_status(other.m_status)
 {
 }
-#elif defined(_WIN32)
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
 ChildProcess::ChildProcess(ChildProcess&& other) noexcept
     : m_handle(other.m_handle)
 {
     other.m_handle = INVALID_HANDLE_VALUE;
 }
+#else
+    #error Unsupported or unrecognized OS
 #endif
 
 ChildProcess::~ChildProcess()
 {
-#ifdef _WIN32
+#if ISHIKO_OS == ISHIKO_OS_WINDOWS
     if (m_handle != INVALID_HANDLE_VALUE)
     {
         CloseHandle(m_handle);
@@ -81,14 +85,14 @@ ChildProcess::~ChildProcess()
 #endif
 }
 
-#if defined(__linux__)
+#if ISHIKO_OS == ISHIKO_OS_LINUX
 ChildProcess& ChildProcess::operator=(ChildProcess&& other) noexcept
 {
     m_pid = other.m_pid;
     m_status = other.m_status;
     return *this;
 }
-#elif defined(_WIN32)
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
 ChildProcess& ChildProcess::operator=(ChildProcess&& other) noexcept
 {
     if (this != &other)
@@ -98,49 +102,59 @@ ChildProcess& ChildProcess::operator=(ChildProcess&& other) noexcept
     }
     return *this;
 }
+#else
+    #error Unsupported or unrecognized OS
 #endif
 
-#if defined(__linux__)
+#if ISHIKO_OS == ISHIKO_OS_LINUX
 void ChildProcess::assign(pid_t pid)
 {
     m_pid = pid;
 }
-#elif defined(_WIN32)
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
 void ChildProcess::assign(HANDLE nativeHandle)
 {
     CloseHandle(m_handle);
     m_handle = nativeHandle;
 }
+#else
+    #error Unsupported or unrecognized OS
 #endif
 
 void ChildProcess::waitForExit()
 {
-#if defined(__linux__)
+#if ISHIKO_OS == ISHIKO_OS_LINUX
     waitpid(m_pid, &m_status, 0);
-#elif defined(_WIN32)
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
     WaitForSingleObject(m_handle, INFINITE);
+#else
+    #error Unsupported or unrecognized OS
 #endif
 }
 
 // TODO: exit code doesn't work on Linux
 void ChildProcess::kill(int exitCode) const
 {
-#if defined(__linux__)
+#if ISHIKO_OS == ISHIKO_OS_LINUX
     ::kill(m_pid, SIGKILL);
-#elif defined(_WIN32)
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
     TerminateProcess(m_handle, exitCode);
+#else
+    #error Unsupported or unrecognized OS
 #endif
 }
 
 int ChildProcess::exitCode() const
 {
-#if defined(__linux__)
+#if ISHIKO_OS == ISHIKO_OS_LINUX
     // TODO: what if not exited?
     return WEXITSTATUS(m_status);
-#elif defined(_WIN32)
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
     DWORD exitCode;
     GetExitCodeProcess(m_handle, &exitCode);
     return exitCode;
+#else
+    #error Unsupported or unrecognized OS
 #endif
 }
 
