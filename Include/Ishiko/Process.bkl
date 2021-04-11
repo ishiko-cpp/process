@@ -1,8 +1,8 @@
 ishikopath = envvar("ISHIKO_CPP");
-import $(ishikopath)/Text/Include/Ishiko/IshikoText.bkl;
+import $(ishikopath)/Text/Include/Ishiko/Text.bkl;
 import $(ishikopath)/Errors/Include/Ishiko/Errors.bkl;
 import $(ishikopath)/Platform/Include/Ishiko/Platform.bkl;
-import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/Boost.bkl;
+import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/ThirdParty/Boost.bkl;
 
 setting ISHIKO_CPP_PROCESS_ROOT
 {
