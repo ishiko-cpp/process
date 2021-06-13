@@ -150,14 +150,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\ChildProcess.cpp" />
-    <ClCompile Include="..\..\Source\ChildProcessBuilder.cpp" />
-    <ClCompile Include="..\..\Source\CommandLine.cpp" />
-    <ClCompile Include="..\..\Source\CurrentEnvironment.cpp" />
-    <ClCompile Include="..\..\Source\CurrentProcess.cpp" />
-    <ClCompile Include="..\..\Source\Environment.cpp" />
-    <ClCompile Include="..\..\Source\EnvironmentVariable.cpp" />
-    <ClCompile Include="..\..\Source\ErrorCategory.cpp" />
+    <ClCompile Include="..\..\src\ChildProcess.cpp" />
+    <ClCompile Include="..\..\src\ChildProcessBuilder.cpp" />
+    <ClCompile Include="..\..\src\CommandLine.cpp" />
+    <ClCompile Include="..\..\src\CurrentEnvironment.cpp" />
+    <ClCompile Include="..\..\src\CurrentProcess.cpp" />
+    <ClCompile Include="..\..\src\Environment.cpp" />
+    <ClCompile Include="..\..\src\EnvironmentVariable.cpp" />
+    <ClCompile Include="..\..\src\ErrorCategory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Ishiko\Process.h" />
