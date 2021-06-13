@@ -1,4 +1,4 @@
-# Ishiko/C++ - Process
+# Ishiko/C++ Process
 
 Basic classes to create processes and manipulate environment variables.
 
@@ -12,7 +12,7 @@ Basic classes to create processes and manipulate environment variables.
 
 # Project Status
 
-[![Ishiko-cpp](https://circleci.com/gh/Ishiko-cpp/Process.svg?style=shield)](https://circleci.com/gh/Ishiko-cpp/Process)
+[![ishiko-cpp](https://circleci.com/gh/ishiko-cpp/process.svg?style=shield)](https://circleci.com/gh/ishiko-cpp/process)
 
 This project is intended for use by its author only.
 
@@ -26,7 +26,7 @@ None.
 
 # License
 
-Copyright (c) 2005-2020 Xavier Leclercq
+Copyright (c) 2005-2021 Xavier Leclercq
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
