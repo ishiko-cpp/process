@@ -1,8 +1,8 @@
 ishikopath = envvar("ISHIKO_CPP");
-import $(ishikopath)/Text/Include/Ishiko/IshikoText.bkl;
-import $(ishikopath)/Errors/Include/Ishiko/Errors.bkl;
-import $(ishikopath)/Platform/Include/Ishiko/Platform.bkl;
-import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/ThirdParty/Boost.bkl;
+import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
+import $(ishikopath)/platform/include/Ishiko/Platform.bkl;
+import $(ishikopath)/text/include/Ishiko/Text.bkl;
+import $(ishikopath)/third-party-glue/Include/Ishiko/ThirdParty/Boost.bkl;
 
 toolsets = gnu vs2017 vs2015 vs2013;
 
@@ -15,7 +15,7 @@ library IshikoProcess : IshikoText, IshikoErrors, IshikoPlatform, Boost
 {
     archs = x86 x86_64;
 
-    includedirs += ../../Include/Ishiko/Process;
+    includedirs += ../../include/Ishiko/Process;
 
     if ($(toolset) == gnu)
     {
@@ -35,17 +35,17 @@ library IshikoProcess : IshikoText, IshikoErrors, IshikoPlatform, Boost
 
     headers
     {
-        ../../Include/Ishiko/Process.h
+        ../../include/Ishiko/Process.h
 
-        ../../Include/Ishiko/Process/ChildProcess.h
-        ../../Include/Ishiko/Process/ChildProcessBuilder.h
-        ../../Include/Ishiko/Process/CommandLine.h
-        ../../Include/Ishiko/Process/CurrentEnvironment.h
-        ../../Include/Ishiko/Process/CurrentProcess.h
-        ../../Include/Ishiko/Process/Environment.h
-        ../../Include/Ishiko/Process/EnvironmentVariable.h
-        ../../Include/Ishiko/Process/ErrorCategory.h
-        ../../Include/Ishiko/Process/linkoptions.h
+        ../../include/Ishiko/Process/ChildProcess.h
+        ../../include/Ishiko/Process/ChildProcessBuilder.h
+        ../../include/Ishiko/Process/CommandLine.h
+        ../../include/Ishiko/Process/CurrentEnvironment.h
+        ../../include/Ishiko/Process/CurrentProcess.h
+        ../../include/Ishiko/Process/Environment.h
+        ../../include/Ishiko/Process/EnvironmentVariable.h
+        ../../include/Ishiko/Process/ErrorCategory.h
+        ../../include/Ishiko/Process/linkoptions.h
     }
 
     sources
