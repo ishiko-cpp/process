@@ -50,13 +50,13 @@ library IshikoProcess : IshikoText, IshikoErrors, IshikoPlatform, Boost
 
     sources
     {
-        ../../Source/ChildProcess.cpp
-        ../../Source/ChildProcessBuilder.cpp
-        ../../Source/CommandLine.cpp
-        ../../Source/CurrentEnvironment.cpp
-        ../../Source/CurrentProcess.cpp
-        ../../Source/Environment.cpp
-        ../../Source/EnvironmentVariable.cpp
-        ../../Source/ErrorCategory.cpp
+        ../../src/ChildProcess.cpp
+        ../../src/ChildProcessBuilder.cpp
+        ../../src/CommandLine.cpp
+        ../../src/CurrentEnvironment.cpp
+        ../../src/CurrentProcess.cpp
+        ../../src/Environment.cpp
+        ../../src/EnvironmentVariable.cpp
+        ../../src/ErrorCategory.cpp
     }
 }
