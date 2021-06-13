@@ -49,28 +49,28 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\ChildProcess.cpp">
+    <ClCompile Include="..\..\src\ChildProcess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\ChildProcessBuilder.cpp">
+    <ClCompile Include="..\..\src\ChildProcessBuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\CommandLine.cpp">
+    <ClCompile Include="..\..\src\CommandLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\CurrentEnvironment.cpp">
+    <ClCompile Include="..\..\src\CurrentEnvironment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\CurrentProcess.cpp">
+    <ClCompile Include="..\..\src\CurrentProcess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Environment.cpp">
+    <ClCompile Include="..\..\src\Environment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\EnvironmentVariable.cpp">
+    <ClCompile Include="..\..\src\EnvironmentVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\ErrorCategory.cpp">
+    <ClCompile Include="..\..\src\ErrorCategory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
