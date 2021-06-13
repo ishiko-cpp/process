@@ -37,9 +37,9 @@ endif
 # Additionally, this makefile is customizable with the following
 # settings:
 #
-#      ISHIKO_CPP_TEXT_ROOT           Path to the Ishiko/Text installation
 #      ISHIKO_CPP_ERRORS_ROOT         Path to the Ishiko Errors installation
 #      ISHIKO_CPP_PLATFORM_ROOT       Path to the Ishiko Platform installation
+#      ISHIKO_CPP_TEXT_ROOT           Path to the Ishiko/Text installation
 #      ISHIKO_CPP_BOOST_ROOT          Path to the Boost installation
 #      ISHIKO_CPP_PROCESS_ROOT        Path to the Ishiko Process installation
 #      ISHIKO_CPP_TESTFRAMEWORK_ROOT  Path to the Ishiko TestFramework installation
@@ -63,18 +63,18 @@ endif
 # Configurable settings:
 # 
 
-# Path to the Ishiko/Text installation
-ISHIKO_CPP_TEXT_ROOT ?= $(ISHIKO_CPP)/Text
 # Path to the Ishiko Errors installation
-ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/Errors
+ISHIKO_CPP_ERRORS_ROOT ?= $(ISHIKO_CPP)/errors
 # Path to the Ishiko Platform installation
-ISHIKO_CPP_PLATFORM_ROOT ?= $(ISHIKO_CPP)/Platform
+ISHIKO_CPP_PLATFORM_ROOT ?= $(ISHIKO_CPP)/platform
+# Path to the Ishiko/Text installation
+ISHIKO_CPP_TEXT_ROOT ?= $(ISHIKO_CPP)/text
 # Path to the Boost installation
 ISHIKO_CPP_BOOST_ROOT ?= $(ISHIKO_CPP_THIRD_PARTY_BOOST)
 # Path to the Ishiko Process installation
-ISHIKO_CPP_PROCESS_ROOT ?= $(ISHIKO_CPP)/Process
+ISHIKO_CPP_PROCESS_ROOT ?= $(ISHIKO_CPP)/process
 # Path to the Ishiko TestFramework installation
-ISHIKO_CPP_TESTFRAMEWORK_ROOT ?= $(ISHIKO_CPP)/TestFramework
+ISHIKO_CPP_TESTFRAMEWORK_ROOT ?= $(ISHIKO_CPP)/test
 
 # ------------
 
@@ -84,28 +84,28 @@ $(_builddir)IshikoProcessTests: $(_builddir)IshikoProcessTests_CommandLineTests.
 	$(CXX) -o $@ $(LDFLAGS) $(_builddir)IshikoProcessTests_CommandLineTests.o $(_builddir)IshikoProcessTests_CurrentEnvironmentTests.o $(_builddir)IshikoProcessTests_CurrentProcessTests.o $(_builddir)IshikoProcessTests_EnvironmentTests.o $(_builddir)IshikoProcessTests_EnvironmentVariableTests.o $(_builddir)IshikoProcessTests_main.o $(_builddir)IshikoProcessTests_ChildProcessTests.o $(_builddir)IshikoProcessTests_ChildProcessBuilderTests.o -L$(ISHIKO_CPP_TEXT_ROOT)/Lib -L$(ISHIKO_CPP_ERRORS_ROOT)/Lib -L$(ISHIKO_CPP_BOOST_ROOT)/lib -L$(ISHIKO_CPP_PROCESS_ROOT)/Lib -L$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Lib -lIshikoProcess -lIshikoTestFrameworkCore -lIshikoText -lIshikoErrors -lboost_filesystem -lboost_system -pthread
 
 $(_builddir)IshikoProcessTests_CommandLineTests.o: ../../Source/CommandLineTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/Include -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/CommandLineTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -std=c++11 ../../Source/CommandLineTests.cpp
 
 $(_builddir)IshikoProcessTests_CurrentEnvironmentTests.o: ../../Source/CurrentEnvironmentTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/Include -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/CurrentEnvironmentTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -std=c++11 ../../Source/CurrentEnvironmentTests.cpp
 
 $(_builddir)IshikoProcessTests_CurrentProcessTests.o: ../../Source/CurrentProcessTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/Include -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/CurrentProcessTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -std=c++11 ../../Source/CurrentProcessTests.cpp
 
 $(_builddir)IshikoProcessTests_EnvironmentTests.o: ../../Source/EnvironmentTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/Include -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/EnvironmentTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -std=c++11 ../../Source/EnvironmentTests.cpp
 
 $(_builddir)IshikoProcessTests_EnvironmentVariableTests.o: ../../Source/EnvironmentVariableTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/Include -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/EnvironmentVariableTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -std=c++11 ../../Source/EnvironmentVariableTests.cpp
 
 $(_builddir)IshikoProcessTests_main.o: ../../Source/main.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/Include -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/main.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -std=c++11 ../../Source/main.cpp
 
 $(_builddir)IshikoProcessTests_ChildProcessTests.o: ../../Source/ProcessTests/ChildProcessTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/Include -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/ProcessTests/ChildProcessTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -std=c++11 ../../Source/ProcessTests/ChildProcessTests.cpp
 
 $(_builddir)IshikoProcessTests_ChildProcessBuilderTests.o: ../../Source/ProcessTests/ChildProcessBuilderTests.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/Include -I$(ISHIKO_CPP_ERRORS_ROOT)/Include -I$(ISHIKO_CPP_PLATFORM_ROOT)/Include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/Include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/Include -std=c++11 ../../Source/ProcessTests/ChildProcessBuilderTests.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I$(ISHIKO_CPP_PROCESS_ROOT)/include -I$(ISHIKO_CPP_TESTFRAMEWORK_ROOT)/include -std=c++11 ../../Source/ProcessTests/ChildProcessBuilderTests.cpp
 
 clean:
 	rm -f $(_builddir)*.o
