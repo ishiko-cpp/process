@@ -1,8 +1,8 @@
 ishikopath = envvar("ISHIKO_CPP");
-import $(ishikopath)/Text/Include/Ishiko/IshikoText.bkl;
-import $(ishikopath)/Errors/Include/Ishiko/Errors.bkl;
-import $(ishikopath)/Platform/Include/Ishiko/Platform.bkl;
-import $(ishikopath)/ThirdPartyGlue/Include/Ishiko/ThirdParty/Boost.bkl;
+import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
+import $(ishikopath)/platform/include/Ishiko/Platform.bkl;
+import $(ishikopath)/text/include/Ishiko/Text.bkl;
+import $(ishikopath)/third-party-glue/Include/Ishiko/ThirdParty/Boost.bkl;
 
 toolsets = gnu vs2017 vs2015 vs2013;
 
