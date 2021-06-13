@@ -84,29 +84,29 @@ all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-
 	$(AR) rc $@ $(_builddir)IshikoProcess_ChildProcess.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_CommandLine.o $(_builddir)IshikoProcess_CurrentEnvironment.o $(_builddir)IshikoProcess_CurrentProcess.o $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_EnvironmentVariable.o $(_builddir)IshikoProcess_ErrorCategory.o
 	$(RANLIB) $@
 
-$(_builddir)IshikoProcess_ChildProcess.o: ../../Source/ChildProcess.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../Source/ChildProcess.cpp
+$(_builddir)IshikoProcess_ChildProcess.o: ../../src/ChildProcess.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../src/ChildProcess.cpp
 
-$(_builddir)IshikoProcess_ChildProcessBuilder.o: ../../Source/ChildProcessBuilder.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../Source/ChildProcessBuilder.cpp
+$(_builddir)IshikoProcess_ChildProcessBuilder.o: ../../src/ChildProcessBuilder.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../src/ChildProcessBuilder.cpp
 
-$(_builddir)IshikoProcess_CommandLine.o: ../../Source/CommandLine.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../Source/CommandLine.cpp
+$(_builddir)IshikoProcess_CommandLine.o: ../../src/CommandLine.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../src/CommandLine.cpp
 
-$(_builddir)IshikoProcess_CurrentEnvironment.o: ../../Source/CurrentEnvironment.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../Source/CurrentEnvironment.cpp
+$(_builddir)IshikoProcess_CurrentEnvironment.o: ../../src/CurrentEnvironment.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../src/CurrentEnvironment.cpp
 
-$(_builddir)IshikoProcess_CurrentProcess.o: ../../Source/CurrentProcess.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../Source/CurrentProcess.cpp
+$(_builddir)IshikoProcess_CurrentProcess.o: ../../src/CurrentProcess.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../src/CurrentProcess.cpp
 
-$(_builddir)IshikoProcess_Environment.o: ../../Source/Environment.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../Source/Environment.cpp
+$(_builddir)IshikoProcess_Environment.o: ../../src/Environment.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../src/Environment.cpp
 
-$(_builddir)IshikoProcess_EnvironmentVariable.o: ../../Source/EnvironmentVariable.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../Source/EnvironmentVariable.cpp
+$(_builddir)IshikoProcess_EnvironmentVariable.o: ../../src/EnvironmentVariable.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../src/EnvironmentVariable.cpp
 
-$(_builddir)IshikoProcess_ErrorCategory.o: ../../Source/ErrorCategory.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../Source/ErrorCategory.cpp
+$(_builddir)IshikoProcess_ErrorCategory.o: ../../src/ErrorCategory.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_TEXT_ROOT)/include -I$(ISHIKO_CPP_ERRORS_ROOT)/include -I$(ISHIKO_CPP_PLATFORM_ROOT)/include -I$(ISHIKO_CPP_BOOST_ROOT)/include -I../../include/Ishiko/Process -std=c++11 ../../src/ErrorCategory.cpp
 
 clean:
 	rm -f $(_builddir)*.o
