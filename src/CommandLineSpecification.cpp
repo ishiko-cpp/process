@@ -5,3 +5,29 @@
 */
 
 #include "CommandLineSpecification.h"
+
+namespace Ishiko
+{
+namespace Process
+{
+    
+void CommandLineSpecification::addNamedOption(const std::string& name)
+{
+    m_options.emplace(name, OptionDetails());
+}
+
+bool CommandLineSpecification::find(const std::string& name, OptionDetails& details) const
+{
+    std::map<std::string, OptionDetails>::const_iterator it = m_options.find(name);
+    if (it != m_options.end())
+    {
+        details = it->second;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+}
+}
