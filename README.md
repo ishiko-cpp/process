@@ -5,8 +5,8 @@ Basic classes to create processes and manipulate environment variables.
 # Contents
 
 - include - Directory containing the public headers for the project.
-- Lib - Directory where the build process puts the compiled libraries.
 - build - The makefiles used to build the project
+- lib - Directory where the build process puts the compiled libraries.
 - src - The source code for the project.
 - tests - The tests for the project.
 

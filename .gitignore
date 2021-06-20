@@ -8,8 +8,8 @@
 .vs/
 Debug/
 Release/
-/Lib/*
-!/Lib/README.md
-/Tests/TestData/Bin/*
-!/Tests/TestData/Bin/README.md
-/Tests/TestOutput/
+/lib/*
+!/lib/README.md
+/tests/TestData/Bin/*
+!/tests/TestData/Bin/README.md
+/tests/TestOutput/
