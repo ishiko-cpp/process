@@ -78,9 +78,9 @@ ISHIKO_CPP_BOOST_ROOT ?= $(ISHIKO_CPP_THIRD_PARTY_BOOST)
 
 # ------------
 
-all: ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a
+all: ../Bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a
 
-../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a: $(_builddir)IshikoProcess_ChildProcess.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_CommandLine.o $(_builddir)IshikoProcess_CurrentEnvironment.o $(_builddir)IshikoProcess_CurrentProcess.o $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_EnvironmentVariable.o $(_builddir)IshikoProcess_ErrorCategory.o
+../Bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a: $(_builddir)IshikoProcess_ChildProcess.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_CommandLine.o $(_builddir)IshikoProcess_CurrentEnvironment.o $(_builddir)IshikoProcess_CurrentProcess.o $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_EnvironmentVariable.o $(_builddir)IshikoProcess_ErrorCategory.o
 	$(AR) rc $@ $(_builddir)IshikoProcess_ChildProcess.o $(_builddir)IshikoProcess_ChildProcessBuilder.o $(_builddir)IshikoProcess_CommandLine.o $(_builddir)IshikoProcess_CurrentEnvironment.o $(_builddir)IshikoProcess_CurrentProcess.o $(_builddir)IshikoProcess_Environment.o $(_builddir)IshikoProcess_EnvironmentVariable.o $(_builddir)IshikoProcess_ErrorCategory.o
 	$(RANLIB) $@
 
@@ -111,7 +111,7 @@ $(_builddir)IshikoProcess_ErrorCategory.o: ../../src/ErrorCategory.cpp
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f ../Bakefile/../../Lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a
+	rm -f ../Bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoProcess-d,IshikoProcess).a
 
 .PHONY: all clean
 

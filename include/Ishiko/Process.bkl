@@ -16,11 +16,11 @@ template IshikoProcess : IshikoText, IshikoErrors, IshikoPlatform, Boost
 
     if ($(toolset) == gnu)
     {
-        libdirs += $(ISHIKO_CPP_PROCESS_ROOT)/Lib;
+        libdirs += $(ISHIKO_CPP_PROCESS_ROOT)/lib;
     }
 
     if ($(toolset) != gnu)
     {
-        libdirs += $(ISHIKO_CPP_PROCESS_ROOT)/Lib/$(arch);
+        libdirs += $(ISHIKO_CPP_PROCESS_ROOT)/lib/$(arch);
     }
 }
