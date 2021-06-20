@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\CommandLineTests.cpp" />
+    <ClCompile Include="..\..\src\CommandLineParserTests.cpp" />
     <ClCompile Include="..\..\src\CurrentEnvironmentTests.cpp" />
     <ClCompile Include="..\..\src\CurrentProcessTests.cpp" />
     <ClCompile Include="..\..\src\EnvironmentTests.cpp" />
@@ -163,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\CommandLineTests.h" />
+    <ClInclude Include="..\..\src\CommandLineParserTests.h" />
     <ClInclude Include="..\..\src\CurrentEnvironmentTests.h" />
     <ClInclude Include="..\..\src\CurrentProcessTests.h" />
     <ClInclude Include="..\..\src\EnvironmentTests.h" />

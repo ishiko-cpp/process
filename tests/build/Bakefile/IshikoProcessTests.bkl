@@ -22,6 +22,7 @@ program IshikoProcessTests : IshikoProcess, IshikoTestFrameworkCore
     headers
     {
         ../../src/CommandLineTests.h
+        ../../src/CommandLineParserTests.h
         ../../src/CurrentEnvironmentTests.h
         ../../src/CurrentProcessTests.h
         ../../src/EnvironmentTests.h
@@ -34,6 +35,7 @@ program IshikoProcessTests : IshikoProcess, IshikoTestFrameworkCore
     sources
     {
         ../../src/CommandLineTests.cpp
+        ../../src/CommandLineParserTests.cpp
         ../../src/CurrentEnvironmentTests.cpp
         ../../src/CurrentProcessTests.cpp
         ../../src/EnvironmentTests.cpp
