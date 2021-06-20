@@ -10,5 +10,6 @@ Debug/
 Release/
 /Lib/*
 !/Lib/README.md
-/Tests/TestData/Bin/
+/Tests/TestData/Bin/*
+!/Tests/TestData/Bin/README.md
 /Tests/TestOutput/
