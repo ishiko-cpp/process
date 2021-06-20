@@ -22,6 +22,7 @@ bool CommandLineSpecification::find(const std::string& name, OptionDetails& deta
     if (it != m_options.end())
     {
         details = it->second;
+        return true;
     }
     else
     {
