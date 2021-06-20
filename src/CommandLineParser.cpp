@@ -5,3 +5,15 @@
 */
 
 #include "CommandLineParser.h"
+
+namespace Ishiko
+{
+namespace Process
+{
+
+void CommandLineParser::parse(int argc, char* argv[])
+{
+}
+
+}
+}
