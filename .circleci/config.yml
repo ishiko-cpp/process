@@ -26,16 +26,16 @@ jobs:
           command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/test.git && cd test/core/build/GNUmakefile && make
       - run:
           name: Test build
-          command: cd /projects/ishiko/cpp/process/Tests/Makefiles/GNUmakefile && make
+          command: cd /projects/ishiko/cpp/process/tests/build/GNUmakefile && make
       - run:
           name: Build ExitCodeTestHelper
-          command: cd /projects/ishiko/cpp/process/Tests/ExitCodeTestHelper/Makefiles/GNUmakefile && make
+          command: cd /projects/ishiko/cpp/process/tests/ExitCodeTestHelper/Makefiles/GNUmakefile && make
       - run:
           name: Build StandardOutputTestHelper
-          command: cd /projects/ishiko/cpp/process/Tests/StandardOutputTestHelper/Makefiles/GNUmakefile && make
+          command: cd /projects/ishiko/cpp/process/tests/StandardOutputTestHelper/Makefiles/GNUmakefile && make
       - run:
           name: Build DumpTestHelper
-          command: cd /projects/ishiko/cpp/process/Tests/DumpTestHelper/Makefiles/GNUmakefile && make
+          command: cd /projects/ishiko/cpp/process/tests/DumpTestHelper/Makefiles/GNUmakefile && make
       - run:
           name: Run the tests
-          command: cd /projects/ishiko/cpp/process/Tests/Makefiles/GNUmakefile && ./IshikoProcessTests
+          command: cd /projects/ishiko/cpp/process/tests/build/GNUmakefile && ./IshikoProcessTests
