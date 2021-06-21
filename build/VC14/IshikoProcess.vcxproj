@@ -153,7 +153,6 @@
     <ClCompile Include="..\..\src\ChildProcess.cpp" />
     <ClCompile Include="..\..\src\ChildProcessBuilder.cpp" />
     <ClCompile Include="..\..\src\CommandLine.cpp" />
-    <ClCompile Include="..\..\src\CommandLineParser.cpp" />
     <ClCompile Include="..\..\src\CurrentEnvironment.cpp" />
     <ClCompile Include="..\..\src\CurrentProcess.cpp" />
     <ClCompile Include="..\..\src\Environment.cpp" />
@@ -165,7 +164,6 @@
     <ClInclude Include="..\..\include\Ishiko\Process\ChildProcess.h" />
     <ClInclude Include="..\..\include\Ishiko\Process\ChildProcessBuilder.h" />
     <ClInclude Include="..\..\include\Ishiko\Process\CommandLine.h" />
-    <ClInclude Include="..\..\include\Ishiko\Process\CommandLineParser.h" />
     <ClInclude Include="..\..\include\Ishiko\Process\CurrentEnvironment.h" />
     <ClInclude Include="..\..\include\Ishiko\Process\CurrentProcess.h" />
     <ClInclude Include="..\..\include\Ishiko\Process\Environment.h" />

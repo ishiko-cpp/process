@@ -40,7 +40,6 @@ library IshikoProcess : IshikoText, IshikoErrors, IshikoPlatform, Boost
         ../../include/Ishiko/Process/ChildProcess.h
         ../../include/Ishiko/Process/ChildProcessBuilder.h
         ../../include/Ishiko/Process/CommandLine.h
-        ../../include/Ishiko/Process/CommandLineParser.h
         ../../include/Ishiko/Process/CurrentEnvironment.h
         ../../include/Ishiko/Process/CurrentProcess.h
         ../../include/Ishiko/Process/Environment.h
@@ -54,7 +53,6 @@ library IshikoProcess : IshikoText, IshikoErrors, IshikoPlatform, Boost
         ../../src/ChildProcess.cpp
         ../../src/ChildProcessBuilder.cpp
         ../../src/CommandLine.cpp
-        ../../src/CommandLineParser.cpp
         ../../src/CurrentEnvironment.cpp
         ../../src/CurrentProcess.cpp
         ../../src/Environment.cpp

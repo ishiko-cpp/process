@@ -29,9 +29,6 @@
     <ClInclude Include="..\..\include\Ishiko\Process\CommandLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Process\CommandLineParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Process\CurrentEnvironment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -59,9 +56,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\CommandLine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\CommandLineParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\CurrentEnvironment.cpp">
