@@ -4,8 +4,6 @@
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
-#include "CommandLineParserTests.h"
-#include "CommandLineSpecificationTests.h"
 #include "CommandLineTests.h"
 #include "CurrentEnvironmentTests.h"
 #include "CurrentProcessTests.h"
@@ -31,8 +29,6 @@ int main(int argc, char* argv[])
     theTests.append<CurrentEnvironmentTests>();
     theTests.append<CurrentProcessTests>();
     theTests.append<CommandLineTests>();
-    theTests.append<CommandLineSpecificationTests>();
-    theTests.append<CommandLineParserTests>();
     theTests.append<EnvironmentVariableTests>();
     theTests.append<EnvironmentTests>();
     theTests.append<ChildProcessTests>();
