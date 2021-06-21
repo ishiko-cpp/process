@@ -11,7 +11,7 @@ namespace Ishiko
 namespace Process
 {
 
-void CommandLineParser::parse(int argc, char* argv[])
+void CommandLineParser::parse(const CommandLineSpecification& specification, int argc, char* argv[])
 {
 }
 

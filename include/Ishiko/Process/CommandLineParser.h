@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_PROCESS_COMMANDLINEPARSER_H_
 #define _ISHIKO_PROCESS_COMMANDLINEPARSER_H_
 
-#include "CommandLine.h"
+#include "CommandLineSpecification.h"
 
 namespace Ishiko
 {
@@ -17,7 +17,7 @@ namespace Process
 class CommandLineParser
 {
 public:
-    void parse(int argc, char* argv[]);
+    static void parse(const CommandLineSpecification& specification, int argc, char* argv[]);
 };
 
 }

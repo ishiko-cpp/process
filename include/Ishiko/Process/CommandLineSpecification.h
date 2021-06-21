@@ -18,11 +18,12 @@ namespace Process
 class CommandLineSpecification
 {
 public:
-    class OptionDetails
+    struct OptionDetails
     {
+        std::string defaultValue;
     };
 
-    void addNamedOption(const std::string& name);
+    void addNamedOption(const std::string& name, const OptionDetails& details);
 
     bool find(const std::string& name, OptionDetails& details) const;
 

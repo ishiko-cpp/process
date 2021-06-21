@@ -29,11 +29,12 @@ void CommandLineSpecificationTests::AddNamedOptionTest1(Test& test)
 {
     CommandLineSpecification spec;
 
-    spec.addNamedOption("option1");
+    spec.addNamedOption("option1", { "default" });
 
     CommandLineSpecification::OptionDetails details;
     bool found = spec.find("option1", details);
 
     ISHTF_FAIL_IF_NOT(found);
+    ISHTF_FAIL_IF_NEQ(details.defaultValue, "default");
     ISHTF_PASS();
 }

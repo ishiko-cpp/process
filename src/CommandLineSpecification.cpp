@@ -10,10 +10,10 @@ namespace Ishiko
 {
 namespace Process
 {
-    
-void CommandLineSpecification::addNamedOption(const std::string& name)
+
+void CommandLineSpecification::addNamedOption(const std::string& name, const OptionDetails& details)
 {
-    m_options.emplace(name, OptionDetails());
+    m_options.emplace(name, details);
 }
 
 bool CommandLineSpecification::find(const std::string& name, OptionDetails& details) const
