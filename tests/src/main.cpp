@@ -1,12 +1,12 @@
 /*
-    Copyright (c) 2016-2020 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
+#include "CommandLineTests.h"
 #include "CurrentEnvironmentTests.h"
 #include "CurrentProcessTests.h"
-#include "CommandLineTests.h"
 #include "EnvironmentTests.h"
 #include "EnvironmentVariableTests.h"
 #include "ProcessTests/ChildProcessTests.h"
