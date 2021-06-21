@@ -20,12 +20,6 @@
     <ClInclude Include="..\..\src\CommandLineTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\CommandLineParserTests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\CommandLineSpecificationTests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\CurrentEnvironmentTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -47,12 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\CommandLineTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\CommandLineParserTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\CommandLineSpecificationTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\CurrentEnvironmentTests.cpp">
