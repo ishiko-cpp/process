@@ -9,13 +9,13 @@ jobs:
           command: mkdir -p /projects/ishiko/cpp && echo 'export ISHIKO_CPP="/projects/ishiko/cpp"' >> $BASH_ENV
       - run:
           name: "Install build dependency: Ishiko/C++ Platform"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/platform.git && cd platform/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/platform.git && cd platform/build/gnumake && make
       - run:
           name: "Install build dependency: Ishiko/C++ Errors"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/errors.git && cd errors/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/errors.git && cd errors/build/gnumake && make
       - run:
           name: "Install build dependency: Ishiko/C++ Text"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/text.git && cd text/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/text.git && cd text/build/gnumake && make
       - checkout:
           path: /projects/ishiko/cpp/process
       - run:
@@ -23,10 +23,10 @@ jobs:
           command: cd /projects/ishiko/cpp/process/build/gnumake && make
       - run:
           name: "Install test dependency: Ishiko/C++ Test"
-          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/test.git && cd test/core/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/test.git && cd test/core/build/gnumake && make
       - run:
           name: Test build
-          command: cd /projects/ishiko/cpp/process/tests/build/GNUmakefile && make
+          command: cd /projects/ishiko/cpp/process/tests/build/gnumake && make
       - run:
           name: Build ExitCodeTestHelper
           command: cd /projects/ishiko/cpp/process/tests/ExitCodeTestHelper/Makefiles/GNUmakefile && make
@@ -38,7 +38,7 @@ jobs:
           command: cd /projects/ishiko/cpp/process/tests/DumpTestHelper/Makefiles/GNUmakefile && make
       - run:
           name: Run the tests
-          command: cd /projects/ishiko/cpp/process/tests/build/GNUmakefile && ./IshikoProcessTests
+          command: cd /projects/ishiko/cpp/process/tests/build/gnumake && ./IshikoProcessTests
 workflows:
   version: 2
   continuous_build:
