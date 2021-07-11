@@ -22,6 +22,9 @@ jobs:
           name: Build
           command: cd /projects/ishiko/cpp/process/build/gnumake && make
       - run:
+          name: "Install test dependency: Ishiko/C++ Diff"
+          command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/diff.git && cd diff/build/gnumake && make
+      - run:
           name: "Install test dependency: Ishiko/C++ Test"
           command: cd /projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/test.git && cd test/core/build/gnumake && make
       - run:
