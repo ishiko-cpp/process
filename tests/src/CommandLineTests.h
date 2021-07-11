@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_TEST_COMMANDLINETESTS_H_
 #define _ISHIKO_TEST_COMMANDLINETESTS_H_
 
-#include "Ishiko/TestFramework/TestFrameworkCore.h"
+#include <Ishiko/Tests/Core.h>
 
 class CommandLineTests : public Ishiko::Tests::TestSequence
 {

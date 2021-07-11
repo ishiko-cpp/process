@@ -11,7 +11,7 @@
 #include "EnvironmentVariableTests.h"
 #include "ProcessTests/ChildProcessTests.h"
 #include "ProcessTests/ChildProcessBuilderTests.h"
-#include <Ishiko/TestFramework/TestFrameworkCore.h>
+#include <Ishiko/Tests/Core.h>
 #include <boost/filesystem/operations.hpp>
 
 using namespace Ishiko::Tests;
