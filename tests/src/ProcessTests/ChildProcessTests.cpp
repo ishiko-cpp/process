@@ -1,7 +1,7 @@
 /*
-    Copyright (c) 2016-2020 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
 #include "ChildProcessTests.h"
@@ -23,7 +23,7 @@ void ChildProcessTests::ConstructorTest1(Test& test)
 {
     ChildProcess handle;
     
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
 
 void ChildProcessTests::SpawnTest1(Test& test)
@@ -38,8 +38,8 @@ void ChildProcessTests::SpawnTest1(Test& test)
 
     handle.waitForExit();
 
-    ISHTF_FAIL_IF_NEQ(handle.exitCode(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHIKO_PASS();
 }
 
 void ChildProcessTests::SpawnTest2(Test& test)
@@ -53,10 +53,10 @@ void ChildProcessTests::SpawnTest2(Test& test)
     Error error(0);
     ChildProcess handle = ChildProcess::Spawn(executablePath.string(), error);
 
-    ISHTF_ABORT_IF(error);
+    ISHIKO_ABORT_IF(error);
 
     handle.waitForExit();
 
-    ISHTF_FAIL_IF_NEQ(handle.exitCode(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHIKO_PASS();
 }

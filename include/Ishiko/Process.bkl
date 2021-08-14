@@ -1,6 +1,6 @@
 ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/base-platform/include/Ishiko/BasePlatform.bkl;
 import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
-import $(ishikopath)/platform/include/Ishiko/Platform.bkl;
 import $(ishikopath)/text/include/Ishiko/Text.bkl;
 import $(ishikopath)/third-party-glue/include/Ishiko/ThirdParty/Boost.bkl;
 
@@ -10,7 +10,7 @@ setting ISHIKO_CPP_PROCESS_ROOT
     default = '$(ISHIKO_CPP)/process';
 }
 
-template IshikoProcess : IshikoText, IshikoErrors, IshikoPlatform, Boost
+template IshikoProcess : IshikoText, IshikoErrors, IshikoBasePlatform, Boost
 {
     includedirs += $(ISHIKO_CPP_PROCESS_ROOT)/include;
 

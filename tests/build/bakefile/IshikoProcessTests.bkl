@@ -1,10 +1,11 @@
-import ../../../include/Ishiko/Process.bkl;
 ishikopath = envvar("ISHIKO_CPP");
+import $(ishikopath)/process/include/Ishiko/Process.bkl;
 import $(ishikopath)/tests/include/Ishiko/Tests/Core.bkl;
 
-toolsets = gnu vs2017 vs2015 vs2013;
+toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
 gnu.makefile = ../gnumake/GNUmakefile;
+vs2019.solutionfile = ../vc16/IshikoProcessTests.sln;
 vs2017.solutionfile = ../vc15/IshikoProcessTests.sln;
 vs2015.solutionfile = ../vc14/IshikoProcessTests.sln;
 vs2013.solutionfile = ../vc12/IshikoProcessTests.sln;
