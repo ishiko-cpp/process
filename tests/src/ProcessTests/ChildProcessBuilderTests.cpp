@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2020 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -29,7 +29,7 @@ void ChildProcessBuilderTests::ConstructorTest1(Test& test)
 {
     ChildProcessBuilder builder("dummy");
     
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
 
 void ChildProcessBuilderTests::StartTest1(Test& test)
@@ -46,8 +46,8 @@ void ChildProcessBuilderTests::StartTest1(Test& test)
 
     handle.waitForExit();
 
-    ISHTF_FAIL_IF_NEQ(handle.exitCode(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHIKO_PASS();
 }
 
 void ChildProcessBuilderTests::StartTest2(Test& test)
@@ -63,12 +63,12 @@ void ChildProcessBuilderTests::StartTest2(Test& test)
     Error error(0);
     ChildProcess handle = builder.start(error);
 
-    ISHTF_ABORT_IF(error);
+    ISHIKO_ABORT_IF(error);
 
     handle.waitForExit();
 
-    ISHTF_FAIL_IF_NEQ(handle.exitCode(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHIKO_PASS();
 }
 
 void ChildProcessBuilderTests::StartTest3(Test& test)
@@ -86,8 +86,8 @@ void ChildProcessBuilderTests::StartTest3(Test& test)
 
     handle.waitForExit();
 
-    ISHTF_FAIL_IF_NEQ(handle.exitCode(), 1);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(handle.exitCode(), 1);
+    ISHIKO_PASS();
 }
 
 void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonTest& test)
@@ -108,12 +108,12 @@ void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonT
     Error error(0);
     ChildProcess handle = creator.start(error);
 
-    ISHTF_ABORT_IF(error);
+    ISHIKO_ABORT_IF(error);
     
     handle.waitForExit();
 
-    ISHTF_FAIL_IF_NEQ(handle.exitCode(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHIKO_PASS();
 }
 
 void ChildProcessBuilderTests::StartTest4(FileComparisonTest& test)
@@ -136,8 +136,8 @@ void ChildProcessBuilderTests::StartTest4(FileComparisonTest& test)
 
     handle.waitForExit();
 
-    ISHTF_FAIL_IF_NEQ(handle.exitCode(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHIKO_PASS();
 }
 
 void ChildProcessBuilderTests::StartTest5(FileComparisonTest& test)
@@ -160,8 +160,8 @@ void ChildProcessBuilderTests::StartTest5(FileComparisonTest& test)
 
     handle.waitForExit();
 
-    ISHTF_FAIL_IF_NEQ(handle.exitCode(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHIKO_PASS();
 }
 
 void ChildProcessBuilderTests::StartTest6(FileComparisonTest& test)
@@ -186,6 +186,6 @@ void ChildProcessBuilderTests::StartTest6(FileComparisonTest& test)
 
     handle.waitForExit();
 
-    ISHTF_FAIL_IF_NEQ(handle.exitCode(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHIKO_PASS();
 }
