@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -31,47 +31,47 @@ void CommandLineTests::ConstructorTest1(Test& test)
 {
     CommandLine commandLine("executable");
 
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "executable");
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "executable");
 
     std::vector<std::string> raw_arguments = commandLine.getArguments(CommandLine::eRaw);
     std::vector<std::string> quoted_if_needed_arguments = commandLine.getArguments(CommandLine::eQuoteIfNeeded);
 
-    ISHTF_FAIL_IF_NEQ(raw_arguments.size(), 0);
-    ISHTF_FAIL_IF_NEQ(quoted_if_needed_arguments.size(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(raw_arguments.size(), 0);
+    ISHIKO_FAIL_IF_NEQ(quoted_if_needed_arguments.size(), 0);
+    ISHIKO_PASS();
 }
 
 void CommandLineTests::ConstructorTest2(Test& test)
 {
     CommandLine commandLine(std::string("executable"));
 
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "executable");
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "executable");
 
     std::vector<std::string> raw_arguments = commandLine.getArguments(CommandLine::eRaw);
     std::vector<std::string> quoted_if_needed_arguments = commandLine.getArguments(CommandLine::eQuoteIfNeeded);
 
-    ISHTF_FAIL_IF_NEQ(raw_arguments.size(), 0);
-    ISHTF_FAIL_IF_NEQ(quoted_if_needed_arguments.size(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(raw_arguments.size(), 0);
+    ISHIKO_FAIL_IF_NEQ(quoted_if_needed_arguments.size(), 0);
+    ISHIKO_PASS();
 }
 
 void CommandLineTests::ConstructorTest3(Test& test)
 {
     CommandLine commandLine("executable arg1");
 
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "executable");
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "executable");
 
     std::vector<std::string> raw_arguments = commandLine.getArguments(CommandLine::eRaw);
     std::vector<std::string> quoted_if_needed_arguments = commandLine.getArguments(CommandLine::eQuoteIfNeeded);
 
-    ISHTF_ABORT_IF_NEQ(raw_arguments.size(), 1);
-    ISHTF_FAIL_IF_NEQ(raw_arguments[0], "arg1");
-    ISHTF_ABORT_IF_NEQ(quoted_if_needed_arguments.size(), 1);
-    ISHTF_FAIL_IF_NEQ(quoted_if_needed_arguments[0], "arg1");
-    ISHTF_PASS();
+    ISHIKO_ABORT_IF_NEQ(raw_arguments.size(), 1);
+    ISHIKO_FAIL_IF_NEQ(raw_arguments[0], "arg1");
+    ISHIKO_ABORT_IF_NEQ(quoted_if_needed_arguments.size(), 1);
+    ISHIKO_FAIL_IF_NEQ(quoted_if_needed_arguments[0], "arg1");
+    ISHIKO_PASS();
 }
 
 void CommandLineTests::ConstructorTest4(Test& test)
@@ -79,15 +79,15 @@ void CommandLineTests::ConstructorTest4(Test& test)
     boost::filesystem::path executable = "relative/path/executable";
     CommandLine commandLine(executable, {});
 
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "relative/path/executable");
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "relative/path/executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "relative/path/executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "relative/path/executable");
 
     std::vector<std::string> raw_arguments = commandLine.getArguments(CommandLine::eRaw);
     std::vector<std::string> quoted_if_needed_arguments = commandLine.getArguments(CommandLine::eQuoteIfNeeded);
 
-    ISHTF_FAIL_IF_NEQ(raw_arguments.size(), 0);
-    ISHTF_FAIL_IF_NEQ(quoted_if_needed_arguments.size(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(raw_arguments.size(), 0);
+    ISHIKO_FAIL_IF_NEQ(quoted_if_needed_arguments.size(), 0);
+    ISHIKO_PASS();
 }
 
 void CommandLineTests::ConstructorTest5(Test& test)
@@ -95,102 +95,102 @@ void CommandLineTests::ConstructorTest5(Test& test)
     boost::filesystem::path executable = "relative\\path\\executable";
     CommandLine commandLine(executable, {});
 
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "relative\\path\\executable");
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "relative\\path\\executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "relative\\path\\executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "relative\\path\\executable");
 
     std::vector<std::string> raw_arguments = commandLine.getArguments(CommandLine::eRaw);
     std::vector<std::string> quoted_if_needed_arguments = commandLine.getArguments(CommandLine::eQuoteIfNeeded);
 
-    ISHTF_FAIL_IF_NEQ(raw_arguments.size(), 0);
-    ISHTF_FAIL_IF_NEQ(quoted_if_needed_arguments.size(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(raw_arguments.size(), 0);
+    ISHIKO_FAIL_IF_NEQ(quoted_if_needed_arguments.size(), 0);
+    ISHIKO_PASS();
 }
 
 void CommandLineTests::ConstructorTest6(Test& test)
 {
     CommandLine commandLine("executable", {"arg1"});
 
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "executable");
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "executable");
 
     std::vector<std::string> raw_arguments = commandLine.getArguments(CommandLine::eRaw);
     std::vector<std::string> quoted_if_needed_arguments = commandLine.getArguments(CommandLine::eQuoteIfNeeded);
 
-    ISHTF_ABORT_IF_NEQ(raw_arguments.size(), 1);
-    ISHTF_FAIL_IF_NEQ(raw_arguments[0], "arg1");
-    ISHTF_ABORT_IF_NEQ(quoted_if_needed_arguments.size(), 1);
-    ISHTF_FAIL_IF_NEQ(quoted_if_needed_arguments[0], "arg1");
-    ISHTF_PASS();
+    ISHIKO_ABORT_IF_NEQ(raw_arguments.size(), 1);
+    ISHIKO_FAIL_IF_NEQ(raw_arguments[0], "arg1");
+    ISHIKO_ABORT_IF_NEQ(quoted_if_needed_arguments.size(), 1);
+    ISHIKO_FAIL_IF_NEQ(quoted_if_needed_arguments[0], "arg1");
+    ISHIKO_PASS();
 }
 
 void CommandLineTests::ConstructorTest7(Test& test)
 {
     CommandLine commandLine("executable", { "arg1", "arg2" });
 
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "executable");
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "executable");
 
     std::vector<std::string> raw_arguments = commandLine.getArguments(CommandLine::eRaw);
     std::vector<std::string> quoted_if_needed_arguments = commandLine.getArguments(CommandLine::eQuoteIfNeeded);
 
-    ISHTF_FAIL_IF_NEQ(raw_arguments.size(), 2);
-    ISHTF_FAIL_IF_NEQ(raw_arguments[0], "arg1");
-    ISHTF_FAIL_IF_NEQ(raw_arguments[1], "arg2");
-    ISHTF_FAIL_IF_NEQ(quoted_if_needed_arguments.size(), 2);
-    ISHTF_FAIL_IF_NEQ(quoted_if_needed_arguments[0], "arg1");
-    ISHTF_FAIL_IF_NEQ(quoted_if_needed_arguments[1], "arg2");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(raw_arguments.size(), 2);
+    ISHIKO_FAIL_IF_NEQ(raw_arguments[0], "arg1");
+    ISHIKO_FAIL_IF_NEQ(raw_arguments[1], "arg2");
+    ISHIKO_FAIL_IF_NEQ(quoted_if_needed_arguments.size(), 2);
+    ISHIKO_FAIL_IF_NEQ(quoted_if_needed_arguments[0], "arg1");
+    ISHIKO_FAIL_IF_NEQ(quoted_if_needed_arguments[1], "arg2");
+    ISHIKO_PASS();
 }
 
 void CommandLineTests::ConstructorTest8(Test& test)
 {
     CommandLine commandLine("executable", { "arg 1" });
 
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "executable");
-    ISHTF_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eRaw), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.getExecutable(CommandLine::eQuoteIfNeeded), "executable");
 
     std::vector<std::string> raw_arguments = commandLine.getArguments(CommandLine::eRaw);
     std::vector<std::string> quoted_if_needed_arguments = commandLine.getArguments(CommandLine::eQuoteIfNeeded);
 
-    ISHTF_FAIL_IF_NEQ(raw_arguments.size(), 1);
-    ISHTF_FAIL_IF_NEQ(raw_arguments[0], "arg 1");
-    ISHTF_FAIL_IF_NEQ(quoted_if_needed_arguments.size(), 1);
-    ISHTF_FAIL_IF_NEQ(quoted_if_needed_arguments[0], "\"arg 1\"");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(raw_arguments.size(), 1);
+    ISHIKO_FAIL_IF_NEQ(raw_arguments[0], "arg 1");
+    ISHIKO_FAIL_IF_NEQ(quoted_if_needed_arguments.size(), 1);
+    ISHIKO_FAIL_IF_NEQ(quoted_if_needed_arguments[0], "\"arg 1\"");
+    ISHIKO_PASS();
 }
 
 void CommandLineTests::ToStringTest1(Test& test)
 {
     CommandLine commandLine("executable");
 
-    ISHTF_FAIL_IF_NEQ(commandLine.toString(CommandLine::eRaw), "executable");
-    ISHTF_FAIL_IF_NEQ(commandLine.toString(CommandLine::eQuoteIfNeeded), "executable");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(commandLine.toString(CommandLine::eRaw), "executable");
+    ISHIKO_FAIL_IF_NEQ(commandLine.toString(CommandLine::eQuoteIfNeeded), "executable");
+    ISHIKO_PASS();
 }
 
 void CommandLineTests::ToStringTest2(Test& test)
 {
     CommandLine commandLine("executable arg1");
 
-    ISHTF_FAIL_IF_NEQ(commandLine.toString(CommandLine::eRaw), "executable arg1");
-    ISHTF_FAIL_IF_NEQ(commandLine.toString(CommandLine::eQuoteIfNeeded), "executable arg1");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(commandLine.toString(CommandLine::eRaw), "executable arg1");
+    ISHIKO_FAIL_IF_NEQ(commandLine.toString(CommandLine::eQuoteIfNeeded), "executable arg1");
+    ISHIKO_PASS();
 }
 
 void CommandLineTests::ToStringTest3(Test& test)
 {
     CommandLine commandLine("executable", {"arg1"});
 
-    ISHTF_FAIL_IF_NEQ(commandLine.toString(CommandLine::eRaw), "executable arg1");
-    ISHTF_FAIL_IF_NEQ(commandLine.toString(CommandLine::eQuoteIfNeeded), "executable arg1");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(commandLine.toString(CommandLine::eRaw), "executable arg1");
+    ISHIKO_FAIL_IF_NEQ(commandLine.toString(CommandLine::eQuoteIfNeeded), "executable arg1");
+    ISHIKO_PASS();
 }
 
 void CommandLineTests::ToStringTest4(Test& test)
 {
     CommandLine commandLine("executable with spaces", { "arg 1" });
 
-    ISHTF_FAIL_IF_NEQ(commandLine.toString(CommandLine::eRaw), "executable with spaces arg 1");
-    ISHTF_FAIL_IF_NEQ(commandLine.toString(CommandLine::eQuoteIfNeeded), "\"executable with spaces\" \"arg 1\"");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(commandLine.toString(CommandLine::eRaw), "executable with spaces arg 1");
+    ISHIKO_FAIL_IF_NEQ(commandLine.toString(CommandLine::eQuoteIfNeeded), "\"executable with spaces\" \"arg 1\"");
+    ISHIKO_PASS();
 }

@@ -1,7 +1,7 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
 #include "EnvironmentTests.h"
@@ -10,6 +10,7 @@
 #include <boost/filesystem/operations.hpp>
 #include <fstream>
 
+using namespace Ishiko::Process;
 using namespace Ishiko::Tests;
 
 EnvironmentTests::EnvironmentTests(const TestNumber& number, const TestEnvironment& environment)
@@ -29,49 +30,49 @@ EnvironmentTests::EnvironmentTests(const TestNumber& number, const TestEnvironme
 
 void EnvironmentTests::ConstructorTest1(Test& test)
 {
-    Ishiko::Process::Environment env;
+    Environment env;
 
-    ISHTF_FAIL_IF_NEQ(env.size(), 0);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(env.size(), 0);
+    ISHIKO_PASS();
 }
 
 void EnvironmentTests::ConstructorTest2(Test& test)
 {
-    Ishiko::Process::CurrentEnvironment::Set("EnvironmentTests_ConstructorTest2_a", "dummy");
-    Ishiko::Process::CurrentEnvironment::Set("EnvironmentTests_ConstructorTest2_b", "dummy2");
+    CurrentEnvironment::Set("EnvironmentTests_ConstructorTest2_a", "dummy");
+    CurrentEnvironment::Set("EnvironmentTests_ConstructorTest2_b", "dummy2");
 
-    Ishiko::Process::Environment env = Ishiko::Process::CurrentEnvironment();
+    Environment env = CurrentEnvironment();
 
     std::string value1;
     bool found1 = env.find("EnvironmentTests_ConstructorTest2_a", value1);
     std::string value2;
     bool found2 = env.find("EnvironmentTests_ConstructorTest2_b", value2);
 
-    ISHTF_FAIL_IF_NOT(found1);
-    ISHTF_FAIL_IF_NEQ(value1, "dummy");
-    ISHTF_FAIL_IF_NOT(found2);
-    ISHTF_FAIL_IF_NEQ(value2, "dummy2");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NOT(found1);
+    ISHIKO_FAIL_IF_NEQ(value1, "dummy");
+    ISHIKO_FAIL_IF_NOT(found2);
+    ISHIKO_FAIL_IF_NEQ(value2, "dummy2");
+    ISHIKO_PASS();
 }
 
 void EnvironmentTests::SetTest1(Test& test)
 {
-    Ishiko::Process::Environment env;
+    Environment env;
 
     env.set("name", "value");
 
     std::string value;
     bool found = env.find("name", value);
 
-    ISHTF_FAIL_IF_NEQ(env.size(), 1);
-    ISHTF_FAIL_IF_NOT(found);
-    ISHTF_FAIL_IF_NEQ(value, "value");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(env.size(), 1);
+    ISHIKO_FAIL_IF_NOT(found);
+    ISHIKO_FAIL_IF_NEQ(value, "value");
+    ISHIKO_PASS();
 }
 
 void EnvironmentTests::SetTest2(Test& test)
 {
-    Ishiko::Process::Environment env;
+    Environment env;
 
     env.set("name", "value");
     env.set("name", "new_value");
@@ -79,59 +80,59 @@ void EnvironmentTests::SetTest2(Test& test)
     std::string value;
     bool found = env.find("name", value);
 
-    ISHTF_FAIL_IF_NEQ(env.size(), 1);
-    ISHTF_FAIL_IF_NOT(found);
-    ISHTF_FAIL_IF_NEQ(value, "new_value");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(env.size(), 1);
+    ISHIKO_FAIL_IF_NOT(found);
+    ISHIKO_FAIL_IF_NEQ(value, "new_value");
+    ISHIKO_PASS();
 }
 
 void EnvironmentTests::SetTest3(Test& test)
 {
-    Ishiko::Process::Environment env;
+    Environment env;
 
     env.set("name1", "value1");
     env.set("name3", "value3");
     env.set("name2", "value2");
 
-    ISHTF_FAIL_IF_NEQ(env.size(), 3);
-    ISHTF_FAIL_IF_STR_NEQ(env[0].m_variable, "name1=value1");
-    ISHTF_FAIL_IF_STR_NEQ(env[1].m_variable, "name2=value2");
-    ISHTF_FAIL_IF_STR_NEQ(env[2].m_variable, "name3=value3");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(env.size(), 3);
+    ISHIKO_FAIL_IF_STR_NEQ(env[0].m_variable, "name1=value1");
+    ISHIKO_FAIL_IF_STR_NEQ(env[1].m_variable, "name2=value2");
+    ISHIKO_FAIL_IF_STR_NEQ(env[2].m_variable, "name3=value3");
+    ISHIKO_PASS();
 }
 
 void EnvironmentTests::FindTest1(Test& test)
 {
-    Ishiko::Process::Environment env;
+    Environment env;
 
     std::string value;
     bool found = env.find("doesntexist", value);
 
-    ISHTF_FAIL_IF(found);
-    ISHTF_FAIL_IF_NEQ(value, "");
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF(found);
+    ISHIKO_FAIL_IF_NEQ(value, "");
+    ISHIKO_PASS();
 }
 
 void EnvironmentTests::ToEnvironmentArrayTest1(Test& test)
 {
-    Ishiko::Process::Environment env;
+    Environment env;
 
     char** environmentArray = env.toEnvironmentArray();
 
-    ISHTF_FAIL_IF_NEQ(environmentArray[0], nullptr);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_NEQ(environmentArray[0], nullptr);
+    ISHIKO_PASS();
 }
 
 void EnvironmentTests::ToEnvironmentArrayTest2(Test& test)
 {
-    Ishiko::Process::Environment env;
+    Environment env;
     env.set("name1", "value1");
 
     char** environmentArray = env.toEnvironmentArray();
 
-    ISHTF_FAIL_IF_STR_NEQ(environmentArray[0], "name1=value1");
-    ISHTF_FAIL_IF_NEQ(environmentArray[1], nullptr);
-    ISHTF_PASS();
+    ISHIKO_FAIL_IF_STR_NEQ(environmentArray[0], "name1=value1");
+    ISHIKO_FAIL_IF_NEQ(environmentArray[1], nullptr);
+    ISHIKO_PASS();
 }
 
 void EnvironmentTests::ToEnvironmentBlockTest1(FileComparisonTest& test)
@@ -143,14 +144,14 @@ void EnvironmentTests::ToEnvironmentBlockTest1(FileComparisonTest& test)
     test.setReferenceFilePath(test.environment().getReferenceDataDirectory() / 
         "EnvironmentTests_ToEnvironmentBlockTest1.bin");
 
-    Ishiko::Process::Environment env;
+    Environment env;
 
     std::vector<char> environmentBlock = env.toEnvironmentBlock();
 
     std::ofstream output(outputPath.string());
     output.write(environmentBlock.data(), environmentBlock.size());
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
 
 void EnvironmentTests::ToEnvironmentBlockTest2(FileComparisonTest& test)
@@ -162,7 +163,7 @@ void EnvironmentTests::ToEnvironmentBlockTest2(FileComparisonTest& test)
     test.setReferenceFilePath(test.environment().getReferenceDataDirectory() /
         "EnvironmentTests_ToEnvironmentBlockTest2.bin");
 
-    Ishiko::Process::Environment env;
+    Environment env;
     env.set("name1", "value1");
 
     std::vector<char> environmentBlock = env.toEnvironmentBlock();
@@ -170,5 +171,5 @@ void EnvironmentTests::ToEnvironmentBlockTest2(FileComparisonTest& test)
     std::ofstream output(outputPath.string());
     output.write(environmentBlock.data(), environmentBlock.size());
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
