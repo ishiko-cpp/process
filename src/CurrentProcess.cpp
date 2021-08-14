@@ -1,12 +1,11 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
 #include "CurrentProcess.h"
-#include <Ishiko/Platform/Compilers.h>
-#include <Ishiko/Platform/OS.h>
+#include <Ishiko/BasePlatform.h>
 
 namespace Ishiko
 {

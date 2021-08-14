@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_PROCESS_COMMANDLINE_H_
-#define _ISHIKO_PROCESS_COMMANDLINE_H_
+#ifndef _ISHIKO_CPP_PROCESS_COMMANDLINE_H_
+#define _ISHIKO_CPP_PROCESS_COMMANDLINE_H_
 
 #include <boost/filesystem/path.hpp>
 #include <string>

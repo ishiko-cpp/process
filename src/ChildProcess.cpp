@@ -1,11 +1,12 @@
 /*
     Copyright (c) 2016-2020 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
 #include "ChildProcess.h"
 #include "ChildProcessBuilder.h"
+
 #if ISHIKO_OS == ISHIKO_OS_LINUX
 #include <sys/wait.h>
 #endif
