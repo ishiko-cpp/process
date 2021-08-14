@@ -1,7 +1,7 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
 #include "CurrentProcessTests.h"
@@ -9,6 +9,7 @@
 #include <boost/filesystem/operations.hpp>
 #include <iostream>
 
+using namespace Ishiko::Process;
 using namespace Ishiko::Tests;
 
 CurrentProcessTests::CurrentProcessTests(const TestNumber& number, const TestEnvironment& environment)
@@ -24,13 +25,13 @@ void CurrentProcessTests::RedirectStandardOutputToFileTest1(FileComparisonTest& 
     test.setOutputFilePath(outputPath);
     test.setReferenceFilePath(test.environment().getReferenceDataDirectory() / "RedirectStandardOutputToFileTest1.txt");
 
-    Ishiko::Process::CurrentProcess::RedirectStandardOutputToFile(outputPath.string());
+    CurrentProcess::RedirectStandardOutputToFile(outputPath.string());
 
     std::cout << "Hello World!" << std::endl;
 
-    Ishiko::Process::CurrentProcess::RedirectStandardOutputToTerminal();
+    CurrentProcess::RedirectStandardOutputToTerminal();
 
     std::cout << "should not be in the file" << std::endl;
 
-    ISHTF_PASS();
+    ISHIKO_PASS();
 }
