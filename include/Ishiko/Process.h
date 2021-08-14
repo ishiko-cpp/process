@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_PROCESS_H_
-#define _ISHIKO_PROCESS_H_
+#ifndef _ISHIKO_CPP_PROCESS_H_
+#define _ISHIKO_CPP_PROCESS_H_
 
 #include "Process/ChildProcess.h"
 #include "Process/ChildProcessBuilder.h"

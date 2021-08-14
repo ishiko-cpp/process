@@ -1,12 +1,13 @@
 /*
-    Copyright (c) 2016-2020 Xavier Leclercq
+    Copyright (c) 2016-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
 #include "ChildProcessBuilder.h"
 #include "ErrorCategory.h"
-#include <Ishiko/Platform/OS.h>
+#include <Ishiko/BasePlatform.h>
+
 #if ISHIKO_OS == ISHIKO_OS_LINUX
 #include <boost/filesystem/operations.hpp>
 #include <fcntl.h>

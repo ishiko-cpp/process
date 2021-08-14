@@ -1,12 +1,14 @@
 /*
-    Copyright (c) 2005-2020 Xavier Leclercq
+    Copyright (c) 2005-2021 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
 #include "CurrentEnvironment.h"
-#include <Ishiko/Platform/Compilers.h>
-#include <Ishiko/Platform/OS.h>
+#include <Ishiko/BasePlatform.h>
+#include <cstring>
+#include <stdlib.h>
+
 #if ISHIKO_OS == ISHIKO_OS_LINUX
 extern char** environ;
 #elif ISHIKO_OS == ISHIKO_OS_WINDOWS
@@ -15,8 +17,6 @@ extern char** environ;
 #undef UNICODE
 #include <Windows.h>
 #endif
-#include <cstring>
-#include <stdlib.h>
 
 namespace Ishiko
 {

@@ -1,11 +1,11 @@
 /*
     Copyright (c) 2020 Xavier Leclercq
     Released under the MIT License
-    See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
+    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_PROCESS_ERRORCATEGORY_H_
-#define _ISHIKO_PROCESS_ERRORCATEGORY_H_
+#ifndef _ISHIKO_CPP_PROCESS_ERRORCATEGORY_H_
+#define _ISHIKO_CPP_PROCESS_ERRORCATEGORY_H_
 
 #include <Ishiko/Errors/ErrorCategory.h>
 #include <Ishiko/Errors/Error.h>
