@@ -8,8 +8,8 @@
 #define _ISHIKO_CPP_PROCESS_CHILDPROCESS_H_
 
 #include "Environment.h"
-#include <Ishiko/Errors.h>
 #include <Ishiko/BasePlatform.h>
+#include <Ishiko/Errors.hpp>
 
 #if ISHIKO_OS == ISHIKO_OS_LINUX
 #include <sys/types.h>
