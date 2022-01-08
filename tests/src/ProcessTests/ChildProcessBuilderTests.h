@@ -1,13 +1,13 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_TEST_PROCESS_PROCESSTESTS_CHILDPROCESSBUILDERTESTS_H_
-#define _ISHIKO_TEST_PROCESS_PROCESSTESTS_CHILDPROCESSBUILDERTESTS_H_
+#ifndef _ISHIKO_CPP_TEST_PROCESS_PROCESSTESTS_CHILDPROCESSBUILDERTESTS_H_
+#define _ISHIKO_CPP_TEST_PROCESS_PROCESSTESTS_CHILDPROCESSBUILDERTESTS_H_
 
-#include <Ishiko/Tests/Core.h>
+#include <Ishiko/Tests/Core.hpp>
 
 class ChildProcessBuilderTests : public Ishiko::Tests::TestSequence
 {
