@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -11,8 +11,8 @@ using namespace Ishiko;
 using namespace Ishiko::Process;
 using namespace Ishiko::Tests;
 
-ChildProcessTests::ChildProcessTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "ChildProcess tests", environment)
+ChildProcessTests::ChildProcessTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "ChildProcess tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Spawn test 1", SpawnTest1);
@@ -29,9 +29,9 @@ void ChildProcessTests::ConstructorTest1(Test& test)
 void ChildProcessTests::SpawnTest1(Test& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper");
 #else
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper.exe");
 #endif
 
     ChildProcess handle = ChildProcess::Spawn(executablePath.string());
@@ -45,9 +45,9 @@ void ChildProcessTests::SpawnTest1(Test& test)
 void ChildProcessTests::SpawnTest2(Test& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper");
 #else
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper.exe");
 #endif
 
     Error error(0);

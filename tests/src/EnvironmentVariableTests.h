@@ -12,8 +12,7 @@
 class EnvironmentVariableTests : public Ishiko::Tests::TestSequence
 {
 public:
-    EnvironmentVariableTests(const Ishiko::Tests::TestNumber& number,
-        const Ishiko::Tests::TestEnvironment& environment);
+    EnvironmentVariableTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);

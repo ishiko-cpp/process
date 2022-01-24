@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015-2021 Xavier Leclercq
+    Copyright (c) 2015-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -10,8 +10,8 @@
 using namespace Ishiko::Process;
 using namespace Ishiko::Tests;
 
-CurrentEnvironmentTests::CurrentEnvironmentTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "CurrentEnvironment tests", environment)
+CurrentEnvironmentTests::CurrentEnvironmentTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "CurrentEnvironment tests", context)
 {
     append<HeapAllocationErrorsTest>("set test 1", SetTest1);
     append<HeapAllocationErrorsTest>("set test 2", SetTest2);

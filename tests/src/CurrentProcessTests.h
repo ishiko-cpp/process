@@ -12,7 +12,7 @@
 class CurrentProcessTests : public Ishiko::Tests::TestSequence
 {
 public:
-    CurrentProcessTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+    CurrentProcessTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
     static void RedirectStandardOutputToFileTest1(Ishiko::Tests::FileComparisonTest& test);
