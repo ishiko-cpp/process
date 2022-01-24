@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -12,8 +12,8 @@ using namespace Ishiko;
 using namespace Ishiko::Process;
 using namespace Ishiko::Tests;
 
-ChildProcessBuilderTests::ChildProcessBuilderTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "ChildProcessBuilder tests", environment)
+ChildProcessBuilderTests::ChildProcessBuilderTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "ChildProcessBuilder tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("start test 1", StartTest1);
@@ -35,9 +35,9 @@ void ChildProcessBuilderTests::ConstructorTest1(Test& test)
 void ChildProcessBuilderTests::StartTest1(Test& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper");
 #else
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper.exe");
 #endif
 
     ChildProcessBuilder builder(executablePath.string());
@@ -53,9 +53,9 @@ void ChildProcessBuilderTests::StartTest1(Test& test)
 void ChildProcessBuilderTests::StartTest2(Test& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper");
 #else
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper.exe");
 #endif
 
     ChildProcessBuilder builder(executablePath.string());
@@ -74,9 +74,9 @@ void ChildProcessBuilderTests::StartTest2(Test& test)
 void ChildProcessBuilderTests::StartTest3(Test& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper");
 #else
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper.exe");
 #endif
 
     CommandLine command(executablePath, {"1"});
@@ -93,14 +93,14 @@ void ChildProcessBuilderTests::StartTest3(Test& test)
 void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonTest& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/StandardOutputTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/StandardOutputTestHelper");
 #else
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/StandardOutputTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/StandardOutputTestHelper.exe");
 #endif
-    boost::filesystem::path outputPath(test.environment().getTestOutputDirectory() / "ProcessCreatorRedirectStandardOutputTest1.txt");
+    boost::filesystem::path outputPath(test.context().getTestOutputDirectory() / "ProcessCreatorRedirectStandardOutputTest1.txt");
     boost::filesystem::remove(outputPath);
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.environment().getReferenceDataDirectory() / "ProcessCreatorRedirectStandardOutputTest1.txt");
+    test.setReferenceFilePath(test.context().getReferenceDataDirectory() / "ProcessCreatorRedirectStandardOutputTest1.txt");
 
     ChildProcessBuilder creator(executablePath.string());
     creator.redirectStandardOutputToFile(outputPath.string());
@@ -119,14 +119,14 @@ void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonT
 void ChildProcessBuilderTests::StartTest4(FileComparisonTest& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/StandardOutputTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/StandardOutputTestHelper");
 #else
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/StandardOutputTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/StandardOutputTestHelper.exe");
 #endif
-    boost::filesystem::path outputPath(test.environment().getTestOutputDirectory() / "ChildProcessBuilderTests_StartTest4.txt");
+    boost::filesystem::path outputPath(test.context().getTestOutputDirectory() / "ChildProcessBuilderTests_StartTest4.txt");
     boost::filesystem::remove(outputPath);
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.environment().getReferenceDataDirectory() / "ChildProcessBuilderTests_StartTest4.txt");
+    test.setReferenceFilePath(test.context().getReferenceDataDirectory() / "ChildProcessBuilderTests_StartTest4.txt");
 
     CommandLine command(executablePath, {"Hello World!"});
     ChildProcessBuilder builder(command);
@@ -143,14 +143,14 @@ void ChildProcessBuilderTests::StartTest4(FileComparisonTest& test)
 void ChildProcessBuilderTests::StartTest5(FileComparisonTest& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/DumpTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/DumpTestHelper");
 #else
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/DumpTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/DumpTestHelper.exe");
 #endif
-    boost::filesystem::path outputPath(test.environment().getTestOutputDirectory() / "ChildProcessBuilderTests_StartTest5.txt");
+    boost::filesystem::path outputPath(test.context().getTestOutputDirectory() / "ChildProcessBuilderTests_StartTest5.txt");
     boost::filesystem::remove(outputPath);
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.environment().getReferenceDataDirectory() / "ChildProcessBuilderTests_StartTest5.txt");
+    test.setReferenceFilePath(test.context().getReferenceDataDirectory() / "ChildProcessBuilderTests_StartTest5.txt");
 
     CommandLine command(executablePath.string());
     ChildProcessBuilder builder(command, Ishiko::Process::Environment());
@@ -167,14 +167,14 @@ void ChildProcessBuilderTests::StartTest5(FileComparisonTest& test)
 void ChildProcessBuilderTests::StartTest6(FileComparisonTest& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/DumpTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/DumpTestHelper");
 #else
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/DumpTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/DumpTestHelper.exe");
 #endif
-    boost::filesystem::path outputPath(test.environment().getTestOutputDirectory() / "ChildProcessBuilderTests_StartTest6.txt");
+    boost::filesystem::path outputPath(test.context().getTestOutputDirectory() / "ChildProcessBuilderTests_StartTest6.txt");
     boost::filesystem::remove(outputPath);
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.environment().getReferenceDataDirectory() / "ChildProcessBuilderTests_StartTest6.txt");
+    test.setReferenceFilePath(test.context().getReferenceDataDirectory() / "ChildProcessBuilderTests_StartTest6.txt");
 
     CommandLine command(executablePath.string());
     Ishiko::Process::Environment environment;

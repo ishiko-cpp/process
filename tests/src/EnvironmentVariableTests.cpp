@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020-2021 Xavier Leclercq
+    Copyright (c) 2020-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -8,8 +8,8 @@
 
 using namespace Ishiko::Tests;
 
-EnvironmentVariableTests::EnvironmentVariableTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "EnvironmentVariable tests", environment)
+EnvironmentVariableTests::EnvironmentVariableTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "EnvironmentVariable tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
 }

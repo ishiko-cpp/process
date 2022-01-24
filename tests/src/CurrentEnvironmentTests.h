@@ -12,8 +12,7 @@
 class CurrentEnvironmentTests : public Ishiko::Tests::TestSequence
 {
 public:
-    CurrentEnvironmentTests(const Ishiko::Tests::TestNumber& number,
-        const Ishiko::Tests::TestEnvironment& environment);
+    CurrentEnvironmentTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
     static void SetTest1(Ishiko::Tests::Test& test);

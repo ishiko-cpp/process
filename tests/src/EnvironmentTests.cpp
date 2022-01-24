@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020-2021 Xavier Leclercq
+    Copyright (c) 2020-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -13,8 +13,8 @@
 using namespace Ishiko::Process;
 using namespace Ishiko::Tests;
 
-EnvironmentTests::EnvironmentTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "Environment tests", environment)
+EnvironmentTests::EnvironmentTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "Environment tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
     append<HeapAllocationErrorsTest>("Constructor test 2", ConstructorTest2);
@@ -137,11 +137,11 @@ void EnvironmentTests::ToEnvironmentArrayTest2(Test& test)
 
 void EnvironmentTests::ToEnvironmentBlockTest1(FileComparisonTest& test)
 {
-    boost::filesystem::path outputPath(test.environment().getTestOutputDirectory()
+    boost::filesystem::path outputPath(test.context().getTestOutputDirectory()
         / "EnvironmentTests_ToEnvironmentBlockTest1.bin");
     boost::filesystem::remove(outputPath);
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.environment().getReferenceDataDirectory() / 
+    test.setReferenceFilePath(test.context().getReferenceDataDirectory() /
         "EnvironmentTests_ToEnvironmentBlockTest1.bin");
 
     Environment env;
@@ -156,11 +156,11 @@ void EnvironmentTests::ToEnvironmentBlockTest1(FileComparisonTest& test)
 
 void EnvironmentTests::ToEnvironmentBlockTest2(FileComparisonTest& test)
 {
-    boost::filesystem::path outputPath(test.environment().getTestOutputDirectory()
+    boost::filesystem::path outputPath(test.context().getTestOutputDirectory()
         / "EnvironmentTests_ToEnvironmentBlockTest2.bin");
     boost::filesystem::remove(outputPath);
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.environment().getReferenceDataDirectory() /
+    test.setReferenceFilePath(test.context().getReferenceDataDirectory() /
         "EnvironmentTests_ToEnvironmentBlockTest2.bin");
 
     Environment env;

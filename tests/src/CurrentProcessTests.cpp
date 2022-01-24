@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020-2021 Xavier Leclercq
+    Copyright (c) 2020-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -12,18 +12,18 @@
 using namespace Ishiko::Process;
 using namespace Ishiko::Tests;
 
-CurrentProcessTests::CurrentProcessTests(const TestNumber& number, const TestEnvironment& environment)
-    : TestSequence(number, "CurrentProcess tests", environment)
+CurrentProcessTests::CurrentProcessTests(const TestNumber& number, const TestContext& context)
+    : TestSequence(number, "CurrentProcess tests", context)
 {
     append<FileComparisonTest>("RedirectStandardOutputToFile test 1", RedirectStandardOutputToFileTest1);
 }
 
 void CurrentProcessTests::RedirectStandardOutputToFileTest1(FileComparisonTest& test)
 {
-    boost::filesystem::path outputPath(test.environment().getTestOutputDirectory() / "RedirectStandardOutputToFileTest1.txt");
+    boost::filesystem::path outputPath(test.context().getTestOutputPath("RedirectStandardOutputToFileTest1.txt"));
     boost::filesystem::remove(outputPath);
     test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.environment().getReferenceDataDirectory() / "RedirectStandardOutputToFileTest1.txt");
+    test.setReferenceFilePath(test.context().getReferenceDataPath("RedirectStandardOutputToFileTest1.txt"));
 
     CurrentProcess::RedirectStandardOutputToFile(outputPath.string());
 

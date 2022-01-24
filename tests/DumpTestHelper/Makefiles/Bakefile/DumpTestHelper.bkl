@@ -9,7 +9,7 @@ program DumpTestHelper
 {
     archs = x86 x86_64;
 
-    outputdir = ../../../TestData/Bin;
+    outputdir = ../../../data/bin;
 
     sources
     {
