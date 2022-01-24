@@ -35,9 +35,9 @@ void ChildProcessBuilderTests::ConstructorTest1(Test& test)
 void ChildProcessBuilderTests::StartTest1(Test& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper");
 #else
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper.exe");
 #endif
 
     ChildProcessBuilder builder(executablePath.string());
@@ -53,9 +53,9 @@ void ChildProcessBuilderTests::StartTest1(Test& test)
 void ChildProcessBuilderTests::StartTest2(Test& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper");
 #else
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper.exe");
 #endif
 
     ChildProcessBuilder builder(executablePath.string());
@@ -74,9 +74,9 @@ void ChildProcessBuilderTests::StartTest2(Test& test)
 void ChildProcessBuilderTests::StartTest3(Test& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper");
 #else
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper.exe");
 #endif
 
     CommandLine command(executablePath, {"1"});
@@ -93,9 +93,9 @@ void ChildProcessBuilderTests::StartTest3(Test& test)
 void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonTest& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/StandardOutputTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/StandardOutputTestHelper");
 #else
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/StandardOutputTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/StandardOutputTestHelper.exe");
 #endif
     boost::filesystem::path outputPath(test.context().getTestOutputDirectory() / "ProcessCreatorRedirectStandardOutputTest1.txt");
     boost::filesystem::remove(outputPath);
@@ -119,9 +119,9 @@ void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonT
 void ChildProcessBuilderTests::StartTest4(FileComparisonTest& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/StandardOutputTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/StandardOutputTestHelper");
 #else
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/StandardOutputTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/StandardOutputTestHelper.exe");
 #endif
     boost::filesystem::path outputPath(test.context().getTestOutputDirectory() / "ChildProcessBuilderTests_StartTest4.txt");
     boost::filesystem::remove(outputPath);
@@ -143,9 +143,9 @@ void ChildProcessBuilderTests::StartTest4(FileComparisonTest& test)
 void ChildProcessBuilderTests::StartTest5(FileComparisonTest& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/DumpTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/DumpTestHelper");
 #else
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/DumpTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/DumpTestHelper.exe");
 #endif
     boost::filesystem::path outputPath(test.context().getTestOutputDirectory() / "ChildProcessBuilderTests_StartTest5.txt");
     boost::filesystem::remove(outputPath);
@@ -167,9 +167,9 @@ void ChildProcessBuilderTests::StartTest5(FileComparisonTest& test)
 void ChildProcessBuilderTests::StartTest6(FileComparisonTest& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/DumpTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/DumpTestHelper");
 #else
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/DumpTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/DumpTestHelper.exe");
 #endif
     boost::filesystem::path outputPath(test.context().getTestOutputDirectory() / "ChildProcessBuilderTests_StartTest6.txt");
     boost::filesystem::remove(outputPath);
