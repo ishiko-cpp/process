@@ -12,7 +12,6 @@
 #include "ProcessTests/ChildProcessTests.h"
 #include "ProcessTests/ChildProcessBuilderTests.h"
 #include <Ishiko/Tests/Core.hpp>
-#include <boost/filesystem/operations.hpp>
 
 using namespace Ishiko::Tests;
 
@@ -20,10 +19,9 @@ int main(int argc, char* argv[])
 {
     TestHarness theTestHarness("IshikoProcess");
 
-    theTestHarness.environment().setTestDataDirectory("../../TestData");
-    theTestHarness.environment().setTestOutputDirectory("../../TestOutput");
-    boost::filesystem::create_directories("../../TestOutput");
-    theTestHarness.environment().setReferenceDataDirectory("../../ReferenceData");
+    theTestHarness.context().setTestDataDirectory("../../TestData");
+    theTestHarness.context().setTestOutputDirectory("../../TestOutput");
+    theTestHarness.context().setReferenceDataDirectory("../../ReferenceData");
 
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<CurrentEnvironmentTests>();

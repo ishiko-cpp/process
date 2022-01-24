@@ -12,7 +12,7 @@
 class CommandLineTests : public Ishiko::Tests::TestSequence
 {
 public:
-    CommandLineTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestEnvironment& environment);
+    CommandLineTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
 
 private:
     static void ConstructorTest1(Ishiko::Tests::Test& test);
