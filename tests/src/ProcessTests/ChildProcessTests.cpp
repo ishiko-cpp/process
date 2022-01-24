@@ -29,9 +29,9 @@ void ChildProcessTests::ConstructorTest1(Test& test)
 void ChildProcessTests::SpawnTest1(Test& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper");
 #else
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper.exe");
 #endif
 
     ChildProcess handle = ChildProcess::Spawn(executablePath.string());
@@ -45,9 +45,9 @@ void ChildProcessTests::SpawnTest1(Test& test)
 void ChildProcessTests::SpawnTest2(Test& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/ExitCodeTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper");
 #else
-    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/ExitCodeTestHelper.exe");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "bin/ExitCodeTestHelper.exe");
 #endif
 
     Error error(0);
