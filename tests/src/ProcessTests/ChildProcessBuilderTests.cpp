@@ -119,7 +119,7 @@ void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(FileComparisonT
 void ChildProcessBuilderTests::StartTest4(FileComparisonTest& test)
 {
 #ifdef __linux__
-    boost::filesystem::path executablePath(test.environment().getTestDataDirectory() / "Bin/StandardOutputTestHelper");
+    boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/StandardOutputTestHelper");
 #else
     boost::filesystem::path executablePath(test.context().getTestDataDirectory() / "Bin/StandardOutputTestHelper.exe");
 #endif

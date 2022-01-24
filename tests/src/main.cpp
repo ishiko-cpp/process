@@ -19,9 +19,9 @@ int main(int argc, char* argv[])
 {
     TestHarness theTestHarness("IshikoProcess");
 
-    theTestHarness.context().setTestDataDirectory("../../TestData");
-    theTestHarness.context().setTestOutputDirectory("../../TestOutput");
-    theTestHarness.context().setReferenceDataDirectory("../../ReferenceData");
+    theTestHarness.context().setTestDataDirectory("../../data");
+    theTestHarness.context().setTestOutputDirectory("../../output");
+    theTestHarness.context().setReferenceDataDirectory("../../reference");
 
     TestSequence& theTests = theTestHarness.tests();
     theTests.append<CurrentEnvironmentTests>();

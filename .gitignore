@@ -10,6 +10,6 @@ Debug/
 Release/
 /lib/*
 !/lib/README.md
-/tests/TestData/Bin/*
-!/tests/TestData/Bin/README.md
-/tests/TestOutput/
+/tests/data/Bin/*
+!/tests/data/Bin/README.md
+/tests/output/
