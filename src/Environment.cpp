@@ -38,7 +38,7 @@ Environment::Environment(const Environment& other)
     m_variables.reserve(other.m_variables.size());
     for (size_t i = 0; i < other.m_variables.size() - 1; ++i)
     {
-        m_variables.push_back(EnvironmentVariable(Text::CString::Duplicate(other.m_variables[i].m_variable)));
+        m_variables.push_back(EnvironmentVariable(CString::Duplicate(other.m_variables[i].m_variable)));
     }
     m_variables.push_back(EnvironmentVariable(nullptr));
 }
@@ -92,7 +92,7 @@ void Environment::set(const char* name, const char* value)
     std::string entry = name;
     entry += "=";
     entry += value;
-    EnvironmentVariable newVariable(Text::CString::Duplicate(entry.c_str()));
+    EnvironmentVariable newVariable(CString::Duplicate(entry.c_str()));
 
     size_t i = 0;
     while ((i < (m_variables.size() - 1)) && (strcmp(m_variables[i].m_variable, newVariable.m_variable) < 0))
