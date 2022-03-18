@@ -9,20 +9,20 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class ChildProcessBuilderTests : public Ishiko::Tests::TestSequence
+class ChildProcessBuilderTests : public Ishiko::TestSequence
 {
 public:
-    ChildProcessBuilderTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    ChildProcessBuilderTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ConstructorTest1(Ishiko::Tests::Test& test);
-    static void StartTest1(Ishiko::Tests::Test& test);
-    static void StartTest2(Ishiko::Tests::Test& test);
-    static void StartTest3(Ishiko::Tests::Test& test);
-    static void RedirectStandardOutputToFileTest1(Ishiko::Tests::FileComparisonTest& test);
-    static void StartTest4(Ishiko::Tests::FileComparisonTest& test);
-    static void StartTest5(Ishiko::Tests::FileComparisonTest& test);
-    static void StartTest6(Ishiko::Tests::FileComparisonTest& test);
+    static void ConstructorTest1(Ishiko::Test& test);
+    static void StartTest1(Ishiko::Test& test);
+    static void StartTest2(Ishiko::Test& test);
+    static void StartTest3(Ishiko::Test& test);
+    static void RedirectStandardOutputToFileTest1(Ishiko::FileComparisonTest& test);
+    static void StartTest4(Ishiko::FileComparisonTest& test);
+    static void StartTest5(Ishiko::FileComparisonTest& test);
+    static void StartTest6(Ishiko::FileComparisonTest& test);
 };
 
 #endif

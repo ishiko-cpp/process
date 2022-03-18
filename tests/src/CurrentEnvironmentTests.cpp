@@ -7,8 +7,8 @@
 #include "CurrentEnvironmentTests.h"
 #include "Ishiko/Process/CurrentEnvironment.h"
 
+using namespace Ishiko;
 using namespace Ishiko::Process;
-using namespace Ishiko::Tests;
 
 CurrentEnvironmentTests::CurrentEnvironmentTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "CurrentEnvironment tests", context)
@@ -32,9 +32,9 @@ void CurrentEnvironmentTests::SetTest1(Test& test)
 	std::string value;
 	bool found = CurrentEnvironment::Find("IshikoEnvironmentSetTest1", value);
 
-    ISHIKO_FAIL_IF_NOT(found);
-    ISHIKO_FAIL_IF_NEQ(value, "dummy");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(found);
+    ISHIKO_TEST_FAIL_IF_NEQ(value, "dummy");
+    ISHIKO_TEST_PASS();
 }
 
 void CurrentEnvironmentTests::SetTest2(Test& test)
@@ -45,9 +45,9 @@ void CurrentEnvironmentTests::SetTest2(Test& test)
 	std::string value;
 	bool found = CurrentEnvironment::Find("IshikoEnvironmentSetTest2", value);
 
-    ISHIKO_FAIL_IF_NOT(found);
-    ISHIKO_FAIL_IF_NEQ(value, "dummy2");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NOT(found);
+    ISHIKO_TEST_FAIL_IF_NEQ(value, "dummy2");
+    ISHIKO_TEST_PASS();
 }
 
 void CurrentEnvironmentTests::FindTest1(Test& test)
@@ -55,8 +55,8 @@ void CurrentEnvironmentTests::FindTest1(Test& test)
 	std::string value;
 	bool found = CurrentEnvironment::Find("IshikoEnvironmentFindTest1", value);
 
-    ISHIKO_FAIL_IF(found);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF(found);
+    ISHIKO_TEST_PASS();
 }
 
 void CurrentEnvironmentTests::ToMapTest1(Test& test)
@@ -66,9 +66,9 @@ void CurrentEnvironmentTests::ToMapTest1(Test& test)
 
     std::map<std::string, std::string> environment = CurrentEnvironment::ToMap();
 
-    ISHIKO_FAIL_IF_NEQ(environment.at("CurrentEnvironmentTests_ToMapTest1_a"), "dummy");
-    ISHIKO_FAIL_IF_NEQ(environment.at("CurrentEnvironmentTests_ToMapTest1_b"), "dummy2");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(environment.at("CurrentEnvironmentTests_ToMapTest1_a"), "dummy");
+    ISHIKO_TEST_FAIL_IF_NEQ(environment.at("CurrentEnvironmentTests_ToMapTest1_b"), "dummy2");
+    ISHIKO_TEST_PASS();
 }
 
 void CurrentEnvironmentTests::ExpandVariablesInStringTest1(Test& test)
@@ -77,8 +77,8 @@ void CurrentEnvironmentTests::ExpandVariablesInStringTest1(Test& test)
 	std::string expandedStr = CurrentEnvironment::ExpandVariablesInString(str,
         CurrentEnvironment::eDollarAndParentheses);
 
-    ISHIKO_FAIL_IF_NEQ(str, expandedStr);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(str, expandedStr);
+    ISHIKO_TEST_PASS();
 }
 
 void CurrentEnvironmentTests::ExpandVariablesInStringTest2(Test& test)
@@ -89,8 +89,8 @@ void CurrentEnvironmentTests::ExpandVariablesInStringTest2(Test& test)
 	std::string expandedStr = CurrentEnvironment::ExpandVariablesInString(str,
         CurrentEnvironment::eDollarAndParentheses);
 
-    ISHIKO_FAIL_IF_NEQ(expandedStr, "dummy");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(expandedStr, "dummy");
+    ISHIKO_TEST_PASS();
 }
 
 void CurrentEnvironmentTests::ExpandVariablesInStringTest3(Test& test)
@@ -101,8 +101,8 @@ void CurrentEnvironmentTests::ExpandVariablesInStringTest3(Test& test)
 	std::string expandedStr = CurrentEnvironment::ExpandVariablesInString(str,
         CurrentEnvironment::eDollarAndParentheses);
 
-    ISHIKO_FAIL_IF_NEQ(expandedStr, "this is a dummy environment variable");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(expandedStr, "this is a dummy environment variable");
+    ISHIKO_TEST_PASS();
 }
 
 void CurrentEnvironmentTests::ExpandVariablesInStringTest4(Test& test)
@@ -114,8 +114,8 @@ void CurrentEnvironmentTests::ExpandVariablesInStringTest4(Test& test)
 	std::string expandedStr = CurrentEnvironment::ExpandVariablesInString(str,
         CurrentEnvironment::eDollarAndParentheses);
 
-    ISHIKO_FAIL_IF_NEQ(expandedStr, "These are dummy1 and dummy2!");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(expandedStr, "These are dummy1 and dummy2!");
+    ISHIKO_TEST_PASS();
 }
 
 void CurrentEnvironmentTests::ExpandVariablesInStringTest5(Test& test)
@@ -124,8 +124,8 @@ void CurrentEnvironmentTests::ExpandVariablesInStringTest5(Test& test)
 	std::string expandedStr = CurrentEnvironment::ExpandVariablesInString(str,
         CurrentEnvironment::eDollarAndParentheses);
 
-    ISHIKO_FAIL_IF_NEQ(expandedStr, "this is a $(nonexistent) environment variable");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(expandedStr, "this is a $(nonexistent) environment variable");
+    ISHIKO_TEST_PASS();
 }
 
 void CurrentEnvironmentTests::ExpandVariablesInStringTest6(Test& test)
@@ -134,6 +134,6 @@ void CurrentEnvironmentTests::ExpandVariablesInStringTest6(Test& test)
 	std::string expandedStr = CurrentEnvironment::ExpandVariablesInString(str,
         CurrentEnvironment::eDollarAndParentheses);
 
-    ISHIKO_FAIL_IF_NEQ(expandedStr, "this is a $(incomplete environment variable");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(expandedStr, "this is a $(incomplete environment variable");
+    ISHIKO_TEST_PASS();
 }
