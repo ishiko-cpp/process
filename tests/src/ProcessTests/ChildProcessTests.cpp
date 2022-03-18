@@ -23,7 +23,7 @@ void ChildProcessTests::ConstructorTest1(Test& test)
 {
     ChildProcess handle;
     
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
 
 void ChildProcessTests::SpawnTest1(Test& test)
@@ -38,8 +38,8 @@ void ChildProcessTests::SpawnTest1(Test& test)
 
     handle.waitForExit();
 
-    ISHIKO_FAIL_IF_NEQ(handle.exitCode(), 0);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHIKO_TEST_PASS();
 }
 
 void ChildProcessTests::SpawnTest2(Test& test)
@@ -53,10 +53,10 @@ void ChildProcessTests::SpawnTest2(Test& test)
     Error error(0);
     ChildProcess handle = ChildProcess::Spawn(executablePath.string(), error);
 
-    ISHIKO_ABORT_IF(error);
+    ISHIKO_TEST_ABORT_IF(error);
 
     handle.waitForExit();
 
-    ISHIKO_FAIL_IF_NEQ(handle.exitCode(), 0);
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHIKO_TEST_PASS();
 }

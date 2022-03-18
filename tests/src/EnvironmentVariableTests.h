@@ -9,13 +9,13 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class EnvironmentVariableTests : public Ishiko::Tests::TestSequence
+class EnvironmentVariableTests : public Ishiko::TestSequence
 {
 public:
-    EnvironmentVariableTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    EnvironmentVariableTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ConstructorTest1(Ishiko::Tests::Test& test);
+    static void ConstructorTest1(Ishiko::Test& test);
 };
 
 #endif

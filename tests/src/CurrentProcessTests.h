@@ -9,13 +9,13 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class CurrentProcessTests : public Ishiko::Tests::TestSequence
+class CurrentProcessTests : public Ishiko::TestSequence
 {
 public:
-    CurrentProcessTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    CurrentProcessTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void RedirectStandardOutputToFileTest1(Ishiko::Tests::FileComparisonTest& test);
+    static void RedirectStandardOutputToFileTest1(Ishiko::FileComparisonTest& test);
 };
 
 #endif

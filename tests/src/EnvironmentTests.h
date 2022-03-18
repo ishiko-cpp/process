@@ -9,22 +9,22 @@
 
 #include <Ishiko/Tests/Core.hpp>
 
-class EnvironmentTests : public Ishiko::Tests::TestSequence
+class EnvironmentTests : public Ishiko::TestSequence
 {
 public:
-    EnvironmentTests(const Ishiko::Tests::TestNumber& number, const Ishiko::Tests::TestContext& context);
+    EnvironmentTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void ConstructorTest1(Ishiko::Tests::Test& test);
-    static void ConstructorTest2(Ishiko::Tests::Test& test);
-    static void SetTest1(Ishiko::Tests::Test& test);
-    static void SetTest2(Ishiko::Tests::Test& test);
-    static void SetTest3(Ishiko::Tests::Test& test);
-    static void FindTest1(Ishiko::Tests::Test& test);
-    static void ToEnvironmentArrayTest1(Ishiko::Tests::Test& test);
-    static void ToEnvironmentArrayTest2(Ishiko::Tests::Test& test);
-    static void ToEnvironmentBlockTest1(Ishiko::Tests::FileComparisonTest& test);
-    static void ToEnvironmentBlockTest2(Ishiko::Tests::FileComparisonTest& test);
+    static void ConstructorTest1(Ishiko::Test& test);
+    static void ConstructorTest2(Ishiko::Test& test);
+    static void SetTest1(Ishiko::Test& test);
+    static void SetTest2(Ishiko::Test& test);
+    static void SetTest3(Ishiko::Test& test);
+    static void FindTest1(Ishiko::Test& test);
+    static void ToEnvironmentArrayTest1(Ishiko::Test& test);
+    static void ToEnvironmentArrayTest2(Ishiko::Test& test);
+    static void ToEnvironmentBlockTest1(Ishiko::FileComparisonTest& test);
+    static void ToEnvironmentBlockTest2(Ishiko::FileComparisonTest& test);
 };
 
 #endif
