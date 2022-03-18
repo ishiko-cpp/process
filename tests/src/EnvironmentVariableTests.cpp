@@ -6,7 +6,7 @@
 
 #include "EnvironmentVariableTests.h"
 
-using namespace Ishiko::Tests;
+using namespace Ishiko;
 
 EnvironmentVariableTests::EnvironmentVariableTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "EnvironmentVariable tests", context)
@@ -18,7 +18,7 @@ void EnvironmentVariableTests::ConstructorTest1(Test& test)
 {
     Ishiko::Process::EnvironmentVariable variable("name=value");
 
-    ISHIKO_FAIL_IF_NEQ(variable.name(), "name");
-    ISHIKO_FAIL_IF_NEQ(variable.value(), "value");
-    ISHIKO_PASS();
+    ISHIKO_TEST_FAIL_IF_NEQ(variable.name(), "name");
+    ISHIKO_TEST_FAIL_IF_NEQ(variable.value(), "value");
+    ISHIKO_TEST_PASS();
 }

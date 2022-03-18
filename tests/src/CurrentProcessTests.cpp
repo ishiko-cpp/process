@@ -9,8 +9,8 @@
 #include <boost/filesystem/operations.hpp>
 #include <iostream>
 
+using namespace Ishiko;
 using namespace Ishiko::Process;
-using namespace Ishiko::Tests;
 
 CurrentProcessTests::CurrentProcessTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "CurrentProcess tests", context)
@@ -33,5 +33,5 @@ void CurrentProcessTests::RedirectStandardOutputToFileTest1(FileComparisonTest& 
 
     std::cout << "should not be in the file" << std::endl;
 
-    ISHIKO_PASS();
+    ISHIKO_TEST_PASS();
 }
