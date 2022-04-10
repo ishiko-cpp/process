@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_CPP_TEST_PROCESS_PROCESSTESTS_CHILDPROCESSTESTS_H_
 #define _ISHIKO_CPP_TEST_PROCESS_PROCESSTESTS_CHILDPROCESSTESTS_H_
 
-#include <Ishiko/Tests/Core.hpp>
+#include <Ishiko/TestFramework/Core.hpp>
 
 class ChildProcessTests : public Ishiko::TestSequence
 {
