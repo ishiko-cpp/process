@@ -7,7 +7,7 @@
 #ifndef _ISHIKO_CPP_TEST_PROCESS_ENVIRONMENTTESTS_H_
 #define _ISHIKO_CPP_TEST_PROCESS_ENVIRONMENTTESTS_H_
 
-#include <Ishiko/Tests/Core.hpp>
+#include <Ishiko/TestFramework/Core.hpp>
 
 class EnvironmentTests : public Ishiko::TestSequence
 {
