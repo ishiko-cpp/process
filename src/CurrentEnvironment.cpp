@@ -20,8 +20,6 @@ extern char** environ;
 
 namespace Ishiko
 {
-namespace Process
-{
 
 bool CurrentEnvironment::Find(const std::string& name, std::string& value)
 {
@@ -133,5 +131,4 @@ std::string CurrentEnvironment::ExpandVariablesInString(const std::string& str, 
     return result;
 }
 
-}
 }

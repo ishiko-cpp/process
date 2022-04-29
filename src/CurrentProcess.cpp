@@ -9,8 +9,6 @@
 
 namespace Ishiko
 {
-namespace Process
-{
 
 void CurrentProcess::RedirectStandardOutputToFile(const std::string& path)
 {
@@ -35,5 +33,4 @@ void CurrentProcess::RedirectStandardOutputToTerminal()
 #endif
 }
 
-}
 }

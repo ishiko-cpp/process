@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -8,8 +8,6 @@
 #include <cstring>
 
 namespace Ishiko
-{
-namespace Process
 {
 
 EnvironmentVariable::EnvironmentVariable(const char* variable)
@@ -29,5 +27,4 @@ std::string EnvironmentVariable::value() const
     return std::string(equal + 1);
 }
 
-}
 }

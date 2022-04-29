@@ -11,8 +11,6 @@
 
 namespace Ishiko
 {
-namespace Process
-{
 
 Environment::Environment()
 {
@@ -138,5 +136,4 @@ std::vector<char> Environment::toEnvironmentBlock() const
     return result;
 }
 
-}
 }

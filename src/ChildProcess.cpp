@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2020 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -12,8 +12,6 @@
 #endif
 
 namespace Ishiko
-{
-namespace Process
 {
 
 ChildProcess ChildProcess::Spawn(const std::string& commandLine)
@@ -159,5 +157,4 @@ int ChildProcess::exitCode() const
 #endif
 }
 
-}
 }

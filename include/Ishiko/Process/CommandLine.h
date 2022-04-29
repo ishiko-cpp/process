@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -12,8 +12,6 @@
 #include <vector>
 
 namespace Ishiko
-{
-namespace Process
 {
 
 /// A class that represent the command line used to launch an executable.
@@ -72,7 +70,6 @@ private:
     std::vector<std::string> m_arguments;
 };
 
-}
 }
 
 #endif
