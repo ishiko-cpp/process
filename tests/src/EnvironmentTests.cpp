@@ -11,7 +11,6 @@
 #include <fstream>
 
 using namespace Ishiko;
-using namespace Ishiko::Process;
 
 EnvironmentTests::EnvironmentTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "Environment tests", context)

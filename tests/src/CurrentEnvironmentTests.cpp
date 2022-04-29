@@ -8,7 +8,6 @@
 #include "Ishiko/Process/CurrentEnvironment.h"
 
 using namespace Ishiko;
-using namespace Ishiko::Process;
 
 CurrentEnvironmentTests::CurrentEnvironmentTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "CurrentEnvironment tests", context)
