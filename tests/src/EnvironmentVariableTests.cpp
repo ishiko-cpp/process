@@ -16,7 +16,7 @@ EnvironmentVariableTests::EnvironmentVariableTests(const TestNumber& number, con
 
 void EnvironmentVariableTests::ConstructorTest1(Test& test)
 {
-    Ishiko::Process::EnvironmentVariable variable("name=value");
+    EnvironmentVariable variable("name=value");
 
     ISHIKO_TEST_FAIL_IF_NEQ(variable.name(), "name");
     ISHIKO_TEST_FAIL_IF_NEQ(variable.value(), "value");
