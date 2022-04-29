@@ -1,11 +1,11 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
 #include "ChildProcessBuilder.h"
-#include "ErrorCategory.h"
+#include "ProcessErrorCategory.hpp"
 #include <Ishiko/BasePlatform.h>
 
 #if ISHIKO_OS == ISHIKO_OS_LINUX
@@ -16,8 +16,6 @@
 #endif
 
 namespace Ishiko
-{
-namespace Process
 {
 
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
@@ -65,14 +63,14 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
 #if ISHIKO_OS == ISHIKO_OS_LINUX
     if (!boost::filesystem::exists(m_commandLine.getExecutable(CommandLine::eRaw)))
     {
-        Fail(error, ErrorCategory::eGeneric);
+        Fail(error, ProcessErrorCategory::eGeneric);
         return ChildProcess(-1);
     }
     pid_t child = fork();
     if (child == -1)
     {
         // TODO
-        Fail(error, ErrorCategory::eGeneric);
+        Fail(error, ProcessErrorCategory::eGeneric);
         return ChildProcess(child);
     } 
     else if (child > 0)
@@ -143,7 +141,7 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
     if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString(CommandLine::eQuoteIfNeeded).c_str()),
         NULL, NULL, inheritHandles, 0, environment, NULL, &startupInfo, &processInfo))
     {
-        Fail(error, ErrorCategory::eGeneric);
+        Fail(error, ProcessErrorCategory::eGeneric);
     }
     else
     {
@@ -167,5 +165,4 @@ void ChildProcessBuilder::redirectStandardOutputToFile(const std::string& path)
     m_standardOutputFilePath = path;
 }
 
-}
 }

@@ -17,7 +17,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Ishiko\Process.h">
+    <ClInclude Include="..\..\include\Ishiko\Process.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Process\ChildProcess.h">
@@ -41,10 +41,10 @@
     <ClInclude Include="..\..\include\Ishiko\Process\EnvironmentVariable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Process\ErrorCategory.h">
+    <ClInclude Include="..\..\include\Ishiko\Process\linkoptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Process\linkoptions.h">
+    <ClInclude Include="..\..\include\Ishiko\Process\ProcessErrorCategory.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -70,7 +70,7 @@
     <ClCompile Include="..\..\src\EnvironmentVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ErrorCategory.cpp">
+    <ClCompile Include="..\..\src\ProcessErrorCategory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
