@@ -12,15 +12,13 @@
 #include <Ishiko/Errors.hpp>
 
 #if ISHIKO_OS == ISHIKO_OS_LINUX
-#include <sys/types.h>
+    #include <sys/types.h>
 #elif ISHIKO_OS == ISHIKO_OS_WINDOWS
-#define WIN32_LEAN_AND_MEAN 
-#include <Windows.h>
+    #define WIN32_LEAN_AND_MEAN 
+    #include <Windows.h>
 #endif
 
 namespace Ishiko
-{
-namespace Process
 {
 
 class ChildProcess
@@ -70,8 +68,5 @@ private:
 };
 
 }
-}
-
-#include "linkoptions.h"
 
 #endif

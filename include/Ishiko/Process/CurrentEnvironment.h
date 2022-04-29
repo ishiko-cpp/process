@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2005-2020 Xavier Leclercq
+    Copyright (c) 2005-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -11,8 +11,6 @@
 #include <string>
 
 namespace Ishiko
-{
-namespace Process
 {
 
 class CurrentEnvironment
@@ -32,8 +30,5 @@ public:
 };
 
 }
-}
-
-#include "linkoptions.h"
 
 #endif

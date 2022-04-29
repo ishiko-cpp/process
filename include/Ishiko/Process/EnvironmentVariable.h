@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2020 Xavier Leclercq
+    Copyright (c) 2020-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -10,8 +10,6 @@
 #include <string>
 
 namespace Ishiko
-{
-namespace Process
 {
 
 class EnvironmentVariable
@@ -25,7 +23,6 @@ public:
     const char* m_variable;
 };
 
-}
 }
 
 #endif

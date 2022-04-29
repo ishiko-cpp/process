@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2021 Xavier Leclercq
+    Copyright (c) 2016-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -15,8 +15,6 @@
 #include <string>
 
 namespace Ishiko
-{
-namespace Process
 {
 
 class ChildProcessBuilder
@@ -38,8 +36,5 @@ private:
 };
 
 }
-}
-
-#include "linkoptions.h"
 
 #endif
