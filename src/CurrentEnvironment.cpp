@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2005-2021 Xavier Leclercq
+    Copyright (c) 2005-2022 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -18,8 +18,7 @@ extern char** environ;
 #include <Windows.h>
 #endif
 
-namespace Ishiko
-{
+using namespace Ishiko;
 
 bool CurrentEnvironment::Find(const std::string& name, std::string& value)
 {
@@ -92,43 +91,60 @@ void CurrentEnvironment::Set(const std::string& name, const std::string& value)
 #endif
 }
 
-std::string CurrentEnvironment::ExpandVariablesInString(const std::string& str, int format)
+std::string CurrentEnvironment::ExpandVariablesInString(const std::string& str, SubstitutionFormat format)
 {
     std::string result;
 
     size_t lastAddedPos = 0;
-    if (format & eDollarAndParentheses)
+    const char* startPattern;
+    const char* endPattern;
+    switch (format)
     {
-        size_t beginPos = str.find("$(", lastAddedPos);
-        while (beginPos != std::string::npos)
+    case SubstitutionFormat::DollarAndCurlyBrackets:
+        startPattern = "${";
+        endPattern = "}";
+        break;
+
+    case SubstitutionFormat::DollarAndRoundBrackets:
+        startPattern = "$(";
+        endPattern = ")";
+        break;
+
+    default:
+        // TODO: error if format unrecognized
+        startPattern = "";
+        endPattern = "";
+        break;
+    }
+    
+    size_t beginPos = str.find(startPattern, lastAddedPos);
+    while (beginPos != std::string::npos)
+    {
+        size_t endPos = str.find(endPattern, beginPos);
+        if (endPos != std::string::npos)
         {
-            size_t endPos = str.find(")", beginPos);
-            if (endPos != std::string::npos)
+            std::string name = str.substr(beginPos + 2, endPos - beginPos - 2);
+            std::string value;
+            bool found = Find(name, value);
+            if (found)
             {
-                std::string name = str.substr(beginPos + 2, endPos - beginPos - 2);
-                std::string value;
-                bool found = Find(name, value);
-                if (found)
-                {
-                    result += str.substr(lastAddedPos, beginPos - lastAddedPos);
-                    result += value;
-                    beginPos = lastAddedPos = endPos + 1;
-                }
-                else
-                {
-                    beginPos += 2;
-                }
+                result += str.substr(lastAddedPos, beginPos - lastAddedPos);
+                result += value;
+                beginPos = lastAddedPos = endPos + 1;
             }
             else
             {
-                break;
+                beginPos += 2;
             }
-            beginPos = str.find("$(", beginPos);
         }
+        else
+        {
+            break;
+        }
+        beginPos = str.find(startPattern, beginPos);
     }
+    
     result += str.substr(lastAddedPos);
 
     return result;
-}
-
 }

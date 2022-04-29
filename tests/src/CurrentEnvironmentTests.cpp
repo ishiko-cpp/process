@@ -74,7 +74,7 @@ void CurrentEnvironmentTests::ExpandVariablesInStringTest1(Test& test)
 {
 	std::string str = "dummy";
 	std::string expandedStr = CurrentEnvironment::ExpandVariablesInString(str,
-        CurrentEnvironment::eDollarAndParentheses);
+        CurrentEnvironment::SubstitutionFormat::DollarAndRoundBrackets);
 
     ISHIKO_TEST_FAIL_IF_NEQ(str, expandedStr);
     ISHIKO_TEST_PASS();
@@ -86,7 +86,7 @@ void CurrentEnvironmentTests::ExpandVariablesInStringTest2(Test& test)
 
 	std::string str = "$(EnvironmentExpandVariablesInStringTest2)";
 	std::string expandedStr = CurrentEnvironment::ExpandVariablesInString(str,
-        CurrentEnvironment::eDollarAndParentheses);
+        CurrentEnvironment::SubstitutionFormat::DollarAndRoundBrackets);
 
     ISHIKO_TEST_FAIL_IF_NEQ(expandedStr, "dummy");
     ISHIKO_TEST_PASS();
@@ -98,7 +98,7 @@ void CurrentEnvironmentTests::ExpandVariablesInStringTest3(Test& test)
 
 	std::string str = "this is a $(EnvironmentExpandVariablesInStringTest3) environment variable";
 	std::string expandedStr = CurrentEnvironment::ExpandVariablesInString(str,
-        CurrentEnvironment::eDollarAndParentheses);
+        CurrentEnvironment::SubstitutionFormat::DollarAndRoundBrackets);
 
     ISHIKO_TEST_FAIL_IF_NEQ(expandedStr, "this is a dummy environment variable");
     ISHIKO_TEST_PASS();
@@ -111,7 +111,7 @@ void CurrentEnvironmentTests::ExpandVariablesInStringTest4(Test& test)
 
 	std::string str = "These are $(EnvironmentExpandVariablesInStringTest4_1) and $(EnvironmentExpandVariablesInStringTest4_2)!";
 	std::string expandedStr = CurrentEnvironment::ExpandVariablesInString(str,
-        CurrentEnvironment::eDollarAndParentheses);
+        CurrentEnvironment::SubstitutionFormat::DollarAndRoundBrackets);
 
     ISHIKO_TEST_FAIL_IF_NEQ(expandedStr, "These are dummy1 and dummy2!");
     ISHIKO_TEST_PASS();
@@ -121,7 +121,7 @@ void CurrentEnvironmentTests::ExpandVariablesInStringTest5(Test& test)
 {
 	std::string str = "this is a $(nonexistent) environment variable";
 	std::string expandedStr = CurrentEnvironment::ExpandVariablesInString(str,
-        CurrentEnvironment::eDollarAndParentheses);
+        CurrentEnvironment::SubstitutionFormat::DollarAndRoundBrackets);
 
     ISHIKO_TEST_FAIL_IF_NEQ(expandedStr, "this is a $(nonexistent) environment variable");
     ISHIKO_TEST_PASS();
@@ -131,7 +131,7 @@ void CurrentEnvironmentTests::ExpandVariablesInStringTest6(Test& test)
 {
 	std::string str = "this is a $(incomplete environment variable";
 	std::string expandedStr = CurrentEnvironment::ExpandVariablesInString(str,
-        CurrentEnvironment::eDollarAndParentheses);
+        CurrentEnvironment::SubstitutionFormat::DollarAndRoundBrackets);
 
     ISHIKO_TEST_FAIL_IF_NEQ(expandedStr, "this is a $(incomplete environment variable");
     ISHIKO_TEST_PASS();
