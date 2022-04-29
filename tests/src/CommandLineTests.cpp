@@ -8,7 +8,6 @@
 #include "Ishiko/Process/CommandLine.h"
 
 using namespace Ishiko;
-using namespace Ishiko::Process;
 
 CommandLineTests::CommandLineTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "CommandLine tests", context)

@@ -9,7 +9,6 @@
 #include <boost/filesystem.hpp>
 
 using namespace Ishiko;
-using namespace Ishiko::Process;
 
 ChildProcessBuilderTests::ChildProcessBuilderTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "ChildProcessBuilder tests", context)
@@ -152,7 +151,7 @@ void ChildProcessBuilderTests::StartTest5(FileComparisonTest& test)
     test.setReferenceFilePath(test.context().getReferenceDataDirectory() / "ChildProcessBuilderTests_StartTest5.txt");
 
     CommandLine command(executablePath.string());
-    ChildProcessBuilder builder(command, Ishiko::Process::Environment());
+    ChildProcessBuilder builder(command, Environment());
     builder.redirectStandardOutputToFile(outputPath.string());
 
     ChildProcess handle = builder.start();
@@ -176,7 +175,7 @@ void ChildProcessBuilderTests::StartTest6(FileComparisonTest& test)
     test.setReferenceFilePath(test.context().getReferenceDataDirectory() / "ChildProcessBuilderTests_StartTest6.txt");
 
     CommandLine command(executablePath.string());
-    Ishiko::Process::Environment environment;
+    Environment environment;
     environment.set("name1", "value1");
     ChildProcessBuilder builder(command, environment);
     builder.redirectStandardOutputToFile(outputPath.string());

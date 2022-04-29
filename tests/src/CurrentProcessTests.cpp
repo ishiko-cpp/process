@@ -10,7 +10,6 @@
 #include <iostream>
 
 using namespace Ishiko;
-using namespace Ishiko::Process;
 
 CurrentProcessTests::CurrentProcessTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "CurrentProcess tests", context)

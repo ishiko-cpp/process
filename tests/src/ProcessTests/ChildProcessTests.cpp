@@ -8,8 +8,6 @@
 #include "Ishiko/Process/ChildProcess.h"
 
 using namespace Ishiko;
-using namespace Ishiko::Process;
-using namespace Ishiko::Tests;
 
 ChildProcessTests::ChildProcessTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "ChildProcess tests", context)
