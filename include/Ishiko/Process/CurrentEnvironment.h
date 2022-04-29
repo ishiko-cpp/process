@@ -16,9 +16,10 @@ namespace Ishiko
 class CurrentEnvironment
 {
 public:
-    enum EReferenceFormat
+    enum class SubstitutionFormat
     {
-        eDollarAndParentheses = 0x01
+        DollarAndCurlyBrackets = 0x01,
+        DollarAndRoundBrackets = 0x02
     };
 
 public:
@@ -26,7 +27,7 @@ public:
     static std::map<std::string, std::string> ToMap();
     static void Set(const std::string& name, const std::string& value);
 
-    static std::string ExpandVariablesInString(const std::string& str, int format);
+    static std::string ExpandVariablesInString(const std::string& str, SubstitutionFormat format);
 };
 
 }
