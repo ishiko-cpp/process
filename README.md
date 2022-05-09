@@ -14,7 +14,7 @@ Basic classes to create processes and manipulate environment variables.
 
 [![ishiko-cpp](https://circleci.com/gh/ishiko-cpp/process.svg?style=shield)](https://circleci.com/gh/ishiko-cpp/process)
 
-This project is intended for use by its author only.
+This project is in early development and not ready for public use yet.
 
 # Usage
 
