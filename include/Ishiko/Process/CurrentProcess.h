@@ -7,6 +7,7 @@
 #ifndef _ISHIKO_CPP_PROCESS_CURRENTPROCESS_H_
 #define _ISHIKO_CPP_PROCESS_CURRENTPROCESS_H_
 
+#include <boost/filesystem.hpp>
 #include <string>
 
 namespace Ishiko
@@ -15,8 +16,10 @@ namespace Ishiko
 class CurrentProcess
 {
 public:
+    static void RedirectStandardOutputToFile(const boost::filesystem::path& path);
     static void RedirectStandardOutputToFile(const std::string& path);
     static void RedirectStandardOutputToTerminal();
+    static void RedirectStandardErrorToFile(const boost::filesystem::path& path);
     static void RedirectStandardErrorToFile(const std::string& path);
     static void RedirectStandardErrorToTerminal();
 };

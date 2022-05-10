@@ -9,6 +9,11 @@
 
 using namespace Ishiko;
 
+void CurrentProcess::RedirectStandardOutputToFile(const boost::filesystem::path& path)
+{
+    RedirectStandardOutputToFile(path.string());
+}
+
 void CurrentProcess::RedirectStandardOutputToFile(const std::string& path)
 {
 #if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
@@ -26,10 +31,15 @@ void CurrentProcess::RedirectStandardOutputToTerminal()
 #if ISHIKO_OS == ISHIKO_OS_LINUX
     RedirectStandardOutputToFile("/dev/tty");
 #elif ISHIKO_OS == ISHIKO_OS_WINDOWS
-    RedirectStandardOutputToFile("CON");
+    RedirectStandardOutputToFile(std::string("CON"));
 #else
     #error Unsupported OS
 #endif
+}
+
+void CurrentProcess::RedirectStandardErrorToFile(const boost::filesystem::path& path)
+{
+    RedirectStandardErrorToFile(path.string());
 }
 
 void CurrentProcess::RedirectStandardErrorToFile(const std::string& path)
@@ -49,7 +59,7 @@ void CurrentProcess::RedirectStandardErrorToTerminal()
 #if ISHIKO_OS == ISHIKO_OS_LINUX
     RedirectStandardErrorToFile("/dev/tty");
 #elif ISHIKO_OS == ISHIKO_OS_WINDOWS
-    RedirectStandardErrorToFile("CON");
+    RedirectStandardErrorToFile(std::string("CON"));
 #else
     #error Unsupported OS
 #endif
