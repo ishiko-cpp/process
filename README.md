@@ -14,7 +14,7 @@ Basic classes to create processes and manipulate environment variables.
 
 [![ishiko-cpp](https://circleci.com/gh/ishiko-cpp/process.svg?style=shield)](https://circleci.com/gh/ishiko-cpp/process)
 
-This project is intended for use by its author only.
+This project is in early development and not ready for public use yet.
 
 # Usage
 
@@ -26,6 +26,6 @@ None.
 
 # License
 
-Copyright (c) 2005-2021 Xavier Leclercq\
+Copyright (c) 2005-2022 Xavier Leclercq\
 Released under the MIT License\
 See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
