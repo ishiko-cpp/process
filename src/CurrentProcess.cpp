@@ -29,7 +29,7 @@ void CurrentProcess::RedirectStandardOutputToFile(const std::string& path)
 void CurrentProcess::RedirectStandardOutputToTerminal()
 {
 #if ISHIKO_OS == ISHIKO_OS_LINUX
-    RedirectStandardOutputToFile("/dev/tty");
+    RedirectStandardOutputToFile(std::string("/dev/tty"));
 #elif ISHIKO_OS == ISHIKO_OS_WINDOWS
     RedirectStandardOutputToFile(std::string("CON"));
 #else
@@ -57,7 +57,7 @@ void CurrentProcess::RedirectStandardErrorToFile(const std::string& path)
 void CurrentProcess::RedirectStandardErrorToTerminal()
 {
 #if ISHIKO_OS == ISHIKO_OS_LINUX
-    RedirectStandardErrorToFile("/dev/tty");
+    RedirectStandardErrorToFile(std::string("/dev/tty"));
 #elif ISHIKO_OS == ISHIKO_OS_WINDOWS
     RedirectStandardErrorToFile(std::string("CON"));
 #else
