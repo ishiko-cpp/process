@@ -15,6 +15,7 @@ CurrentProcessTests::CurrentProcessTests(const TestNumber& number, const TestCon
     : TestSequence(number, "CurrentProcess tests", context)
 {
     append<FileComparisonTest>("RedirectStandardOutputToFile test 1", RedirectStandardOutputToFileTest1);
+    append<FileComparisonTest>("RedirectStandardErrorToFile test 1", RedirectStandardErrorToFileTest1);
 }
 
 void CurrentProcessTests::RedirectStandardOutputToFileTest1(FileComparisonTest& test)
@@ -31,6 +32,24 @@ void CurrentProcessTests::RedirectStandardOutputToFileTest1(FileComparisonTest& 
     CurrentProcess::RedirectStandardOutputToTerminal();
 
     std::cout << "should not be in the file" << std::endl;
+
+    ISHIKO_TEST_PASS();
+}
+
+void CurrentProcessTests::RedirectStandardErrorToFileTest1(FileComparisonTest& test)
+{
+    boost::filesystem::path outputPath(test.context().getTestOutputPath("RedirectStandardErrorToFileTest1.txt"));
+    boost::filesystem::remove(outputPath);
+    test.setOutputFilePath(outputPath);
+    test.setReferenceFilePath(test.context().getReferenceDataPath("RedirectStandardErrorToFileTest1.txt"));
+
+    CurrentProcess::RedirectStandardErrorToFile(outputPath.string());
+
+    std::cerr << "Hello World!" << std::endl;
+
+    CurrentProcess::RedirectStandardErrorToTerminal();
+
+    std::cerr << "should not be in the file" << std::endl;
 
     ISHIKO_TEST_PASS();
 }

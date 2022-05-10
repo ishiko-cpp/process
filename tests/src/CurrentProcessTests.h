@@ -16,6 +16,7 @@ public:
 
 private:
     static void RedirectStandardOutputToFileTest1(Ishiko::FileComparisonTest& test);
+    static void RedirectStandardErrorToFileTest1(Ishiko::FileComparisonTest& test);
 };
 
 #endif
