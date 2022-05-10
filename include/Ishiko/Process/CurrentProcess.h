@@ -17,6 +17,8 @@ class CurrentProcess
 public:
     static void RedirectStandardOutputToFile(const std::string& path);
     static void RedirectStandardOutputToTerminal();
+    static void RedirectStandardErrorToFile(const std::string& path);
+    static void RedirectStandardErrorToTerminal();
 };
 
 }
