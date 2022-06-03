@@ -42,6 +42,7 @@ public:
     static std::map<std::string, std::string> ToMap();
     static void Set(const std::string& name, const std::string& value);
 
+    static std::string Expand(const InterpolatedString& str, bool allowMissing, Error& error);
     static std::string ExpandVariablesInString(const std::string& str, SubstitutionFormat format);
 };
 

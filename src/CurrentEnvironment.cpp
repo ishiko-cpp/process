@@ -53,7 +53,7 @@ bool CurrentEnvironment::Find(const std::string& name, std::string& value)
 bool CurrentEnvironment::Find(boost::string_view name, std::string& value)
 {
 #if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
-    char* v = getenv(name.c_str());
+    char* v = getenv(name.data());
     if (v == NULL)
     {
         return false;
@@ -119,6 +119,12 @@ void CurrentEnvironment::Set(const std::string& name, const std::string& value)
 #else
     #error Unsupported or unrecognized OS
 #endif
+}
+
+std::string CurrentEnvironment::Expand(const InterpolatedString& str, bool allowMissing, Error& error)
+{
+    InterpolatedStringCallbacks callbacks(allowMissing);
+    return str.expand(callbacks, error);
 }
 
 std::string CurrentEnvironment::ExpandVariablesInString(const std::string& str, SubstitutionFormat format)
