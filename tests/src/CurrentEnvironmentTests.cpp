@@ -5,7 +5,7 @@
 */
 
 #include "CurrentEnvironmentTests.h"
-#include "Ishiko/Process/CurrentEnvironment.h"
+#include "Ishiko/Process/CurrentEnvironment.hpp"
 
 using namespace Ishiko;
 
