@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_PROCESS_LINKOPTIONS_H_
-#define _ISHIKO_CPP_PROCESS_LINKOPTIONS_H_
+#ifndef _ISHIKO_CPP_PROCESS_LINKOPTIONS_HPP_
+#define _ISHIKO_CPP_PROCESS_LINKOPTIONS_HPP_
 
 #ifdef _DEBUG
 #pragma comment(lib, "IshikoProcess-d.lib")

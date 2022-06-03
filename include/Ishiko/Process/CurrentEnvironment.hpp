@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_PROCESS_CURRENTENVIRONMENT_H_
-#define _ISHIKO_CPP_PROCESS_CURRENTENVIRONMENT_H_
+#ifndef _ISHIKO_CPP_PROCESS_CURRENTENVIRONMENT_HPP_
+#define _ISHIKO_CPP_PROCESS_CURRENTENVIRONMENT_HPP_
 
 #include <map>
 #include <string>
