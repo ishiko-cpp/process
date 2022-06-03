@@ -7,6 +7,8 @@
 #ifndef _ISHIKO_CPP_PROCESS_CURRENTENVIRONMENT_HPP_
 #define _ISHIKO_CPP_PROCESS_CURRENTENVIRONMENT_HPP_
 
+#include <boost/utility/string_view.hpp>
+#include <Ishiko/Text.hpp>
 #include <map>
 #include <string>
 
@@ -22,8 +24,21 @@ public:
         DollarAndRoundBrackets = 0x02
     };
 
+    class InterpolatedStringCallbacks : public InterpolatedString::Callbacks
+    {
+    public:
+        InterpolatedStringCallbacks(bool allowMissing);
+
+        void expand(boost::string_view variable, std::string& result, Error& error) const override;
+
+    private:
+        bool m_allowMissing;
+    };
+
 public:
+    static bool Find(const char* name, std::string& value);
     static bool Find(const std::string& name, std::string& value);
+    static bool Find(boost::string_view name, std::string& value);
     static std::map<std::string, std::string> ToMap();
     static void Set(const std::string& name, const std::string& value);
 
