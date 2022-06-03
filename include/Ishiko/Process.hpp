@@ -10,11 +10,11 @@
 #include "Process/ChildProcess.h"
 #include "Process/ChildProcessBuilder.h"
 #include "Process/CommandLine.h"
-#include "Process/CurrentEnvironment.h"
-#include "Process/CurrentProcess.h"
+#include "Process/CurrentEnvironment.hpp"
+#include "Process/CurrentProcess.hpp"
 #include "Process/Environment.h"
 #include "Process/EnvironmentVariable.h"
-#include "Process/linkoptions.h"
+#include "Process/linkoptions.hpp"
 #include "Process/ProcessErrorCategory.hpp"
 
 #endif

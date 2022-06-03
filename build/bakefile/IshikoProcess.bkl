@@ -2,7 +2,6 @@ ishikopath = envvar("ISHIKO_CPP");
 import $(ishikopath)/base-platform/include/Ishiko/BasePlatform.bkl;
 import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
 import $(ishikopath)/text/include/Ishiko/Text.bkl;
-import $(ishikopath)/third-party-glue/Include/Ishiko/ThirdParty/Boost.bkl;
 
 toolsets = gnu vs2019 vs2017 vs2015 vs2013;
 
@@ -41,11 +40,11 @@ library IshikoProcess : IshikoText, IshikoErrors, IshikoBasePlatform, Boost
         ../../include/Ishiko/Process/ChildProcess.h
         ../../include/Ishiko/Process/ChildProcessBuilder.h
         ../../include/Ishiko/Process/CommandLine.h
-        ../../include/Ishiko/Process/CurrentEnvironment.h
-        ../../include/Ishiko/Process/CurrentProcess.h
+        ../../include/Ishiko/Process/CurrentEnvironment.hpp
+        ../../include/Ishiko/Process/CurrentProcess.hpp
         ../../include/Ishiko/Process/Environment.h
         ../../include/Ishiko/Process/EnvironmentVariable.h
-        ../../include/Ishiko/Process/linkoptions.h
+        ../../include/Ishiko/Process/linkoptions.hpp
         ../../include/Ishiko/Process/ProcessErrorCategory.hpp
     }
 

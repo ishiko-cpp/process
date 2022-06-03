@@ -5,7 +5,7 @@
 */
 
 #include "CurrentProcessTests.h"
-#include "Ishiko/Process/CurrentProcess.h"
+#include "Ishiko/Process/CurrentProcess.hpp"
 #include <boost/filesystem/operations.hpp>
 #include <iostream>
 

@@ -11,7 +11,7 @@
 #include "EnvironmentVariableTests.h"
 #include "ProcessTests/ChildProcessTests.h"
 #include "ProcessTests/ChildProcessBuilderTests.h"
-#include "Ishiko/Process/linkoptions.h"
+#include "Ishiko/Process/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
 
 using namespace Ishiko;

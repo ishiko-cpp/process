@@ -88,7 +88,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP)/text\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);..\..\include\Ishiko\Process;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);$(ISHIKO_CPP)/text\include;..\..\include\Ishiko\Process;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -103,7 +103,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP)/text\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);..\..\include\Ishiko\Process;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);$(ISHIKO_CPP)/text\include;..\..\include\Ishiko\Process;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -120,7 +120,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP)/text\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);..\..\include\Ishiko\Process;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);$(ISHIKO_CPP)/text\include;..\..\include\Ishiko\Process;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -139,7 +139,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
-      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP)/text\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);..\..\include\Ishiko\Process;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ISHIKO_CPP)/errors\include;$(ISHIKO_CPP)/base-platform\include;$(ISHIKO_CPP_THIRD_PARTY_BOOST);$(ISHIKO_CPP)/text\include;..\..\include\Ishiko\Process;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -164,11 +164,11 @@
     <ClInclude Include="..\..\include\Ishiko\Process\ChildProcess.h" />
     <ClInclude Include="..\..\include\Ishiko\Process\ChildProcessBuilder.h" />
     <ClInclude Include="..\..\include\Ishiko\Process\CommandLine.h" />
-    <ClInclude Include="..\..\include\Ishiko\Process\CurrentEnvironment.h" />
-    <ClInclude Include="..\..\include\Ishiko\Process\CurrentProcess.h" />
+    <ClInclude Include="..\..\include\Ishiko\Process\CurrentEnvironment.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Process\CurrentProcess.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Process\Environment.h" />
     <ClInclude Include="..\..\include\Ishiko\Process\EnvironmentVariable.h" />
-    <ClInclude Include="..\..\include\Ishiko\Process\linkoptions.h" />
+    <ClInclude Include="..\..\include\Ishiko\Process\linkoptions.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Process\ProcessErrorCategory.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
