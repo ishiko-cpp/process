@@ -20,10 +20,40 @@ extern char** environ;
 
 using namespace Ishiko;
 
+CurrentEnvironment::InterpolatedStringCallbacks::InterpolatedStringCallbacks(bool allowMissing)
+    : m_allowMissing(allowMissing)
+{
+}
+
+void CurrentEnvironment::InterpolatedStringCallbacks::expand(boost::string_view variable, std::string& result,
+    Error& error) const
+{
+    std::string value;
+    bool found = Find(variable, value);
+    if (found)
+    {
+        result.append(value);
+    }
+    else if (!m_allowMissing)
+    {
+        Fail(error, TextErrorCategory::Value::generic);
+    }
+}
+
+bool CurrentEnvironment::Find(const char* name, std::string& value)
+{
+    return Find(boost::string_view(name), value);
+}
+
 bool CurrentEnvironment::Find(const std::string& name, std::string& value)
 {
+    return Find(boost::string_view(name.c_str(), name.size()), value);
+}
+
+bool CurrentEnvironment::Find(boost::string_view name, std::string& value)
+{
 #if ISHIKO_COMPILER == ISHIKO_COMPILER_GCC
-    char* v = getenv(name.c_str());
+    char* v = getenv(name.data());
     if (v == NULL)
     {
         return false;
@@ -35,7 +65,7 @@ bool CurrentEnvironment::Find(const std::string& name, std::string& value)
     }
 #elif ISHIKO_COMPILER == ISHIKO_COMPILER_MSVC
     char* v = NULL;
-    _dupenv_s(&v, NULL, name.c_str());
+    _dupenv_s(&v, NULL, name.data());
     if (v == NULL)
     {
         return false;
@@ -89,6 +119,12 @@ void CurrentEnvironment::Set(const std::string& name, const std::string& value)
 #else
     #error Unsupported or unrecognized OS
 #endif
+}
+
+std::string CurrentEnvironment::Expand(const InterpolatedString& str, bool allowMissing, Error& error)
+{
+    InterpolatedStringCallbacks callbacks(allowMissing);
+    return str.expand(callbacks, error);
 }
 
 std::string CurrentEnvironment::ExpandVariablesInString(const std::string& str, SubstitutionFormat format)

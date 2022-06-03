@@ -19,6 +19,9 @@ private:
     static void SetTest2(Ishiko::Test& test);
     static void FindTest1(Ishiko::Test& test);
     static void ToMapTest1(Ishiko::Test& test);
+    static void InterpolatedStringCallbacksTest1(Ishiko::Test& test);
+    static void InterpolatedStringCallbacksTest2(Ishiko::Test& test);
+    static void ExpandTest1(Ishiko::Test& test);
     static void ExpandVariablesInStringTest1(Ishiko::Test& test);
     static void ExpandVariablesInStringTest2(Ishiko::Test& test);
     static void ExpandVariablesInStringTest3(Ishiko::Test& test);

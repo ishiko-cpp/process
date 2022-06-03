@@ -6,6 +6,7 @@
 
 #include "CurrentEnvironmentTests.h"
 #include "Ishiko/Process/CurrentEnvironment.hpp"
+#include <Ishiko/Text.hpp>
 
 using namespace Ishiko;
 
@@ -16,6 +17,9 @@ CurrentEnvironmentTests::CurrentEnvironmentTests(const TestNumber& number, const
     append<HeapAllocationErrorsTest>("set test 2", SetTest2);
     append<HeapAllocationErrorsTest>("find test 1", FindTest1);
     append<HeapAllocationErrorsTest>("ToMap test 1", ToMapTest1);
+    append<HeapAllocationErrorsTest>("InterpolatedStringCallbacks test 1", InterpolatedStringCallbacksTest1);
+    append<HeapAllocationErrorsTest>("InterpolatedStringCallbacks test 2", InterpolatedStringCallbacksTest2);
+    append<HeapAllocationErrorsTest>("expand test 1", ExpandTest1);
     append<HeapAllocationErrorsTest>("expandVariablesInString test 1", ExpandVariablesInStringTest1);
     append<HeapAllocationErrorsTest>("expandVariablesInString test 2", ExpandVariablesInStringTest2);
     append<HeapAllocationErrorsTest>("expandVariablesInString test 3", ExpandVariablesInStringTest3);
@@ -67,6 +71,58 @@ void CurrentEnvironmentTests::ToMapTest1(Test& test)
 
     ISHIKO_TEST_FAIL_IF_NEQ(environment.at("CurrentEnvironmentTests_ToMapTest1_a"), "dummy");
     ISHIKO_TEST_FAIL_IF_NEQ(environment.at("CurrentEnvironmentTests_ToMapTest1_b"), "dummy2");
+    ISHIKO_TEST_PASS();
+}
+
+void CurrentEnvironmentTests::InterpolatedStringCallbacksTest1(Test& test)
+{
+    CurrentEnvironment::Set("CurrentEnvironmentTests_InterpolatedStringCallbacksTest1", "dummy");
+
+    InterpolatedString str = "${CurrentEnvironmentTests_InterpolatedStringCallbacksTest1}";
+
+    CurrentEnvironment::InterpolatedStringCallbacks callbacks(false);
+
+    Ishiko::Error error;
+    std::string expandedStr = str.expand(callbacks, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(expandedStr, "dummy");
+    ISHIKO_TEST_PASS();
+}
+
+void CurrentEnvironmentTests::InterpolatedStringCallbacksTest2(Test& test)
+{
+    CurrentEnvironment::Set("CurrentEnvironmentTests_InterpolatedStringCallbacksTest2", "dummy");
+
+    InterpolatedString str = "${notfound}${CurrentEnvironmentTests_InterpolatedStringCallbacksTest2}";
+
+    Ishiko::Error error1;
+    CurrentEnvironment::InterpolatedStringCallbacks callbacks1(false);
+    std::string expandedStr1 = str.expand(callbacks1, error1);
+
+    ISHIKO_TEST_FAIL_IF_NOT(error1);
+
+    Ishiko::Error error2;
+    CurrentEnvironment::InterpolatedStringCallbacks callbacks2(true);
+    std::string expandedStr2 = str.expand(callbacks2, error2);
+
+    ISHIKO_TEST_FAIL_IF(error2);
+    ISHIKO_TEST_FAIL_IF_NEQ(expandedStr2, "dummy");
+
+    ISHIKO_TEST_PASS();
+}
+
+void CurrentEnvironmentTests::ExpandTest1(Test& test)
+{
+    CurrentEnvironment::Set("CurrentEnvironmentTests_ExpandTest1", "dummy");
+
+    InterpolatedString str = "${CurrentEnvironmentTests_ExpandTest1}";
+
+    Ishiko::Error error;
+    std::string expandedStr = CurrentEnvironment::Expand(str, false, error);
+
+    ISHIKO_TEST_FAIL_IF(error);
+    ISHIKO_TEST_FAIL_IF_NEQ(expandedStr, "dummy");
     ISHIKO_TEST_PASS();
 }
 
