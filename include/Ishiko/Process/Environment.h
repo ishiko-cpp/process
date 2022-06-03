@@ -8,7 +8,7 @@
 #define _ISHIKO_CPP_PROCESS_ENVIRONMENT_H_
 
 #include "EnvironmentVariable.h"
-#include "CurrentEnvironment.h"
+#include "CurrentEnvironment.hpp"
 #include <vector>
 
 namespace Ishiko
