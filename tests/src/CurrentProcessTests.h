@@ -15,8 +15,8 @@ public:
     CurrentProcessTests(const Ishiko::TestNumber& number, const Ishiko::TestContext& context);
 
 private:
-    static void RedirectStandardOutputToFileTest1(Ishiko::FileComparisonTest& test);
-    static void RedirectStandardErrorToFileTest1(Ishiko::FileComparisonTest& test);
+    static void RedirectStandardOutputToFileTest1(Ishiko::Test& test);
+    static void RedirectStandardErrorToFileTest1(Ishiko::Test& test);
 };
 
 #endif

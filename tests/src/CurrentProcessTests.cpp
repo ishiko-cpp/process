@@ -6,7 +6,6 @@
 
 #include "CurrentProcessTests.h"
 #include "Ishiko/Process/CurrentProcess.hpp"
-#include <boost/filesystem/operations.hpp>
 #include <iostream>
 
 using namespace Ishiko;
@@ -14,17 +13,14 @@ using namespace Ishiko;
 CurrentProcessTests::CurrentProcessTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "CurrentProcess tests", context)
 {
-    append<FileComparisonTest>("RedirectStandardOutputToFile test 1", RedirectStandardOutputToFileTest1);
-    append<FileComparisonTest>("RedirectStandardErrorToFile test 1", RedirectStandardErrorToFileTest1);
+    append<HeapAllocationErrorsTest>("RedirectStandardOutputToFile test 1", RedirectStandardOutputToFileTest1);
+    append<HeapAllocationErrorsTest>("RedirectStandardErrorToFile test 1", RedirectStandardErrorToFileTest1);
 }
 
-void CurrentProcessTests::RedirectStandardOutputToFileTest1(FileComparisonTest& test)
+void CurrentProcessTests::RedirectStandardOutputToFileTest1(Test& test)
 {
-    boost::filesystem::path outputPath(test.context().getTestOutputPath("RedirectStandardOutputToFileTest1.txt"));
-    boost::filesystem::remove(outputPath);
-    test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.context().getReferenceDataPath("RedirectStandardOutputToFileTest1.txt"));
-
+    boost::filesystem::path outputPath = test.context().getOutputPath("RedirectStandardOutputToFileTest1.txt");
+    
     CurrentProcess::RedirectStandardOutputToFile(outputPath.string());
 
     std::cout << "Hello World!" << std::endl;
@@ -33,15 +29,13 @@ void CurrentProcessTests::RedirectStandardOutputToFileTest1(FileComparisonTest& 
 
     std::cout << "should not be in the file" << std::endl;
 
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("RedirectStandardOutputToFileTest1.txt");
     ISHIKO_TEST_PASS();
 }
 
-void CurrentProcessTests::RedirectStandardErrorToFileTest1(FileComparisonTest& test)
+void CurrentProcessTests::RedirectStandardErrorToFileTest1(Test& test)
 {
-    boost::filesystem::path outputPath(test.context().getTestOutputPath("RedirectStandardErrorToFileTest1.txt"));
-    boost::filesystem::remove(outputPath);
-    test.setOutputFilePath(outputPath);
-    test.setReferenceFilePath(test.context().getReferenceDataPath("RedirectStandardErrorToFileTest1.txt"));
+    boost::filesystem::path outputPath = test.context().getOutputPath("RedirectStandardErrorToFileTest1.txt");
 
     CurrentProcess::RedirectStandardErrorToFile(outputPath.string());
 
@@ -51,5 +45,6 @@ void CurrentProcessTests::RedirectStandardErrorToFileTest1(FileComparisonTest& t
 
     std::cerr << "should not be in the file" << std::endl;
 
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ("RedirectStandardErrorToFileTest1.txt");
     ISHIKO_TEST_PASS();
 }

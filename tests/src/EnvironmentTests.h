@@ -23,8 +23,8 @@ private:
     static void FindTest1(Ishiko::Test& test);
     static void ToEnvironmentArrayTest1(Ishiko::Test& test);
     static void ToEnvironmentArrayTest2(Ishiko::Test& test);
-    static void ToEnvironmentBlockTest1(Ishiko::FileComparisonTest& test);
-    static void ToEnvironmentBlockTest2(Ishiko::FileComparisonTest& test);
+    static void ToEnvironmentBlockTest1(Ishiko::Test& test);
+    static void ToEnvironmentBlockTest2(Ishiko::Test& test);
 };
 
 #endif

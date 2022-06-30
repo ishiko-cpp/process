@@ -96,13 +96,13 @@ void CurrentEnvironmentTests::InterpolatedStringCallbacksTest2(Test& test)
 
     InterpolatedString str = "${notfound}${CurrentEnvironmentTests_InterpolatedStringCallbacksTest2}";
 
-    Ishiko::Error error1;
+    Error error1;
     CurrentEnvironment::InterpolatedStringCallbacks callbacks1(false);
     std::string expandedStr1 = str.expand(callbacks1, error1);
 
     ISHIKO_TEST_FAIL_IF_NOT(error1);
 
-    Ishiko::Error error2;
+    Error error2;
     CurrentEnvironment::InterpolatedStringCallbacks callbacks2(true);
     std::string expandedStr2 = str.expand(callbacks2, error2);
 

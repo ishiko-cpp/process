@@ -19,10 +19,10 @@ private:
     static void StartTest1(Ishiko::Test& test);
     static void StartTest2(Ishiko::Test& test);
     static void StartTest3(Ishiko::Test& test);
-    static void RedirectStandardOutputToFileTest1(Ishiko::FileComparisonTest& test);
-    static void StartTest4(Ishiko::FileComparisonTest& test);
-    static void StartTest5(Ishiko::FileComparisonTest& test);
-    static void StartTest6(Ishiko::FileComparisonTest& test);
+    static void RedirectStandardOutputToFileTest1(Ishiko::Test& test);
+    static void StartTest4(Ishiko::Test& test);
+    static void StartTest5(Ishiko::Test& test);
+    static void StartTest6(Ishiko::Test& test);
 };
 
 #endif
