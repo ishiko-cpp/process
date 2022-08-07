@@ -6,8 +6,7 @@
 
 #include "ProcessErrorCategory.hpp"
 
-namespace Ishiko
-{
+using namespace Ishiko;
 
 const ProcessErrorCategory& ProcessErrorCategory::Get() noexcept
 {
@@ -20,9 +19,7 @@ const char* ProcessErrorCategory::name() const noexcept
     return "Ishiko::ProcessErrorCategory";
 }
 
-void Fail(Error& error, ProcessErrorCategory::EErrorValues value) noexcept
+void Ishiko::Fail(ProcessErrorCategory::EErrorValues value, Error& error) noexcept
 {
-    error.fail(value, ProcessErrorCategory::Get());
-}
-
+    error.fail(ProcessErrorCategory::Get(), value);
 }

@@ -36,7 +36,7 @@ void CurrentEnvironment::InterpolatedStringCallbacks::expand(boost::string_view 
     }
     else if (!m_allowMissing)
     {
-        Fail(error, TextErrorCategory::Value::generic);
+        Fail(TextErrorCategory::Value::generic, error);
     }
 }
 

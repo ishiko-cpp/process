@@ -4,8 +4,8 @@
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_PROCESS_PROCESSERRORCATEGORY_HPP_
-#define _ISHIKO_CPP_PROCESS_PROCESSERRORCATEGORY_HPP_
+#ifndef GUARD_ISHIKO_CPP_PROCESS_PROCESSERRORCATEGORY_HPP
+#define GUARD_ISHIKO_CPP_PROCESS_PROCESSERRORCATEGORY_HPP
 
 #include <Ishiko/Errors.hpp>
 
@@ -28,7 +28,7 @@ private:
     ProcessErrorCategory() noexcept = default;
 };
 
-void Fail(Error& error, ProcessErrorCategory::EErrorValues value) noexcept;
+void Fail(ProcessErrorCategory::EErrorValues value, Error& error) noexcept;
 
 }
 
