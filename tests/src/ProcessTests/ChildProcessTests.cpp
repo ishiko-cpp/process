@@ -48,7 +48,7 @@ void ChildProcessTests::SpawnTest2(Test& test)
     boost::filesystem::path executablePath = test.context().getDataPath("bin/ExitCodeTestHelper.exe");
 #endif
 
-    Error error(0);
+    Error error;
     ChildProcess handle = ChildProcess::Spawn(executablePath.string(), error);
 
     ISHIKO_TEST_ABORT_IF(error);
