@@ -141,7 +141,7 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
     if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString(CommandLine::eQuoteIfNeeded).c_str()),
         NULL, NULL, inheritHandles, 0, environment, NULL, &startupInfo, &processInfo))
     {
-        Fail(ProcessErrorCategory::eGeneric, error);
+        Fail(ProcessErrorCategory::Value::generic, error);
     }
     else
     {

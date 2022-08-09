@@ -12,23 +12,24 @@
 namespace Ishiko
 {
 
-class ProcessErrorCategory : public Ishiko::ErrorCategory
+class ProcessErrorCategory : public ErrorCategory
 {
 public:
-    enum EErrorValues
+    enum class Value
     {
-        eGeneric = -1
+        generic = -1
     };
 
     static const ProcessErrorCategory& Get() noexcept;
 
     const char* name() const noexcept override;
+    std::ostream& streamOut(int value, std::ostream& os) const override;
 
 private:
     ProcessErrorCategory() noexcept = default;
 };
 
-void Fail(ProcessErrorCategory::EErrorValues value, Error& error) noexcept;
+void Fail(ProcessErrorCategory::Value value, Error& error) noexcept;
 
 }
 

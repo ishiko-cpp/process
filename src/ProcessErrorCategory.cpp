@@ -19,7 +19,22 @@ const char* ProcessErrorCategory::name() const noexcept
     return "Ishiko::ProcessErrorCategory";
 }
 
-void Ishiko::Fail(ProcessErrorCategory::EErrorValues value, Error& error) noexcept
+std::ostream& ProcessErrorCategory::streamOut(int value, std::ostream& os) const
 {
-    error.fail(ProcessErrorCategory::Get(), value);
+    switch (static_cast<Value>(value))
+    {
+    case Value::generic:
+        os << "generic error";
+        break;
+
+    default:
+        os << "unknown value";
+        break;
+    }
+    return os;
+}
+
+void Ishiko::Fail(ProcessErrorCategory::Value value, Error& error) noexcept
+{
+    error.fail(ProcessErrorCategory::Get(), static_cast<int>(value));
 }
