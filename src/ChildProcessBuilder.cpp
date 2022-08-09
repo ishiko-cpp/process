@@ -63,14 +63,14 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
 #if ISHIKO_OS == ISHIKO_OS_LINUX
     if (!boost::filesystem::exists(m_commandLine.getExecutable(CommandLine::eRaw)))
     {
-        Fail(ProcessErrorCategory::eGeneric, error);
+        Fail(ProcessErrorCategory::Value::generic, error);
         return ChildProcess(-1);
     }
     pid_t child = fork();
     if (child == -1)
     {
         // TODO
-        Fail(ProcessErrorCategory::eGeneric, error);
+        Fail(ProcessErrorCategory::Value::generic, error);
         return ChildProcess(child);
     } 
     else if (child > 0)
