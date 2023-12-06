@@ -1,21 +1,18 @@
 /*
-    Copyright (c) 2005-2022 Xavier Leclercq
+    Copyright (c) 2005-2023 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
 #include "CurrentEnvironment.hpp"
-#include <Ishiko/BasePlatform.h>
+#include <Ishiko/BasePlatform.hpp>
 #include <cstring>
 #include <stdlib.h>
 
 #if ISHIKO_OS == ISHIKO_OS_LINUX
 extern char** environ;
 #elif ISHIKO_OS == ISHIKO_OS_WINDOWS
-// There seems to be an error with the definition of GetEnvironmentStringsA so we undefine UNICODE so that we can use
-// GetEnvironmentStrings
-#undef UNICODE
-#include <Windows.h>
+#include <Ishiko/BasePlatform/windows/IshikoWindows.hpp>
 #endif
 
 using namespace Ishiko;
@@ -102,7 +99,7 @@ std::map<std::string, std::string> CurrentEnvironment::ToMap()
             ++p;
         } while (*p != '\0');
     }
-    FreeEnvironmentStrings(environment);
+    FreeEnvironmentStringsA(environment);
 #else
     #error Unsupported or unrecognized OS
 #endif

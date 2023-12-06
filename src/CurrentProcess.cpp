@@ -1,11 +1,11 @@
 /*
-    Copyright (c) 2020-2022 Xavier Leclercq
+    Copyright (c) 2020-2023 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
 #include "CurrentProcess.hpp"
-#include <Ishiko/BasePlatform.h>
+#include <Ishiko/BasePlatform.hpp>
 
 using namespace Ishiko;
 
