@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2022 Xavier Leclercq
+    Copyright (c) 2016-2023 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -8,7 +8,7 @@
 #define _ISHIKO_CPP_PROCESS_CHILDPROCESS_H_
 
 #include "Environment.h"
-#include <Ishiko/BasePlatform.h>
+#include <Ishiko/BasePlatform.hpp>
 #include <Ishiko/Errors.hpp>
 
 #if ISHIKO_OS == ISHIKO_OS_LINUX
