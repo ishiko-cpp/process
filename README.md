@@ -27,5 +27,5 @@ None.
 # License
 
 Copyright (c) 2005-2024 Xavier Leclercq\
-Released under the MIT License\
+This work is licensed under the Boost Software License 1.0\
 See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
