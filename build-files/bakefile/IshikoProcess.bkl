@@ -3,14 +3,13 @@ import $(ishikopath)/base-platform/include/Ishiko/BasePlatform.bkl;
 import $(ishikopath)/errors/include/Ishiko/Errors.bkl;
 import $(ishikopath)/text/include/Ishiko/Text.bkl;
 
-toolsets = gnu vs2022 vs2019 vs2017 vs2015 vs2013;
+toolsets = gnu vs2022 vs2019 vs2017 vs2015;
 
 gnu.makefile = ../gnumake/GNUmakefile;
 vs2022.solutionfile = ../vc17/IshikoProcess.sln;
 vs2019.solutionfile = ../vc16/IshikoProcess.sln;
 vs2017.solutionfile = ../vc15/IshikoProcess.sln;
 vs2015.solutionfile = ../vc14/IshikoProcess.sln;
-vs2013.solutionfile = ../vc12/IshikoProcess.sln;
 
 library IshikoProcess : IshikoText, IshikoErrors, IshikoBasePlatform, Boost
 {
