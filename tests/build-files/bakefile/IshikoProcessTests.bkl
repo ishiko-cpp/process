@@ -2,14 +2,13 @@ ishikopath = envvar("ISHIKO_CPP_ROOT");
 import $(ishikopath)/process/include/Ishiko/Process.bkl;
 import $(ishikopath)/test-framework/include/Ishiko/TestFramework/Core.bkl;
 
-toolsets = gnu vs2022 vs2019 vs2017 vs2015 vs2013;
+toolsets = gnu vs2022 vs2019 vs2017 vs2015;
 
 gnu.makefile = ../gnumake/GNUmakefile;
 vs2022.solutionfile = ../vc17/IshikoProcessTests.sln;
 vs2019.solutionfile = ../vc16/IshikoProcessTests.sln;
 vs2017.solutionfile = ../vc15/IshikoProcessTests.sln;
 vs2015.solutionfile = ../vc14/IshikoProcessTests.sln;
-vs2013.solutionfile = ../vc12/IshikoProcessTests.sln;
 
 program IshikoProcessTests : IshikoProcess, IshikoTestFrameworkCore
 {
