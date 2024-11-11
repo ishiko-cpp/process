@@ -1,14 +1,11 @@
-/*
-    Copyright (c) 2015-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
-#ifndef _ISHIKO_CPP_PROCESS_HPP_
-#define _ISHIKO_CPP_PROCESS_HPP_
+#ifndef GUARD_ISHIKO_CPP_PROCESS_HPP
+#define GUARD_ISHIKO_CPP_PROCESS_HPP
 
-#include "Process/ChildProcess.h"
-#include "Process/ChildProcessBuilder.h"
+#include "Process/ChildProcess.hpp"
+#include "Process/ChildProcessBuilder.hpp"
 #include "Process/CommandLine.h"
 #include "Process/CurrentEnvironment.hpp"
 #include "Process/CurrentProcess.hpp"

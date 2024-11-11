@@ -1,18 +1,14 @@
-/*
-    Copyright (c) 2016-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
-#include "ChildProcess.h"
-#include "ChildProcessBuilder.h"
+#include "ChildProcess.hpp"
+#include "ChildProcessBuilder.hpp"
 
 #if ISHIKO_OS == ISHIKO_OS_LINUX
 #include <sys/wait.h>
 #endif
 
-namespace Ishiko
-{
+using namespace Ishiko;
 
 ChildProcess ChildProcess::Spawn(const std::string& commandLine)
 {
@@ -145,9 +141,10 @@ void ChildProcess::kill(int exitCode) const
 
 int ChildProcess::exitCode() const
 {
-#if ISHIKO_OS == ISHIKO_OS_LINUX
     // TODO: what if not exited?
-    return WEXITSTATUS(m_status);
+#if ISHIKO_OS == ISHIKO_OS_LINUX
+    // WEXITSTATUS returns the lower 8 buts of the exit code, cast to int8_t to keep the correct sign
+    return static_cast<int8_t>(WEXITSTATUS(m_status));
 #elif ISHIKO_OS == ISHIKO_OS_WINDOWS
     DWORD exitCode;
     GetExitCodeProcess(m_handle, &exitCode);
@@ -155,6 +152,4 @@ int ChildProcess::exitCode() const
 #else
     #error Unsupported or unrecognized OS
 #endif
-}
-
 }
