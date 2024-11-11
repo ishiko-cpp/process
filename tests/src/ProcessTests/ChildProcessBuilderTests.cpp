@@ -1,11 +1,8 @@
-/*
-    Copyright (c) 2016-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
 #include "ChildProcessBuilderTests.h"
-#include "Ishiko/Process/ChildProcessBuilder.h"
+#include "Ishiko/Process/ChildProcessBuilder.hpp"
 #include <boost/filesystem.hpp>
 
 using namespace Ishiko;

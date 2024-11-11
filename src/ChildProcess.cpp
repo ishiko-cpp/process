@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#include "ChildProcess.h"
-#include "ChildProcessBuilder.h"
+#include "ChildProcess.hpp"
+#include "ChildProcessBuilder.hpp"
 
 #if ISHIKO_OS == ISHIKO_OS_LINUX
 #include <sys/wait.h>

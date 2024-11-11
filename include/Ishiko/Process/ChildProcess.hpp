@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#ifndef _ISHIKO_CPP_PROCESS_CHILDPROCESS_H_
-#define _ISHIKO_CPP_PROCESS_CHILDPROCESS_H_
+#ifndef GUARD_ISHIKO_CPP_PROCESS_CHILDPROCESS_HPP
+#define GUARD_ISHIKO_CPP_PROCESS_CHILDPROCESS_HPP
 
 #include "Environment.h"
 #include <Ishiko/BasePlatform.hpp>

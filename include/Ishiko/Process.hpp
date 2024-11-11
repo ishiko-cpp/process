@@ -4,8 +4,8 @@
 #ifndef GUARD_ISHIKO_CPP_PROCESS_HPP
 #define GUARD_ISHIKO_CPP_PROCESS_HPP
 
-#include "Process/ChildProcess.h"
-#include "Process/ChildProcessBuilder.h"
+#include "Process/ChildProcess.hpp"
+#include "Process/ChildProcessBuilder.hpp"
 #include "Process/CommandLine.h"
 #include "Process/CurrentEnvironment.hpp"
 #include "Process/CurrentProcess.hpp"

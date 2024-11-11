@@ -1,12 +1,12 @@
 // SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#ifndef _ISHIKO_CPP_PROCESS_CHILDPROCESSBUILDER_H_
-#define _ISHIKO_CPP_PROCESS_CHILDPROCESSBUILDER_H_
+#ifndef GUARD_ISHIKO_CPP_PROCESS_CHILDPROCESSBUILDER_HPP
+#define GUARD_ISHIKO_CPP_PROCESS_CHILDPROCESSBUILDER_HPP
 
 #include "CommandLine.h"
 #include "Environment.h"
-#include "ChildProcess.h"
+#include "ChildProcess.hpp"
 #include <boost/optional/optional.hpp>
 #include <Ishiko/Errors.hpp>
 #include <string>

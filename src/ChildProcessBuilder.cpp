@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#include "ChildProcessBuilder.h"
+#include "ChildProcessBuilder.hpp"
 #include "ProcessErrorCategory.hpp"
 #include <Ishiko/BasePlatform.hpp>
 
