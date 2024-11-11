@@ -17,10 +17,11 @@ ChildProcessBuilderTests::ChildProcessBuilderTests(const TestNumber& number, con
     append<HeapAllocationErrorsTest>("start test 1", StartTest1);
     append<HeapAllocationErrorsTest>("start test 2", StartTest2);
     append<HeapAllocationErrorsTest>("start test 3", StartTest3);
-    append<HeapAllocationErrorsTest>("redirectStandardOutputToFile test 1", RedirectStandardOutputToFileTest1);
     append<HeapAllocationErrorsTest>("start test 4", StartTest4);
+    append<HeapAllocationErrorsTest>("redirectStandardOutputToFile test 1", RedirectStandardOutputToFileTest1);
     append<HeapAllocationErrorsTest>("start test 5", StartTest5);
     append<HeapAllocationErrorsTest>("start test 6", StartTest6);
+    append<HeapAllocationErrorsTest>("start test 7", StartTest7);
 }
 
 void ChildProcessBuilderTests::ConstructorTest1(Test& test)
@@ -88,6 +89,25 @@ void ChildProcessBuilderTests::StartTest3(Test& test)
     ISHIKO_TEST_PASS();
 }
 
+void ChildProcessBuilderTests::StartTest4(Test& test)
+{
+#ifdef __linux__
+    boost::filesystem::path executablePath{ test.context().getDataPath("bin/ExitCodeTestHelper") };
+#else
+    boost::filesystem::path executablePath{ test.context().getDataPath("bin/ExitCodeTestHelper.exe") };
+#endif
+
+    CommandLine command(executablePath, {"-1"});
+    ChildProcessBuilder builder(command);
+
+    ChildProcess handle = builder.start();
+
+    handle.waitForExit();
+
+    ISHIKO_TEST_FAIL_IF_NEQ(handle.exitCode(), -1);
+    ISHIKO_TEST_PASS();
+}
+
 void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(Test& test)
 {
     const char* basename{"ProcessCreatorRedirectStandardOutputTest1.txt"};
@@ -113,7 +133,7 @@ void ChildProcessBuilderTests::RedirectStandardOutputToFileTest1(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ChildProcessBuilderTests::StartTest4(Test& test)
+void ChildProcessBuilderTests::StartTest5(Test& test)
 {
     const char* basename{"ChildProcessBuilderTests_StartTest4.txt"};
 
@@ -136,7 +156,7 @@ void ChildProcessBuilderTests::StartTest4(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ChildProcessBuilderTests::StartTest5(Test& test)
+void ChildProcessBuilderTests::StartTest6(Test& test)
 {
     const char* basename{"ChildProcessBuilderTests_StartTest5.txt"};
 
@@ -159,7 +179,7 @@ void ChildProcessBuilderTests::StartTest5(Test& test)
     ISHIKO_TEST_PASS();
 }
 
-void ChildProcessBuilderTests::StartTest6(Test& test)
+void ChildProcessBuilderTests::StartTest7(Test& test)
 {
     const char* basename{"ChildProcessBuilderTests_StartTest6.txt"};
 
