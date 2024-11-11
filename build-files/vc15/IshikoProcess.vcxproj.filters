@@ -20,10 +20,10 @@
     <ClInclude Include="..\..\include\Ishiko\Process.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Process\ChildProcess.h">
+    <ClInclude Include="..\..\include\Ishiko\Process\ChildProcess.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Process\ChildProcessBuilder.h">
+    <ClInclude Include="..\..\include\Ishiko\Process\ChildProcessBuilder.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Process\CommandLine.h">

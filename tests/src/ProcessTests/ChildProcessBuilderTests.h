@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2016-2022 Xavier Leclercq
+    Copyright (c) 2016-2024 Xavier Leclercq
     Released under the MIT License
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
@@ -19,10 +19,12 @@ private:
     static void StartTest1(Ishiko::Test& test);
     static void StartTest2(Ishiko::Test& test);
     static void StartTest3(Ishiko::Test& test);
-    static void RedirectStandardOutputToFileTest1(Ishiko::Test& test);
+
     static void StartTest4(Ishiko::Test& test);
+    static void RedirectStandardOutputToFileTest1(Ishiko::Test& test);
     static void StartTest5(Ishiko::Test& test);
     static void StartTest6(Ishiko::Test& test);
+    static void StartTest7(Ishiko::Test& test);
 };
 
 #endif

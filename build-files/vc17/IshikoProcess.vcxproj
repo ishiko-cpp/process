@@ -161,8 +161,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Ishiko\Process.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Process\ChildProcess.h" />
-    <ClInclude Include="..\..\include\Ishiko\Process\ChildProcessBuilder.h" />
+    <ClInclude Include="..\..\include\Ishiko\Process\ChildProcess.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Process\ChildProcessBuilder.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Process\CommandLine.h" />
     <ClInclude Include="..\..\include\Ishiko\Process\CurrentEnvironment.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Process\CurrentProcess.hpp" />
