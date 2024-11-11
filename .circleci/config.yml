@@ -29,13 +29,13 @@ jobs:
           command: cd /workspace/projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/types.git && cd types/build-files/gnumake && make
       - run:
           name: "Install test dependency: Ishiko/C++ Collections"
-          command: cd /workspace/projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/collections.git && cd collections/build/gnumake && make
+          command: cd /workspace/projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/collections.git && cd collections/build-files/gnumake && make
       - run:
           name: "Install test dependency: Ishiko/C++ Time"
           command: cd /workspace/projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/time.git && cd time/build-files/gnumake && make
       - run:
           name: "Install test dependency: Ishiko/C++ IO"
-          command: cd /workspace/projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/io.git && cd io/build/gnumake && make
+          command: cd /workspace/projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/io.git && cd io/build-files/gnumake && make
       - run:
           name: "Install test dependency: Ishiko/C++ FileSystem"
           command: cd /workspace/projects/ishiko/cpp && git clone https://github.com/ishiko-cpp/filesystem.git && cd filesystem/build-files/gnumake && make
