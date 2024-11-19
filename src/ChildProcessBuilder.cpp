@@ -58,7 +58,7 @@ ChildProcess ChildProcessBuilder::start()
 ChildProcess ChildProcessBuilder::start(Error& error) noexcept
 {
 #if ISHIKO_OS == ISHIKO_OS_LINUX
-    if (!boost::filesystem::exists(m_commandLine.getExecutable(CommandLine::eRaw)))
+    if (!boost::filesystem::exists(m_commandLine.getExecutable(CommandLine::Mode::raw)))
     {
         Fail(ProcessErrorCategory::Value::generic, error);
         return ChildProcess(-1);
@@ -76,10 +76,10 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
     }
     else
     {
-        std::vector<std::string> arguments = m_commandLine.getArguments(CommandLine::eRaw);
+        std::vector<std::string> arguments = m_commandLine.getArguments(CommandLine::Mode::raw);
         char** argv = new char*[arguments.size() + 2];
         size_t i = 0;
-        argv[i] = strdup(m_commandLine.getExecutable(CommandLine::eRaw).c_str());
+        argv[i] = strdup(m_commandLine.getExecutable(CommandLine::Mode::raw).c_str());
         ++i;
         for (const std::string& argument : arguments)
         {
@@ -98,12 +98,13 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
         if (m_environment)
         {
 
-            int err = execve(m_commandLine.getExecutable(CommandLine::eRaw).c_str(), argv, m_environment->toEnvironmentArray());
+            int err = execve(m_commandLine.getExecutable(CommandLine::Mode::raw).c_str(), argv,
+                m_environment->toEnvironmentArray());
             // TODO: how to feed back a better error to the parent process?
         }
         else
         {
-            int err = execv(m_commandLine.getExecutable(CommandLine::eRaw).c_str(), argv);
+            int err = execv(m_commandLine.getExecutable(CommandLine::Mode::raw).c_str(), argv);
             // TODO: how to feed back a better error to the parent process?
         }
         exit(-1);
