@@ -6,11 +6,11 @@
 
 #include "Process/ChildProcess.hpp"
 #include "Process/ChildProcessBuilder.hpp"
-#include "Process/CommandLine.h"
+#include "Process/CommandLine.hpp"
 #include "Process/CurrentEnvironment.hpp"
 #include "Process/CurrentProcess.hpp"
-#include "Process/Environment.h"
-#include "Process/EnvironmentVariable.h"
+#include "Process/Environment.hpp"
+#include "Process/EnvironmentVariable.hpp"
 #include "Process/linkoptions.hpp"
 #include "Process/ProcessErrorCategory.hpp"
 

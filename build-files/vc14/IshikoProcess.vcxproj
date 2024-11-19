@@ -163,11 +163,11 @@
     <ClInclude Include="..\..\include\Ishiko\Process.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Process\ChildProcess.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Process\ChildProcessBuilder.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Process\CommandLine.h" />
+    <ClInclude Include="..\..\include\Ishiko\Process\CommandLine.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Process\CurrentEnvironment.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Process\CurrentProcess.hpp" />
-    <ClInclude Include="..\..\include\Ishiko\Process\Environment.h" />
-    <ClInclude Include="..\..\include\Ishiko\Process\EnvironmentVariable.h" />
+    <ClInclude Include="..\..\include\Ishiko\Process\Environment.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Process\EnvironmentVariable.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Process\linkoptions.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Process\ProcessErrorCategory.hpp" />
   </ItemGroup>

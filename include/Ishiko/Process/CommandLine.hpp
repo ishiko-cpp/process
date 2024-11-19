@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#ifndef GUARD_ISHIKO_CPP_PROCESS_COMMANDLINE_H
-#define GUARD_ISHIKO_CPP_PROCESS_COMMANDLINE_H
+#ifndef GUARD_ISHIKO_CPP_PROCESS_COMMANDLINE_HPP
+#define GUARD_ISHIKO_CPP_PROCESS_COMMANDLINE_HPP
 
 #include <boost/filesystem/path.hpp>
 #include <string>

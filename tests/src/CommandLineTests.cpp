@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: BSL-1.0
 
 #include "CommandLineTests.h"
-#include "Ishiko/Process/CommandLine.h"
+#include "Ishiko/Process/CommandLine.hpp"
 
 using namespace Ishiko;
 
