@@ -25,6 +25,7 @@ private:
     static void StartTest5(Ishiko::Test& test);
     static void StartTest6(Ishiko::Test& test);
     static void StartTest7(Ishiko::Test& test);
+    static void StartTest8(Ishiko::Test& test);
 };
 
 #endif
