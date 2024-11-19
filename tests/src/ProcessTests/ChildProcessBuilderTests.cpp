@@ -207,9 +207,9 @@ void ChildProcessBuilderTests::StartTest8(Test& test)
     const char* basename{ "ChildProcessBuilderTests_StartTest8.txt" };
 
 #ifdef __linux__
-    boost::filesystem::path executablePath{ test.context().getDataPath("bin/DumpTestHelper") };
+    boost::filesystem::path executablePath(test.context().getDataPath("bin/DumpTestHelper"));
 #else
-    boost::filesystem::path executablePath{ test.context().getDataPath("bin/DumpTestHelper.exe") };
+    boost::filesystem::path executablePath(test.context().getDataPath("bin/DumpTestHelper.exe"));
 #endif
 
     CommandLine command(executablePath.string(), {"Argument1"});

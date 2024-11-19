@@ -1,9 +1,10 @@
-toolsets = gnu vs2017 vs2015 vs2013;
+toolsets = gnu vs2022 vs2019 vs2017 vs2015;
 
-gnu.makefile = ../GNUmakefile/GNUmakefile;
-vs2017.solutionfile = ../VC15/DumpTestHelper.sln;
-vs2015.solutionfile = ../VC14/DumpTestHelper.sln;
-vs2013.solutionfile = ../VC12/DumpTestHelper.sln;
+gnu.makefile = ../gnumake/GNUmakefile;
+vs2022.solutionfile = ../vc17/DumpTestHelper.sln;
+vs2019.solutionfile = ../vc16/DumpTestHelper.sln;
+vs2017.solutionfile = ../vc15/DumpTestHelper.sln;
+vs2015.solutionfile = ../vc14/DumpTestHelper.sln;
 
 program DumpTestHelper
 {
@@ -13,6 +14,6 @@ program DumpTestHelper
 
     sources
     {
-        ../../Source/main.cpp
+        ../../src/main.cpp
     }
 }
