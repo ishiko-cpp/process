@@ -62,7 +62,7 @@ jobs:
           command: cd /workspace/projects/ishiko/cpp/process/tests/StandardOutputTestHelper/Makefiles/GNUmakefile && make
       - run:
           name: Build DumpTestHelper
-          command: cd /workspace/projects/ishiko/cpp/process/tests/DumpTestHelper/Makefiles/GNUmakefile && make
+          command: cd /workspace/projects/ishiko/cpp/process/tests/dump-test-helper/build-files/GNUmakefile && make
       - run:
           name: Run the tests
           command: cd /workspace/projects/ishiko/cpp/process/tests/build-files/gnumake && ./IshikoProcessTests
