@@ -1,8 +1,5 @@
-/*
-    Copyright (c) 2020-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
 #include "Environment.hpp"
 #include <Ishiko/Text.hpp>
@@ -36,7 +33,7 @@ Environment::Environment(const Environment& other)
     m_variables.reserve(other.m_variables.size());
     for (size_t i = 0; i < other.m_variables.size() - 1; ++i)
     {
-        m_variables.push_back(EnvironmentVariable(CString::Duplicate(other.m_variables[i].m_variable)));
+        m_variables.push_back(EnvironmentVariable(CString::Duplicate(other.m_variables[i].variable())));
     }
     m_variables.push_back(EnvironmentVariable(nullptr));
 }
@@ -45,7 +42,7 @@ Environment::~Environment()
 {
     for (const EnvironmentVariable& entry : m_variables)
     {
-        delete[] entry.m_variable;
+        delete[] entry.variable();
     }
 }
 
@@ -73,11 +70,11 @@ bool Environment::find(const std::string& name, std::string& value) const
 {
     for (const EnvironmentVariable& entry : m_variables)
     {
-        if ((entry.m_variable != nullptr) && (memcmp(entry.m_variable, name.c_str(), name.size()) == 0))
+        if ((entry.variable() != nullptr) && (memcmp(entry.variable(), name.c_str(), name.size()) == 0))
         {
-            if (entry.m_variable[name.size()] == '=')
+            if (entry.variable()[name.size()] == '=')
             {
-                value = entry.m_variable + name.size() + 1;
+                value = entry.variable() + name.size() + 1;
                 return true;
             }
         }
@@ -93,14 +90,16 @@ void Environment::set(const char* name, const char* value)
     EnvironmentVariable newVariable(CString::Duplicate(entry.c_str()));
 
     size_t i = 0;
-    while ((i < (m_variables.size() - 1)) && (strcmp(m_variables[i].m_variable, newVariable.m_variable) < 0))
+    int comparison_result = m_variables[i].compareName(name);
+    while (comparison_result < 0)
     {
         ++i;
+        comparison_result = m_variables[i].compareName(name);
     }
     
-    if ((m_variables[i].m_variable != nullptr) && (m_variables[i].name() == newVariable.name()))
+    if (comparison_result == 0)
     {
-        delete[] m_variables[i].m_variable;
+        delete[] m_variables[i].variable();
         m_variables[i] = newVariable;
     }
     else
@@ -126,7 +125,7 @@ std::vector<char> Environment::toEnvironmentBlock() const
     {
         for (size_t i = 0; i < (m_variables.size() - 1); ++i)
         {
-            const char* entry = m_variables[i].m_variable;
+            const char* entry = m_variables[i].variable();
             result.insert(result.end(), entry, entry + strlen(entry) + 1);
         }
     }

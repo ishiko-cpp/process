@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#include "CommandLineTests.h"
+#include "CommandLineTests.hpp"
 #include "Ishiko/Process/CommandLine.hpp"
 
 using namespace Ishiko;
