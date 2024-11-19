@@ -135,7 +135,7 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
     ZeroMemory(&processInfo, sizeof(processInfo));
 
     HANDLE handle = INVALID_HANDLE_VALUE;
-    if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString(CommandLine::eQuoteIfNeeded).c_str()),
+    if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString(CommandLine::Mode::quote_if_needed).c_str()),
         NULL, NULL, inheritHandles, 0, environment, NULL, &startupInfo, &processInfo))
     {
         Fail(ProcessErrorCategory::Value::generic, error);

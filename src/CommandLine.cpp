@@ -121,30 +121,35 @@ CommandLine::CommandLine(const boost::filesystem::path& executable, const std::v
 {
 }
 
-std::string CommandLine::getExecutable(EMode mode) const
+void CommandLine::appendArgument(const std::string& argument)
+{
+    m_arguments.emplace_back(argument);
+}
+
+std::string CommandLine::getExecutable(Mode mode) const
 {
     std::string result;
     switch (mode)
     {
-    case eRaw:
+    case Mode::raw:
         result = m_executable;
         break;
 
-    case eQuoteIfNeeded:
+    case Mode::quote_if_needed:
         result = GetQuotedStringIfRequired(m_executable);
         break;
     }
     return result;
 }
 
-std::vector<std::string> CommandLine::getArguments(EMode mode) const
+std::vector<std::string> CommandLine::getArguments(Mode mode) const
 {
     std::vector<std::string> result;
-    if (mode == eRaw)
+    if (mode == Mode::raw)
     {
         result = m_arguments;
     }
-    else if (mode == eQuoteIfNeeded)
+    else if (mode == Mode::quote_if_needed)
     {
         result.reserve(m_arguments.size());
         for (const std::string& argument : m_arguments)
@@ -155,7 +160,7 @@ std::vector<std::string> CommandLine::getArguments(EMode mode) const
     return result;
 }
 
-std::string CommandLine::toString(EMode mode) const
+std::string CommandLine::toString(Mode mode) const
 {
     std::string result = getExecutable(mode);
     for (const std::string& argument : getArguments(mode))
