@@ -1,11 +1,8 @@
-/*
-    Copyright (c) 2020-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
-#ifndef _ISHIKO_CPP_PROCESS_COMMANDLINE_H_
-#define _ISHIKO_CPP_PROCESS_COMMANDLINE_H_
+#ifndef GUARD_ISHIKO_CPP_PROCESS_COMMANDLINE_HPP
+#define GUARD_ISHIKO_CPP_PROCESS_COMMANDLINE_HPP
 
 #include <boost/filesystem/path.hpp>
 #include <string>
@@ -21,10 +18,10 @@ namespace Ishiko
 class CommandLine
 {
 public:
-    enum EMode
+    enum class Mode
     {
-        eRaw,
-        eQuoteIfNeeded
+        raw,
+        quote_if_needed
     };
 
     /// Creates a new CommandLine instance.
@@ -60,10 +57,12 @@ public:
     */
     CommandLine(const boost::filesystem::path& executable, const std::vector<std::string>& arguments);
 
-    std::string getExecutable(EMode mode) const;
-    std::vector<std::string> getArguments(EMode mode) const;
+    void appendArgument(const std::string& argument);
 
-    std::string toString(EMode mode) const;
+    std::string getExecutable(Mode mode) const;
+    std::vector<std::string> getArguments(Mode mode) const;
+
+    std::string toString(Mode mode) const;
 
 private:
     std::string m_executable;

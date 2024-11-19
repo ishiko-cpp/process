@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
-#include "EnvironmentVariable.h"
+#include "EnvironmentVariable.hpp"
 #include <cstring>
 
 namespace Ishiko

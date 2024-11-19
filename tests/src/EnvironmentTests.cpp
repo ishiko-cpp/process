@@ -5,7 +5,7 @@
 */
 
 #include "EnvironmentTests.h"
-#include "Ishiko/Process/Environment.h"
+#include "Ishiko/Process/Environment.hpp"
 #include "Ishiko/Process/CurrentEnvironment.hpp"
 #include <boost/filesystem/operations.hpp>
 #include <fstream>
