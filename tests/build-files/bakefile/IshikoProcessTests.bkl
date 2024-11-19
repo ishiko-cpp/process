@@ -23,7 +23,7 @@ program IshikoProcessTests : IshikoProcess, IshikoTestFrameworkCore
 
     headers
     {
-        ../../src/CommandLineTests.h
+        ../../src/CommandLineTests.hpp
         ../../src/CurrentEnvironmentTests.h
         ../../src/CurrentProcessTests.h
         ../../src/EnvironmentTests.h

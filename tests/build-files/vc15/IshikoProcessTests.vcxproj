@@ -166,7 +166,7 @@
     <ClCompile Include="..\..\src\ProcessTests\ChildProcessBuilderTests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\CommandLineTests.h" />
+    <ClInclude Include="..\..\src\CommandLineTests.hpp" />
     <ClInclude Include="..\..\src\CurrentEnvironmentTests.h" />
     <ClInclude Include="..\..\src\CurrentProcessTests.h" />
     <ClInclude Include="..\..\src\EnvironmentTests.h" />
