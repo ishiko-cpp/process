@@ -4,7 +4,7 @@
 #ifndef GUARD_ISHIKO_CPP_PROCESS_CHILDPROCESS_HPP
 #define GUARD_ISHIKO_CPP_PROCESS_CHILDPROCESS_HPP
 
-#include "Environment.h"
+#include "Environment.hpp"
 #include <Ishiko/BasePlatform.hpp>
 #include <Ishiko/Errors.hpp>
 

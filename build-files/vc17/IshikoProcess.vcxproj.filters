@@ -26,7 +26,7 @@
     <ClInclude Include="..\..\include\Ishiko\Process\ChildProcessBuilder.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Process\CommandLine.h">
+    <ClInclude Include="..\..\include\Ishiko\Process\CommandLine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Process\CurrentEnvironment.hpp">
@@ -35,10 +35,10 @@
     <ClInclude Include="..\..\include\Ishiko\Process\CurrentProcess.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Process\Environment.h">
+    <ClInclude Include="..\..\include\Ishiko\Process\Environment.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Ishiko\Process\EnvironmentVariable.h">
+    <ClInclude Include="..\..\include\Ishiko\Process\EnvironmentVariable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Process\linkoptions.hpp">

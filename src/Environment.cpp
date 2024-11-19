@@ -4,7 +4,7 @@
     See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
 */
 
-#include "Environment.h"
+#include "Environment.hpp"
 #include <Ishiko/Text.hpp>
 #include <cstring>
 #include <string>

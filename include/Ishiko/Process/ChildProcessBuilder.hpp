@@ -4,8 +4,8 @@
 #ifndef GUARD_ISHIKO_CPP_PROCESS_CHILDPROCESSBUILDER_HPP
 #define GUARD_ISHIKO_CPP_PROCESS_CHILDPROCESSBUILDER_HPP
 
-#include "CommandLine.h"
-#include "Environment.h"
+#include "CommandLine.hpp"
+#include "Environment.hpp"
 #include "ChildProcess.hpp"
 #include <boost/optional/optional.hpp>
 #include <Ishiko/Errors.hpp>

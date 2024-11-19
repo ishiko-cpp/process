@@ -39,11 +39,11 @@ library IshikoProcess : IshikoText, IshikoErrors, IshikoBasePlatform, Boost
 
         ../../include/Ishiko/Process/ChildProcess.hpp
         ../../include/Ishiko/Process/ChildProcessBuilder.hpp
-        ../../include/Ishiko/Process/CommandLine.h
+        ../../include/Ishiko/Process/CommandLine.hpp
         ../../include/Ishiko/Process/CurrentEnvironment.hpp
         ../../include/Ishiko/Process/CurrentProcess.hpp
-        ../../include/Ishiko/Process/Environment.h
-        ../../include/Ishiko/Process/EnvironmentVariable.h
+        ../../include/Ishiko/Process/Environment.hpp
+        ../../include/Ishiko/Process/EnvironmentVariable.hpp
         ../../include/Ishiko/Process/linkoptions.hpp
         ../../include/Ishiko/Process/ProcessErrorCategory.hpp
     }
