@@ -1,0 +1,19 @@
+toolsets = gnu vs2022 vs2019 vs2017 vs2015;
+
+gnu.makefile = ../gnumake/GNUmakefile;
+vs2022.solutionfile = ../vc17/DumpTestHelper.sln;
+vs2019.solutionfile = ../vc16/DumpTestHelper.sln;
+vs2017.solutionfile = ../vc15/DumpTestHelper.sln;
+vs2015.solutionfile = ../vc14/DumpTestHelper.sln;
+
+program DumpTestHelper
+{
+    archs = x86 x86_64;
+
+    outputdir = ../../../data/bin;
+
+    sources
+    {
+        ../../src/main.cpp
+    }
+}
