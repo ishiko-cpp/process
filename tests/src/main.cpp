@@ -1,8 +1,5 @@
-/*
-    Copyright (c) 2016-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
 #include "CommandLineTests.h"
 #include "CurrentEnvironmentTests.h"
@@ -13,25 +10,40 @@
 #include "ProcessTests/ChildProcessBuilderTests.h"
 #include "Ishiko/Process/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
+#include <exception>
 
 using namespace Ishiko;
 
 int main(int argc, char* argv[])
 {
-    TestHarness theTestHarness("IshikoProcess");
+    try
+    {
+        TestHarness::CommandLineSpecification command_line_spec;
+        Configuration configuration = command_line_spec.createDefaultConfiguration();
+        configuration.set("context.data", "../../data");
+        configuration.set("context.output", "../../output");
+        configuration.set("context.reference", "../../reference");
+        CommandLineParser::parse(command_line_spec, argc, argv, configuration);
 
-    theTestHarness.context().setDataDirectory("../../data");
-    theTestHarness.context().setOutputDirectory("../../output");
-    theTestHarness.context().setReferenceDirectory("../../reference");
+        TestHarness the_test_harness("IshikoProcess Library Tests", configuration);
 
-    TestSequence& theTests = theTestHarness.tests();
-    theTests.append<CurrentEnvironmentTests>();
-    theTests.append<CurrentProcessTests>();
-    theTests.append<CommandLineTests>();
-    theTests.append<EnvironmentVariableTests>();
-    theTests.append<EnvironmentTests>();
-    theTests.append<ChildProcessTests>();
-    theTests.append<ChildProcessBuilderTests>();
+        TestSequence& the_tests = the_test_harness.tests();
+        the_tests.append<CurrentEnvironmentTests>();
+        the_tests.append<CurrentProcessTests>();
+        the_tests.append<CommandLineTests>();
+        the_tests.append<EnvironmentVariableTests>();
+        the_tests.append<EnvironmentTests>();
+        the_tests.append<ChildProcessTests>();
+        the_tests.append<ChildProcessBuilderTests>();
 
-    return theTestHarness.run();
+        return the_test_harness.run();
+    }
+    catch (const std::exception& e)
+    {
+        return TestApplicationReturnCode::exception;
+    }
+    catch (...)
+    {
+        return TestApplicationReturnCode::exception;
+    }
 }

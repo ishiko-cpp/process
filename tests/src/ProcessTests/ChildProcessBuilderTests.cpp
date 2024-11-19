@@ -19,6 +19,8 @@ ChildProcessBuilderTests::ChildProcessBuilderTests(const TestNumber& number, con
     append<HeapAllocationErrorsTest>("start test 5", StartTest5);
     append<HeapAllocationErrorsTest>("start test 6", StartTest6);
     append<HeapAllocationErrorsTest>("start test 7", StartTest7);
+    append<HeapAllocationErrorsTest>("start test 8", StartTest8);
+    append<HeapAllocationErrorsTest>("start test 9", StartTest9);
 }
 
 void ChildProcessBuilderTests::ConstructorTest1(Test& test)
@@ -190,6 +192,52 @@ void ChildProcessBuilderTests::StartTest7(Test& test)
     Environment environment;
     environment.set("name1", "value1");
     ChildProcessBuilder builder(command, environment);
+    builder.redirectStandardOutputToFile(test.context().getOutputPath(basename).string());
+
+    ChildProcess handle = builder.start();
+
+    handle.waitForExit();
+
+    ISHIKO_TEST_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ(basename);
+    ISHIKO_TEST_PASS();
+}
+
+void ChildProcessBuilderTests::StartTest8(Test& test)
+{
+    const char* basename = "ChildProcessBuilderTests_StartTest8.txt";
+
+#ifdef __linux__
+    boost::filesystem::path executablePath(test.context().getDataPath("bin/DumpTestHelper"));
+#else
+    boost::filesystem::path executablePath(test.context().getDataPath("bin/DumpTestHelper.exe"));
+#endif
+
+    CommandLine command(executablePath.string(), {"Argument1"});
+    ChildProcessBuilder builder(command, Environment());
+    builder.redirectStandardOutputToFile(test.context().getOutputPath(basename).string());
+
+    ChildProcess handle = builder.start();
+
+    handle.waitForExit();
+
+    ISHIKO_TEST_FAIL_IF_NEQ(handle.exitCode(), 0);
+    ISHIKO_TEST_FAIL_IF_OUTPUT_AND_REFERENCE_FILES_NEQ(basename);
+    ISHIKO_TEST_PASS();
+}
+
+void ChildProcessBuilderTests::StartTest9(Test& test)
+{
+    const char* basename = "ChildProcessBuilderTests_StartTest9.txt";
+
+#ifdef __linux__
+    boost::filesystem::path executablePath(test.context().getDataPath("bin/DumpTestHelper"));
+#else
+    boost::filesystem::path executablePath(test.context().getDataPath("bin/DumpTestHelper.exe"));
+#endif
+
+    CommandLine command(executablePath.string(), {"Argument Number 1", "Argument Number 2"});
+    ChildProcessBuilder builder(command, Environment());
     builder.redirectStandardOutputToFile(test.context().getOutputPath(basename).string());
 
     ChildProcess handle = builder.start();
