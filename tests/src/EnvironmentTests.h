@@ -1,8 +1,5 @@
-/*
-    Copyright (c) 2020-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
 #ifndef _ISHIKO_CPP_TEST_PROCESS_ENVIRONMENTTESTS_H_
 #define _ISHIKO_CPP_TEST_PROCESS_ENVIRONMENTTESTS_H_

@@ -1,8 +1,5 @@
-/*
-    Copyright (c) 2020-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
 #include "EnvironmentTests.h"
 #include "Ishiko/Process/Environment.hpp"
@@ -94,9 +91,9 @@ void EnvironmentTests::SetTest3(Test& test)
     env.set("name2", "value2");
 
     ISHIKO_TEST_FAIL_IF_NEQ(env.size(), 3);
-    ISHIKO_TEST_FAIL_IF_STR_NEQ(env[0].m_variable, "name1=value1");
-    ISHIKO_TEST_FAIL_IF_STR_NEQ(env[1].m_variable, "name2=value2");
-    ISHIKO_TEST_FAIL_IF_STR_NEQ(env[2].m_variable, "name3=value3");
+    ISHIKO_TEST_FAIL_IF_STR_NEQ(env[0].variable(), "name1=value1");
+    ISHIKO_TEST_FAIL_IF_STR_NEQ(env[1].variable(), "name2=value2");
+    ISHIKO_TEST_FAIL_IF_STR_NEQ(env[2].variable(), "name3=value3");
     ISHIKO_TEST_PASS();
 }
 

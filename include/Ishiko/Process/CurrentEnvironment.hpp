@@ -1,11 +1,8 @@
-/*
-    Copyright (c) 2005-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
-#ifndef _ISHIKO_CPP_PROCESS_CURRENTENVIRONMENT_HPP_
-#define _ISHIKO_CPP_PROCESS_CURRENTENVIRONMENT_HPP_
+#ifndef GUARD_ISHIKO_CPP_PROCESS_CURRENTENVIRONMENT_HPP
+#define GUARD_ISHIKO_CPP_PROCESS_CURRENTENVIRONMENT_HPP
 
 #include <boost/utility/string_view.hpp>
 #include <Ishiko/Text.hpp>

@@ -1,29 +1,24 @@
-/*
-    Copyright (c) 2020-2022 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/ishiko-cpp/process/blob/main/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
-#ifndef _ISHIKO_CPP_PROCESS_CURRENTPROCESS_HPP_
-#define _ISHIKO_CPP_PROCESS_CURRENTPROCESS_HPP_
+#ifndef GUARD_ISHIKO_CPP_PROCESS_CURRENTPROCESS_HPP
+#define GUARD_ISHIKO_CPP_PROCESS_CURRENTPROCESS_HPP
 
 #include <boost/filesystem.hpp>
 #include <string>
 
 namespace Ishiko
 {
-
-class CurrentProcess
-{
-public:
-    static void RedirectStandardOutputToFile(const boost::filesystem::path& path);
-    static void RedirectStandardOutputToFile(const std::string& path);
-    static void RedirectStandardOutputToTerminal();
-    static void RedirectStandardErrorToFile(const boost::filesystem::path& path);
-    static void RedirectStandardErrorToFile(const std::string& path);
-    static void RedirectStandardErrorToTerminal();
-};
-
+    class CurrentProcess
+    {
+    public:
+        static void RedirectStandardOutputToFile(const boost::filesystem::path& path);
+        static void RedirectStandardOutputToFile(const std::string& path);
+        static void RedirectStandardOutputToTerminal();
+        static void RedirectStandardErrorToFile(const boost::filesystem::path& path);
+        static void RedirectStandardErrorToFile(const std::string& path);
+        static void RedirectStandardErrorToTerminal();
+    };
 }
 
 #endif
