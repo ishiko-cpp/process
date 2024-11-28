@@ -1,9 +1,7 @@
 // SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#if defined(__linux__)
-#include <unistd.h>
-#elif defined(_WIN32)
+#if defined(_WIN32)
 #undef UNICODE
 #include <Windows.h>
 #endif
@@ -25,17 +23,14 @@ int main(int argc, char* argv[])
         }
     }
 
-#if defined(__linux__)
     std::cout << "\nenv: " << std::endl;
+#if defined(__linux__)
     extern char** environ;
     for (char** p = environ; *p != nullptr; ++p)
     {
         std::cout << *p << std::endl;
     }
-
-    std::cout << "\ncwd: " << getcwd(nullptr, 0) << std::endl;
 #elif defined(_WIN32)
-    std::cout << "\nenv: " << std::endl;
     char* environment = GetEnvironmentStrings();
     for (char* p = environment; *p != '\0'; ++p)
     {
@@ -46,10 +41,6 @@ int main(int argc, char* argv[])
         } while (*p != '\0');
     }
     FreeEnvironmentStrings(environment);
-
-    char cwd[MAX_PATH];
-    GetCurrentDirectory(MAX_PATH, cwd);
-    std::cout << "\ncwd: " << cwd << std::endl;
 #endif
     
     return 0;

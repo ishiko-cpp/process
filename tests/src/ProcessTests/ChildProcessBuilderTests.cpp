@@ -168,7 +168,6 @@ void ChildProcessBuilderTests::StartTest6(Test& test)
     CommandLine command(executablePath.string());
     ChildProcessBuilder builder(command, Environment());
     builder.redirectStandardOutputToFile(test.context().getOutputPath(basename).string());
-    builder.setCurrentWorkingDirectory("/workspace/projects/ishiko/cpp/process");
 
     ChildProcess handle = builder.start();
 
