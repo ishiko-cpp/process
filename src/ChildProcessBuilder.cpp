@@ -93,6 +93,8 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
             dup2(fd, STDOUT_FILENO);
         }
 
+        char* executable_path = realpath(m_commandLine.getExecutable(CommandLine::Mode::raw), NULL);
+
         const char* working_directory = NULL;
         if (m_current_working_directory)
         {
@@ -104,15 +106,17 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
 
         if (m_environment)
         {
-            int err = execve(m_commandLine.getExecutable(CommandLine::Mode::raw).c_str(), argv,
-                m_environment->toEnvironmentArray());
+            int err = execve(executable_path, argv, m_environment->toEnvironmentArray());
             // TODO: how to feed back a better error to the parent process?
         }
         else
         {
-            int err = execv(m_commandLine.getExecutable(CommandLine::Mode::raw).c_str(), argv);
+            int err = execv(executable_path, argv);
             // TODO: how to feed back a better error to the parent process?
         }
+
+        free(executable_path);
+
         exit(-1);
     }
 #elif ISHIKO_OS == ISHIKO_OS_WINDOWS
