@@ -1,7 +1,9 @@
 // SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
 // SPDX-License-Identifier: BSL-1.0
 
-#if defined(_WIN32)
+#if defined(__linux__)
+#include <unistd.h>
+#elif defined(_WIN32)
 #undef UNICODE
 #include <Windows.h>
 #endif
