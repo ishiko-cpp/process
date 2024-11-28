@@ -12,23 +12,20 @@
 #include <unistd.h>
 #endif
 
-namespace Ishiko
-{
+using namespace Ishiko;
 
 #if ISHIKO_OS == ISHIKO_OS_WINDOWS
 namespace
 {
-
-HANDLE createInheritableFile(const std::string& path)
-{
-    SECURITY_ATTRIBUTES securityAttributes;
-    securityAttributes.nLength = sizeof(SECURITY_ATTRIBUTES);
-    securityAttributes.bInheritHandle = TRUE;
-    securityAttributes.lpSecurityDescriptor = NULL;
-    return CreateFileA(path.c_str(), FILE_APPEND_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, &securityAttributes,
-        OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-}
-
+    HANDLE createInheritableFile(const std::string& path)
+    {
+        SECURITY_ATTRIBUTES securityAttributes;
+        securityAttributes.nLength = sizeof(SECURITY_ATTRIBUTES);
+        securityAttributes.bInheritHandle = TRUE;
+        securityAttributes.lpSecurityDescriptor = NULL;
+        return CreateFileA(path.c_str(), FILE_APPEND_DATA, FILE_SHARE_WRITE | FILE_SHARE_READ, &securityAttributes,
+            OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+    }
 }
 #endif
 
@@ -95,18 +92,28 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
             dup2(fd, STDOUT_FILENO);
         }
 
+        char* executable_path = realpath(m_commandLine.getExecutable(CommandLine::Mode::raw).c_str(), NULL);
+
+        const char* working_directory = NULL;
+        if (m_current_working_directory)
+        {
+            // TODO: check return code
+            int err = chdir(m_current_working_directory->c_str());
+        }
+
         if (m_environment)
         {
-
-            int err = execve(m_commandLine.getExecutable(CommandLine::Mode::raw).c_str(), argv,
-                m_environment->toEnvironmentArray());
+            int err = execve(executable_path, argv, m_environment->toEnvironmentArray());
             // TODO: how to feed back a better error to the parent process?
         }
         else
         {
-            int err = execv(m_commandLine.getExecutable(CommandLine::Mode::raw).c_str(), argv);
+            int err = execv(executable_path, argv);
             // TODO: how to feed back a better error to the parent process?
         }
+
+        free(executable_path);
+
         exit(-1);
     }
 #elif ISHIKO_OS == ISHIKO_OS_WINDOWS
@@ -132,12 +139,18 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
         environment = environmentBlock.data();
     }
 
+    const char* working_directory = NULL;
+    if (m_current_working_directory)
+    {
+        working_directory = m_current_working_directory->c_str();
+    }
+
     PROCESS_INFORMATION processInfo;
     ZeroMemory(&processInfo, sizeof(processInfo));
 
     HANDLE handle = INVALID_HANDLE_VALUE;
     if (!CreateProcessA(NULL, const_cast<char*>(m_commandLine.toString(CommandLine::Mode::quote_if_needed).c_str()),
-        NULL, NULL, inheritHandles, 0, environment, NULL, &startupInfo, &processInfo))
+        NULL, NULL, inheritHandles, 0, environment, working_directory, &startupInfo, &processInfo))
     {
         Fail(ProcessErrorCategory::Value::generic, error);
     }
@@ -163,4 +176,8 @@ void ChildProcessBuilder::redirectStandardOutputToFile(const std::string& path)
     m_standardOutputFilePath = path;
 }
 
+
+void ChildProcessBuilder::setCurrentWorkingDirectory(const std::string& path)
+{
+    m_current_working_directory = path;
 }

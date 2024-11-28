@@ -2,3 +2,5 @@ argc: 3
 argv[0]: *** skipped ***
 argv[1]: Argument Number 1
 argv[2]: Argument Number 2
+
+env: 
