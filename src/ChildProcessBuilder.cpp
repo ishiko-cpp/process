@@ -93,7 +93,7 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
             dup2(fd, STDOUT_FILENO);
         }
 
-        char* executable_path = realpath(m_commandLine.getExecutable(CommandLine::Mode::raw), NULL);
+        char* executable_path = realpath(m_commandLine.getExecutable(CommandLine::Mode::raw).c_str(), NULL);
 
         const char* working_directory = NULL;
         if (m_current_working_directory)
