@@ -1,8 +1,5 @@
-/*
-    Copyright (c) 2020 Xavier Leclercq
-    Released under the MIT License
-    See https://github.com/Ishiko-cpp/Process/blob/master/LICENSE.txt
-*/
+// SPDX-FileCopyrightText: 2000-2024 Xavier Leclercq
+// SPDX-License-Identifier: BSL-1.0
 
 #if defined(_WIN32)
 #undef UNICODE
@@ -27,12 +24,16 @@ int main(int argc, char* argv[])
     }
 
 #if defined(__linux__)
+    std::cout << "\nenv: " << std::endl;
     extern char** environ;
     for (char** p = environ; *p != nullptr; ++p)
     {
         std::cout << *p << std::endl;
     }
+
+    std::cout << "\ncwd: " << getcwd(nullptr, 0) << std::endl;
 #elif defined(_WIN32)
+    std::cout << "\nenv: " << std::endl;
     char* environment = GetEnvironmentStrings();
     for (char* p = environment; *p != '\0'; ++p)
     {
@@ -43,6 +44,10 @@ int main(int argc, char* argv[])
         } while (*p != '\0');
     }
     FreeEnvironmentStrings(environment);
+
+    char cwd[MAX_PATH];
+    GetCurrentDirectory(MAX_PATH, cwd);
+    std::cout << "\ncwd: " << cwd << std::endl;
 #endif
     
     return 0;

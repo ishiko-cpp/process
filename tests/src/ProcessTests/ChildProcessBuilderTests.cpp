@@ -168,6 +168,7 @@ void ChildProcessBuilderTests::StartTest6(Test& test)
     CommandLine command(executablePath.string());
     ChildProcessBuilder builder(command, Environment());
     builder.redirectStandardOutputToFile(test.context().getOutputPath(basename).string());
+    builder.setCurrentWorkingDirectory("/tmp");
 
     ChildProcess handle = builder.start();
 
