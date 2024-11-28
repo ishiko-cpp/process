@@ -4,6 +4,7 @@
 #include "ChildProcessBuilder.hpp"
 #include "ProcessErrorCategory.hpp"
 #include <Ishiko/BasePlatform.hpp>
+#include <iostream>
 
 #if ISHIKO_OS == ISHIKO_OS_LINUX
 #include <boost/filesystem/operations.hpp>
@@ -95,13 +96,14 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
         const char* working_directory = NULL;
         if (m_current_working_directory)
         {
+            std::cerr << "cwd: " << *m_current_working_directory << std::endl;
             // TODO: check return code
-            chdir(m_current_working_directory->c_str());
+            int err = chdir(m_current_working_directory->c_str());
+            std::cerr << "ret: " << err << std::endl;
         }
 
         if (m_environment)
         {
-
             int err = execve(m_commandLine.getExecutable(CommandLine::Mode::raw).c_str(), argv,
                 m_environment->toEnvironmentArray());
             // TODO: how to feed back a better error to the parent process?
