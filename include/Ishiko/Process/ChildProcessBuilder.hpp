@@ -13,25 +13,25 @@
 
 namespace Ishiko
 {
+    class ChildProcessBuilder
+    {
+    public:
+        ChildProcessBuilder(const std::string& commandLine);
+        ChildProcessBuilder(const CommandLine& commandLine);
+        ChildProcessBuilder(const CommandLine& commandLine, const Environment& environment);
 
-class ChildProcessBuilder
-{
-public:
-    ChildProcessBuilder(const std::string& commandLine);
-    ChildProcessBuilder(const CommandLine& commandLine);
-    ChildProcessBuilder(const CommandLine& commandLine, const Environment& environment);
+        ChildProcess start();
+        ChildProcess start(Error& error) noexcept;
 
-    ChildProcess start();
-    ChildProcess start(Error& error) noexcept;
+        void redirectStandardOutputToFile(const std::string& path);
+        void setCurrentWorkingDirectory(const std::string& path);
 
-    void redirectStandardOutputToFile(const std::string& path);
-
-private:
-    CommandLine m_commandLine;
-    boost::optional<Environment> m_environment;
-    std::string m_standardOutputFilePath;
-};
-
+    private:
+        CommandLine m_commandLine;
+        boost::optional<Environment> m_environment;
+        std::string m_standardOutputFilePath;
+        boost::optional<std::string> m_current_working_directory;
+    };
 }
 
 #endif

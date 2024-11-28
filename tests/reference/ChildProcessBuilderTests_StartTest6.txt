@@ -1,3 +1,5 @@
 argc: 1
 argv[0]: *** skipped ***
+
+env: 
 name1=value1
