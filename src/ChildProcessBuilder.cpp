@@ -4,7 +4,6 @@
 #include "ChildProcessBuilder.hpp"
 #include "ProcessErrorCategory.hpp"
 #include <Ishiko/BasePlatform.hpp>
-#include <iostream>
 
 #if ISHIKO_OS == ISHIKO_OS_LINUX
 #include <boost/filesystem/operations.hpp>
@@ -98,10 +97,8 @@ ChildProcess ChildProcessBuilder::start(Error& error) noexcept
         const char* working_directory = NULL;
         if (m_current_working_directory)
         {
-            std::cerr << "cwd: " << *m_current_working_directory << std::endl;
             // TODO: check return code
             int err = chdir(m_current_working_directory->c_str());
-            std::cerr << "ret: " << err << std::endl;
         }
 
         if (m_environment)
