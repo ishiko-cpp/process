@@ -5,6 +5,11 @@
 
 using namespace Ishiko;
 
+ProcessErrorCategory::ProcessErrorCategory() noexcept
+    : ErrorCategory(ID(0x4406a43c5dba4166ULL, 0x8755a4f5326d0ae3ULL)) // 4406a43c-5dba-4166-8755-a4f5326d0ae3
+{
+}
+
 const ProcessErrorCategory& ProcessErrorCategory::Get() noexcept
 {
     static ProcessErrorCategory theCategory;
